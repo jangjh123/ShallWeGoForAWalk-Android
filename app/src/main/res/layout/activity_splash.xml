@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<!--          android:letterSpacing=""
+            android:autoSizeTextType="uniform"
+            android:textColor=""
+            android:fontFamily=""
+            android:autoSizeMaxTextSize=""
+            android:gravity="center"-->
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main"
+        tools:context=".ui.activity.splash.SplashActivity">
+
+
+        <TextView
+            android:id="@+id/tv_main_desc"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:autoSizeStepGranularity="1dp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_light"
+            android:gravity="center_horizontal"
+            android:letterSpacing="-0.06"
+            android:text="@string/main_desc"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/iv_main_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/iv_main_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_logo"
+            app:layout_constraintBottom_toTopOf="@+id/iv_splash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_desc" />
+
+        <ImageView
+            android:id="@+id/iv_splash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_splash"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_main_logo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

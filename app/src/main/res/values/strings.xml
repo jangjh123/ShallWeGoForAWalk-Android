@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ShallWeGoForAWalk</string>
+    <string name="main_desc">댕댕이를 위한 맞춤 날씨앱</string>
+
+    <!--    common-->
+    <string name="quit">종료</string>
+
+    <!--    dialog-->
+    <string name="dialog_network_title">네트워크 연결 오류</string>
+    <string name="dialog_network_body">네트워크에 연결되어있지 않습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
+
 </resources>
