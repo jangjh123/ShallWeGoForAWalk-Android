@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.databinding.ActivitySplashBinding
+import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
@@ -28,7 +29,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     viewModel.getRegistration(onComplete = {
                         when (it) {
                             true -> {
-                                // TODO: 저장한 강아지 있을 때
+                                startActivity(
+                                    Intent(
+                                        this@SplashActivity,
+                                        HomeActivity::class.java
+                                    )
+                                )
                             }
                             false -> {
                                 startActivity(
@@ -39,6 +45,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                                 )
                             }
                         }
+                        finish()
                     })
                 }
                 false -> {
