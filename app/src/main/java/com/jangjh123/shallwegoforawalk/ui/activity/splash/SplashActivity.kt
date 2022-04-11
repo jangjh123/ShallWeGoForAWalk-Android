@@ -23,7 +23,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             delay(1500L)
             when (isConnectedToNetwork()) {
                 true -> {
-
+                    viewModel.getRegistration(onComplete = {
+                        when (it) {
+                            true -> {
+                                // TODO: 저장한 강아지 있을 때
+                            }
+                            false -> {
+                                // TODO : 저장한 강아지 없을 때
+                            }
+                        }
+                    })
                 }
                 false -> {
                     NoticeDialog(
@@ -42,17 +51,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     private fun isConnectedToNetwork(): Boolean {
-//        val connectivityManager =
-//            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//        val network = connectivityManager.activeNetwork ?: return false
-//        val active = connectivityManager.getNetworkCapabilities(network) ?: return false
-//        return when {
-//            active.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-//            active.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-//            active.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-//            active.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
-//            else -> false
-//        }
-        return false
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val active = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return when {
+            active.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            active.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            active.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            active.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+            else -> false
+        }
     }
 }
