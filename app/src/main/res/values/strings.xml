@@ -4,8 +4,13 @@
 
     <!--    common-->
     <string name="quit">종료</string>
+
     <string name="boy">남아</string>
     <string name="girl">여아</string>
+
+    <string name="dog_large">대형견</string>
+    <string name="dog_medium">중형견</string>
+    <string name="dog_small">소형견</string>
 
     <!--    dialog-->
     <string name="dialog_network_title">네트워크 연결 오류</string>
@@ -14,6 +19,13 @@
     <!--    register_activity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름을 입력해 주세요.</string>
+    <string name="activity_register_birthday">생일은 언제인가요?</string>
+    <string name="activity_register_choose_birthday">생일을 선택해 주세요.</string>
+    <string name="activity_register_fur_type">어떤 모종인가요?</string>
+    <string name="activity_register_choose_fur_type">댕댕이의 모종을 알려주세요.</string>
+    <string name="activity_register_size">댕댕이의 구분을 선택해주세요.</string>
+    <string name="activity_register_btn_back">이전으로</string>
+    <string name="activity_register_btn_register">등록완료</string>
 
 
 </resources>

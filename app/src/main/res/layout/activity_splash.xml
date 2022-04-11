@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/tv_main_desc"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
             android:autoSizeStepGranularity="1dp"
             android:autoSizeMaxTextSize="17sp"

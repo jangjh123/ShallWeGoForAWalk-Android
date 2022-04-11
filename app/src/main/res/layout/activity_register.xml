@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent"
         tools:context=".ui.activity.register.RegisterActivity">
 
@@ -58,6 +59,7 @@
             android:fontFamily="@font/noto_sans_regular"
             android:gravity="start"
             android:includeFontPadding="false"
+            android:inputType="text"
             android:letterSpacing="-0.06"
             android:maxLines="1"
             android:textColor="@color/black"
@@ -101,6 +103,7 @@
             app:layout_constraintTop_toTopOf="@+id/et_name" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_margin="16dp"
@@ -108,6 +111,238 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+        <TextView
+            android:id="@+id/tv_birthday"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="start"
+            android:letterSpacing="-0.06"
+            android:text="@string/activity_register_birthday"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/btn_choose_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:autoSizeMaxTextSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_regular"
+            android:gravity="start"
+            android:letterSpacing="-0.06"
+            android:text="@string/activity_register_choose_birthday"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_birthday" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/image_drop_down"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_choose_birthday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_choose_birthday" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_choose_birthday" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <TextView
+            android:id="@+id/tv_fur_type"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="start"
+            android:letterSpacing="-0.06"
+            android:text="@string/activity_register_fur_type"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+        <TextView
+            android:id="@+id/btn_choose_fur_type"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:autoSizeMaxTextSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_regular"
+            android:gravity="start"
+            android:letterSpacing="-0.06"
+            android:text="@string/activity_register_choose_fur_type"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fur_type" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/image_drop_down"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_choose_fur_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_choose_fur_type" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_choose_fur_type" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view4" />
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="start"
+            android:letterSpacing="-0.06"
+            android:text="@string/activity_register_size"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_size">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:button="@drawable/radio_buttons"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.06"
+                android:paddingStart="8dp"
+                android:paddingEnd="32dp"
+                android:text="@string/dog_large"
+                android:textColor="@color/black"
+                tools:ignore="RtlSymmetry" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:button="@drawable/radio_buttons"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.06"
+                android:paddingStart="8dp"
+                android:paddingEnd="32dp"
+                android:text="@string/dog_medium"
+                android:textColor="@color/black"
+                tools:ignore="RtlSymmetry" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:button="@drawable/radio_buttons"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.06"
+                android:paddingStart="8dp"
+                android:paddingEnd="32dp"
+                android:text="@string/dog_small"
+                android:textColor="@color/black"
+                tools:ignore="RtlSymmetry" />
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeTextType="uniform"
+            android:background="@color/white"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="center"
+            android:text="@string/activity_register_btn_back"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeTextType="uniform"
+            android:background="@color/main"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="center"
+            android:text="@string/activity_register_btn_register"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/textView3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

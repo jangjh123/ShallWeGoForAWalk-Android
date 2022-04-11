@@ -11,4 +11,5 @@
     <color name="main">#405DE6</color>
 
     <color name="gray">#D9D9D9</color>
+    <color name="gray_light">#F4F4F4</color>
 </resources>
