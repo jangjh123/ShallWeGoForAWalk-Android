@@ -1,12 +1,14 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.splash
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.databinding.ActivitySplashBinding
+import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +31,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                                 // TODO: 저장한 강아지 있을 때
                             }
                             false -> {
-                                // TODO : 저장한 강아지 없을 때
+                                startActivity(
+                                    Intent(
+                                        this@SplashActivity,
+                                        RegisterActivity::class.java
+                                    )
+                                )
                             }
                         }
                     })
