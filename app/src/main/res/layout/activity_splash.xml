@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!--          android:letterSpacing=""
+            android:autoSizeTextType="uniform"
+            android:textColor=""
+            android:fontFamily=""
+            android:autoSizeMaxTextSize=""
+            android:gravity="center"-->
+
     <data>
 
     </data>
@@ -18,8 +25,8 @@
             android:id="@+id/tv_main_desc"
             android:layout_width="0dp"
             android:layout_height="25dp"
+            android:autoSizeStepGranularity="1dp"
             android:autoSizeMaxTextSize="17sp"
-            android:autoSizeMinTextSize="16sp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/noto_sans_light"
             android:gravity="center_horizontal"

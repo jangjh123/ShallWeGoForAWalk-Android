@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dialog_confirm_title"
+            android:layout_width="300dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="16dp"
+            android:autoSizeMaxTextSize="19sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="center"
+            android:letterSpacing="-0.06"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_dialog_confirm_body"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:autoSizeMaxTextSize="15sp"
+            android:layout_marginBottom="16dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/noto_sans_regular"
+            android:gravity="center"
+            android:letterSpacing="-0.06"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_dialog_confirm_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="16sp"
+                android:autoSizeTextType="uniform"
+                android:background="@color/gray"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="center"
+                android:letterSpacing="-0.06"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/btn_dialog_confirm_confirm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="16sp"
+                android:autoSizeTextType="uniform"
+                android:background="@color/main"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="center"
+                android:letterSpacing="-0.06"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>
