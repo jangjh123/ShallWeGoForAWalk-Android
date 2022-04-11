@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--          android:letterSpacing=""
+<!--          android:letterSpacing="-0.06"
             android:autoSizeTextType="uniform"
             android:textColor=""
             android:fontFamily=""

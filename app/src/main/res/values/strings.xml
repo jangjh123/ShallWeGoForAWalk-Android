@@ -4,9 +4,16 @@
 
     <!--    common-->
     <string name="quit">종료</string>
+    <string name="boy">남아</string>
+    <string name="girl">여아</string>
 
     <!--    dialog-->
     <string name="dialog_network_title">네트워크 연결 오류</string>
     <string name="dialog_network_body">네트워크에 연결되어있지 않습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
+
+    <!--    register_activity-->
+    <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
+    <string name="activity_register_name">이름을 입력해 주세요.</string>
+
 
 </resources>
