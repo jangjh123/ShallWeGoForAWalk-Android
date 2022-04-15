@@ -8,8 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="main">#405DE6</color>
+    <color name="score_color1">#2962FF</color>
+    <color name="score_color2">#0091EA</color>
+    <color name="score_color3">#7BB537</color>
+    <color name="score_color4">#F57F17</color>
+    <color name="score_color5">#BF360C</color>
 
-    <color name="gray">#D9D9D9</color>
-    <color name="gray_light">#F4F4F4</color>
+    <color name="brand_color1">#405DE6</color>
+    <color name="brand_color2">#F7F7FB</color>
+
+    <color name="gray_depth1">#111111</color>
+    <color name="gray_depth2">#505050</color>
+    <color name="gray_depth3">#999999</color>
+    <color name="gray_depth4">#D9D9D9</color>
+    <color name="gray_depth5">#F4F4F4</color>
+
+    <color name="dim_behind">#33000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
