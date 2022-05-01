@@ -18,14 +18,32 @@
 
     <!--    register_activity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
-    <string name="activity_register_name">이름을 입력해 주세요.</string>
-    <string name="activity_register_birthday">생일은 언제인가요?</string>
-    <string name="activity_register_choose_birthday">생일을 선택해 주세요.</string>
+    <string name="activity_register_name">이름은 무엇인가요?</string>
+    <string name="activity_register_type_name">이름을 입력해주세요.</string>
+    <string name="activity_register_age">나이는 몇 살인가요?</string>
+    <string name="activity_register_type_age">나이를 입력해주세요.</string>
     <string name="activity_register_fur_type">어떤 모종인가요?</string>
     <string name="activity_register_choose_fur_type">댕댕이의 모종을 알려주세요.</string>
     <string name="activity_register_size">댕댕이의 구분을 선택해주세요.</string>
     <string name="activity_register_btn_back">이전으로</string>
     <string name="activity_register_btn_register">등록완료</string>
+    <string name="activity_register_choice_fur_type">모종 선택</string>
+    <string name="activity_register_choice_fur_type_help">모종 선택 관련 도움말 안내</string>
+    <string name="activity_register_long_fur">장모종 - 더블코트</string>
+    <string name="activity_register_silky_fur">견모종 - 실키코트</string>
+    <string name="activity_register_short_fur">단모종</string>
+    <string name="activity_register_strong_fur">강모종</string>
+    <string name="activity_register_curly_fur">권모종</string>
+
+
+
+    <string name="activity_register_long_fur_example">장모종-더블코트: 골든 리트리버, 콜리, 포메라니안</string>
+    <string name="activity_register_silky_fur_example">견모종-실키코트: 요크셔테리어, 몰티즈, 코카스파니엘</string>
+    <string name="activity_register_short_fur_example">단모종: 달마시안, 비글, 불 테리어, 래브라도 리트리버, 시바견</string>
+    <string name="activity_register_strong_fur_example">강모종: 미니어처 슈나우저, 스코티시 테리어 등 테리어종</string>
+    <string name="activity_register_curly_fur_example">권모종: 푸들, 비숑 프리제 등</string>
+    <string name="activity_register_size_help">구분 기준</string>
+    <string name="activity_register_size_help_desc">7Kg 이하는 소형견, 7Kg 초과~15Kg 이하 중형견, 15Kg 초과는 대형견으로 구분</string>
 
 
 </resources>

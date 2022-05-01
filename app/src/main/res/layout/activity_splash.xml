@@ -17,17 +17,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main"
+        android:background="@color/brand_color1"
         tools:context=".ui.activity.splash.SplashActivity">
 
 
         <TextView
             android:id="@+id/tv_main_desc"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:autoSizeStepGranularity="1dp"
-            android:autoSizeMaxTextSize="17sp"
-            android:autoSizeTextType="uniform"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
             android:fontFamily="@font/noto_sans_light"
             android:gravity="center_horizontal"
             android:letterSpacing="-0.06"
