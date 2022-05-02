@@ -1,15 +1,704 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="activity"
+            type="com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterViewModel" />
+
+        <variable
+            name="boy"
+            type="android.view.View" />
+
+        <variable
+            name="girl"
+            type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.activity.register.RegisterActivity">
+        android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.activity.register.RegisterActivity">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:letterSpacing="-0.06"
+                android:text="@string/activity_register_title"
+                android:textColor="@color/black"
+                android:textSize="26dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans_medium"
+                android:letterSpacing="-0.06"
+                android:text="@string/activity_register_name"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:fontFamily="@font/noto_sans_regular"
+                android:gravity="start"
+                android:hint="@string/activity_register_type_name"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:letterSpacing="-0.06"
+                android:maxLines="1"
+                android:textColor="@color/gray_depth1"
+                android:textColorHint="@color/gray_depth4"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/btn_boy"
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/box_radius_color_white"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="center"
+                android:letterSpacing="-0.06"
+                android:onClick="@{() -> activity.setGender(boy, girl, true)}"
+                android:paddingHorizontal="20dp"
+                android:text="@string/boy"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_name"
+                app:layout_constraintEnd_toStartOf="@id/btn_girl"
+                app:layout_constraintTop_toTopOf="@+id/et_name" />
+
+            <TextView
+                android:id="@+id/btn_girl"
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/box_radius_color_white"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="center"
+                android:letterSpacing="-0.06"
+                android:onClick="@{() -> activity.setGender(girl, boy, false)}"
+                android:paddingHorizontal="20dp"
+                android:text="@string/girl"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_name" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="@color/gray_depth4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="start"
+                android:letterSpacing="-0.06"
+                android:text="@string/activity_register_age"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:fontFamily="@font/noto_sans_regular"
+                android:gravity="start"
+                android:hint="@string/activity_register_type_age"
+                android:includeFontPadding="false"
+                android:inputType="number"
+                android:letterSpacing="-0.06"
+                android:textColor="@color/gray_depth1"
+                android:textColorHint="@color/gray_depth4"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="@color/gray_depth4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/gray_depth5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view2" />
+
+            <TextView
+                android:id="@+id/tv_fur_type"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="start"
+                android:letterSpacing="-0.06"
+                android:text="@string/activity_register_fur_type"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+            <TextView
+                android:id="@+id/btn_choose_fur_type"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:gravity="start"
+                android:letterSpacing="-0.06"
+                android:onClick="@{activity::expandBottomSheet}"
+                android:text="@string/activity_register_choose_fur_type"
+                android:textColor="@color/gray_depth4"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fur_type" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/icon_drop_down"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_choose_fur_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_choose_fur_type" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="@color/gray_depth4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_choose_fur_type" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/gray_depth5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view4" />
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans_medium"
+                android:letterSpacing="-0.06"
+                android:text="@string/activity_register_size"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="6dp"
+                android:onClick="@{() -> activity.setSizeHelpVisibility(true)}"
+                android:src="@drawable/icon_exclamation"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_size"
+                app:layout_constraintStart_toEndOf="@+id/tv_size" />
+
+            <RadioGroup
+                android:id="@+id/radio_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_size">
+
+                <RadioButton
+                    android:id="@+id/btn_size_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:button="@drawable/radio_button"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.06"
+                    android:onClick="@{() -> viewModel.setSize(0)}"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="32dp"
+                    android:text="@string/dog_large"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    tools:ignore="RtlSymmetry" />
+
+                <RadioButton
+                    android:id="@+id/btn_size_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:button="@drawable/radio_button"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.06"
+                    android:onClick="@{() -> viewModel.setSize(1)}"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="32dp"
+                    android:text="@string/dog_medium"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    tools:ignore="RtlSymmetry" />
+
+                <RadioButton
+                    android:id="@+id/btn_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:button="@drawable/radio_button"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.06"
+                    android:onClick="@{() -> viewModel.setSize(2)}"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="32dp"
+                    android:text="@string/dog_small"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    tools:ignore="RtlSymmetry" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/btn_register"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:background="@color/gray_depth3"
+                android:fontFamily="@font/noto_sans_medium"
+                android:gravity="center"
+                android:onClick="@{activity::register}"
+                android:text="@string/activity_register_btn_register"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_size_help"
+                android:layout_width="220dp"
+                android:layout_height="110dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/box_size_help"
+                android:elevation="5dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/btn_register"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/noto_sans_medium"
+                    android:letterSpacing="-0.06"
+                    android:text="@string/activity_register_size_help"
+                    android:textColor="@color/gray_depth1"
+                    android:textSize="17dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="@{() -> activity.setSizeHelpVisibility(false)}"
+                    android:src="@drawable/icon_close"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:letterSpacing="-0.06"
+                    android:text="@string/activity_register_size_help_desc"
+                    android:textColor="@color/gray_depth2"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/dim_filter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:id="@+id/screen_prevent_touch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet_fur"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:background="@drawable/box_bottom_sheet"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bottom_sheet_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="47dp"
+                android:fontFamily="@font/noto_sans_medium"
+                android:letterSpacing="-0.06"
+                android:text="@string/activity_register_choice_fur_type"
+                android:textColor="@color/gray_depth1"
+                android:textSize="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_fur_help"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="18dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/box_radius_color_brand2"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{activity::expandFurHelp}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_exclamation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:gravity="center"
+                    android:letterSpacing="-0.06"
+                    android:text="@string/activity_register_choice_fur_type_help"
+                    android:textColor="@color/gray_depth2"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginStart="5dp" />
+
+                <ImageView
+                    android:id="@+id/iv_drop_down"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/icon_drop_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="2dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/icon_dot" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_regular"
+                            android:letterSpacing="-0.06"
+                            android:text="@string/activity_register_long_fur_example"
+                            android:textColor="@color/gray_depth2"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginVertical="2dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/icon_dot" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_regular"
+                            android:letterSpacing="-0.06"
+                            android:text="@string/activity_register_silky_fur_example"
+                            android:textColor="@color/gray_depth2"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginVertical="2dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/icon_dot" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_regular"
+                            android:letterSpacing="-0.06"
+                            android:text="@string/activity_register_short_fur_example"
+                            android:textColor="@color/gray_depth2"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginVertical="2dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/icon_dot" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_regular"
+                            android:letterSpacing="-0.06"
+                            android:text="@string/activity_register_strong_fur_example"
+                            android:textColor="@color/gray_depth2"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginVertical="2dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/icon_dot" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_regular"
+                            android:letterSpacing="-0.06"
+                            android:text="@string/activity_register_curly_fur_example"
+                            android:textColor="@color/gray_depth2"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_move_by_expand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/layout_fur_help">
+
+                <RadioGroup
+                    android:id="@+id/radio_fur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:divider="@color/gray_depth5"
+                    android:orientation="vertical"
+                    android:showDividers="middle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/btn_fur_long"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:button="@drawable/radio_button"
+                        android:fontFamily="@font/noto_sans_medium"
+                        android:letterSpacing="-0.06"
+                        android:onClick="@{() -> activity.selectFurType(0)}"
+                        android:paddingStart="10dp"
+                        android:text="@string/activity_register_long_fur"
+                        android:textSize="15dp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/btn_fur_silky"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:button="@drawable/radio_button"
+                        android:fontFamily="@font/noto_sans_medium"
+                        android:letterSpacing="-0.06"
+                        android:onClick="@{() -> activity.selectFurType(1)}"
+                        android:paddingStart="10dp"
+                        android:text="@string/activity_register_silky_fur"
+                        android:textSize="15dp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/btn_fur_short"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:button="@drawable/radio_button"
+                        android:fontFamily="@font/noto_sans_medium"
+                        android:letterSpacing="-0.06"
+                        android:onClick="@{() -> activity.selectFurType(2)}"
+                        android:paddingStart="10dp"
+                        android:text="@string/activity_register_short_fur"
+                        android:textSize="15dp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/btn_fur_strong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:button="@drawable/radio_button"
+                        android:fontFamily="@font/noto_sans_medium"
+                        android:letterSpacing="-0.06"
+                        android:onClick="@{() -> activity.selectFurType(3)}"
+                        android:paddingStart="10dp"
+                        android:text="@string/activity_register_strong_fur"
+                        android:textSize="15dp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <RadioButton
+                        android:id="@+id/btn_fur_curly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:button="@drawable/radio_button"
+                        android:fontFamily="@font/noto_sans_medium"
+                        android:letterSpacing="-0.06"
+                        android:onClick="@{() -> activity.selectFurType(4)}"
+                        android:paddingStart="10dp"
+                        android:text="@string/activity_register_curly_fur"
+                        android:textSize="15dp"
+                        tools:ignore="RtlSymmetry" />
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
