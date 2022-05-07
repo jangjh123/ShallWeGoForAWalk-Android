@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_dialog_notice_title"
+            android:id="@+id/tvDialogNoticeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -26,7 +26,7 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/tv_dialog_notice_body"
+            android:id="@+id/tvDialogNoticeBody"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginBottom="16dp"
@@ -37,7 +37,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/btn_dialog_notice"
+            android:id="@+id/btnDialogNotice"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:textSize="16dp"

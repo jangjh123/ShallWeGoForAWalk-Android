@@ -2,7 +2,7 @@
     <string name="app_name">ShallWeGoForAWalk</string>
     <string name="main_desc">댕댕이를 위한 맞춤 날씨앱</string>
 
-    <!--    common-->
+    <!--    Common-->
     <string name="quit">종료</string>
 
     <string name="boy">남아</string>
@@ -12,11 +12,11 @@
     <string name="dog_medium">중형견</string>
     <string name="dog_small">소형견</string>
 
-    <!--    dialog-->
+    <!--    Dialogs-->
     <string name="dialog_network_title">네트워크 연결 오류</string>
     <string name="dialog_network_body">네트워크에 연결되어있지 않습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
 
-    <!--    register_activity-->
+    <!--    RegisterActivity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름은 무엇인가요?</string>
     <string name="activity_register_type_name">이름을 입력해주세요.</string>
@@ -36,7 +36,6 @@
     <string name="activity_register_curly_fur">권모종</string>
 
 
-
     <string name="activity_register_long_fur_example">장모종-더블코트: 골든 리트리버, 콜리, 포메라니안</string>
     <string name="activity_register_silky_fur_example">견모종-실키코트: 요크셔테리어, 몰티즈, 코카스파니엘</string>
     <string name="activity_register_short_fur_example">단모종: 달마시안, 비글, 불 테리어, 래브라도 리트리버, 시바견</string>
@@ -45,5 +44,5 @@
     <string name="activity_register_size_help">구분 기준</string>
     <string name="activity_register_size_help_desc">7Kg 이하는 소형견, 7Kg 초과~15Kg 이하 중형견, 15Kg 초과는 대형견으로 구분</string>
 
-
+    <!--    MainActivity-->
 </resources>
