@@ -44,5 +44,20 @@
     <string name="activity_register_size_help">구분 기준</string>
     <string name="activity_register_size_help_desc">7Kg 이하는 소형견, 7Kg 초과~15Kg 이하 중형견, 15Kg 초과는 대형견으로 구분</string>
 
-    <!--    MainActivity-->
+    <!--    MainFragment-->
+    <string name="fragment_main_highest">최고</string>
+    <string name="fragment_main_lowest">최저</string>
+    <string name="fragment_main_humidity">습도</string>
+    <string name="fragment_main_ultra_fine_dust">초미세먼지</string>
+    <string name="fragment_main_fine_dust">미세먼지</string>
+    <string name="fragment_main_rainy">강수</string>
+    <string name="fragment_main_degree">˚</string>
+    <string name="fragment_main_percent">%</string>
+    <string name="fragment_main_dust_unit">㎍/㎥</string>
+
+    <string name="fragment_main_dust_level1">매우 나쁨</string>
+    <string name="fragment_main_dust_level2">나쁨</string>
+    <string name="fragment_main_dust_level3">보통</string>
+    <string name="fragment_main_dust_level4">좋음</string>
+    <string name="fragment_main_dust_level5">매우 좋음</string>
 </resources>
