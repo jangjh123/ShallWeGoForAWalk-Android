@@ -114,11 +114,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 }
 
                 setOnFocusChangeListener { _, _ ->
-                    if (etName.text.isNotEmpty()) {
-                        viewModel!!.setName(etName.text.toString())
+                    if (edittextRegisterName.text.isNotEmpty()) {
+                        viewModel!!.setName(edittextRegisterName.text.toString())
                     } else {
                         if (viewModel!!.dogName.value != null) {
-                            etName.setText(viewModel!!.dogName.value)
+                            edittextRegisterName.setText(viewModel!!.dogName.value)
                         }
                     }
                 }
