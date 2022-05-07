@@ -33,9 +33,9 @@ class NoticeDialog(
 
     private fun initView() {
         with(binding) {
-            tvDialogNoticeTitle.text = title
-            tvDialogNoticeBody.text = body
-            btnDialogNotice.apply {
+            textviewNoticeTitle.text = title
+            textviewNoticeBody.text = body
+            buttonNoticeConfirm.apply {
                 text = buttonText
                 setOnClickListener {
                     onClickButton()

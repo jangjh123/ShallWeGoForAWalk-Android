@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvDialogConfirmTitle"
+            android:id="@+id/textview_confirm_title"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -24,7 +24,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/tvDialogConfirmBody"
+            android:id="@+id/textview_confirm_body"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:textSize="16dp"
@@ -40,7 +40,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/btnDialogConfirmCancel"
+                android:id="@+id/button_confirm_cancel"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -52,7 +52,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/btnDialogConfirmConfirm"
+                android:id="@+id/button_confirm_confirm"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

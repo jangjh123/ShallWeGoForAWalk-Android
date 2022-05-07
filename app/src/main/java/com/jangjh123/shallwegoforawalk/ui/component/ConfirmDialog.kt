@@ -35,15 +35,15 @@ class ConfirmDialog(
 
     private fun initView() {
         with(binding) {
-            tvDialogConfirmTitle.text = title
-            tvDialogConfirmBody.text = body
-            btnDialogConfirmCancel.apply {
+            textviewConfirmTitle.text = title
+            textviewConfirmBody.text = body
+            buttonConfirmCancel.apply {
                 text = cancelButtonText
                 setOnClickListener {
                     onClickCancel
                 }
             }
-            btnDialogConfirmConfirm.apply {
+            buttonConfirmConfirm.apply {
                 text = confirmButtonText
                 setOnClickListener {
                     onClickConfirm()

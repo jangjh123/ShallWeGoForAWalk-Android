@@ -22,7 +22,7 @@
 
 
         <TextView
-            android:id="@+id/tvMainDesc"
+            android:id="@+id/textview_splash_sub_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17dp"
@@ -31,31 +31,31 @@
             android:letterSpacing="-0.06"
             android:text="@string/main_desc"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/ivMainLogo"
+            app:layout_constraintBottom_toTopOf="@+id/imageview_splash_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <ImageView
-            android:id="@+id/ivMainLogo"
+            android:id="@+id/imageview_splash_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/image_logo"
-            app:layout_constraintBottom_toTopOf="@+id/ivSplash"
+            app:layout_constraintBottom_toTopOf="@+id/imageview_splash_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMainDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_splash_sub_title" />
 
         <ImageView
-            android:id="@+id/ivSplash"
+            android:id="@+id/imageview_splash_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/image_splash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivMainLogo" />
+            app:layout_constraintTop_toBottomOf="@+id/imageview_splash_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
