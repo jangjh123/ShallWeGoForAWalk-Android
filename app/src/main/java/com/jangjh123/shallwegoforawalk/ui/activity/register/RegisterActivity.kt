@@ -112,6 +112,16 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                     }
                     return@setOnKeyListener false
                 }
+
+                setOnFocusChangeListener { _, _ ->
+                    if (etName.text.isNotEmpty()) {
+                        viewModel!!.setName(etName.text.toString())
+                    } else {
+                        if (viewModel!!.dogName.value != null) {
+                            etName.setText(viewModel!!.dogName.value)
+                        }
+                    }
+                }
             }
 
             edittextRegisterAge.setOnFocusChangeListener { _, b ->
