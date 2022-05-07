@@ -3,11 +3,11 @@ package com.jangjh123.shallwegoforawalk.ui.activity.register
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.TransitionManager
 import android.transition.TransitionManager.beginDelayedTransition
-import android.util.Log
 import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
@@ -20,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.databinding.ActivityRegisterBinding
+import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -42,7 +43,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         ).apply {
             duration = 300
             addUpdateListener {
-                binding.dimFilter.setBackgroundColor(it.animatedValue as Int)
+                binding.screenRegisterDimFilter.setBackgroundColor(it.animatedValue as Int)
             }
         }
     }
@@ -55,7 +56,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         ).apply {
             duration = 300
             addUpdateListener {
-                binding.dimFilter.setBackgroundColor(it.animatedValue as Int)
+                binding.screenRegisterDimFilter.setBackgroundColor(it.animatedValue as Int)
             }
         }
     }
@@ -68,8 +69,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         super.initViewDataBinding()
         binding.activity = this@RegisterActivity
         binding.viewModel = viewModel
-        binding.boy = binding.btnBoy
-        binding.girl = binding.btnGirl
+        binding.boy = binding.buttonRegisterBoy
+        binding.girl = binding.buttonRegisterGirl
     }
 
     override fun startProcess() {
@@ -78,7 +79,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private fun initViewListener() {
         with(binding) {
-            etName.apply {
+            edittextRegisterName.apply {
                 addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     }
@@ -87,11 +88,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                     }
 
                     override fun afterTextChanged(p0: Editable?) {
-                        if (etName.text.length > 20) {
-                            etName.text.replace(20, 21, "")
+                        if (edittextRegisterName.text.length > 20) {
+                            edittextRegisterName.text.replace(20, 21, "")
                             Snackbar.make(root, "강아지 이름은 20자를 넘을 수 없어요.", Snackbar.LENGTH_SHORT)
                                 .show()
-                            hideKeyboard(etName)
+                            hideKeyboard(edittextRegisterName)
                         }
 
                     }
@@ -99,8 +100,15 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
                 setOnKeyListener { _, p1, _ ->
                     if (p1 == KeyEvent.KEYCODE_ENTER) {
-                        hideKeyboard(etName)
-                        etName.clearFocus()
+                        if (edittextRegisterName.text.isNotEmpty()) {
+                            viewModel!!.setName(edittextRegisterName.text.toString())
+                        } else {
+                            if (viewModel!!.dogName.value != null) {
+                                edittextRegisterName.setText(viewModel!!.dogName.value)
+                            }
+                        }
+                        hideKeyboard(edittextRegisterName)
+                        edittextRegisterName.clearFocus()
                     }
                     return@setOnKeyListener false
                 }
@@ -116,29 +124,29 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 }
             }
 
-            etAge.setOnFocusChangeListener { _, b ->
+            edittextRegisterAge.setOnFocusChangeListener { _, b ->
                 if (b) {
-                    etAge.setText("")
+                    edittextRegisterAge.setText("")
                 }
             }
 
-            etAge.setOnKeyListener { _, p1, _ ->
+            edittextRegisterAge.setOnKeyListener { _, p1, _ ->
                 if (p1 == KeyEvent.KEYCODE_NUMPAD_ENTER || p1 == KeyEvent.KEYCODE_ENTER) {
-                    if (etAge.text.isNotEmpty()) {
-                        viewModel!!.setAge(etAge.text.toString().toInt())
-                        etAge.setText("${etAge.text} 살")
+                    if (edittextRegisterAge.text.isNotEmpty()) {
+                        viewModel!!.setAge(edittextRegisterAge.text.toString().toInt())
+                        edittextRegisterAge.setText("${edittextRegisterAge.text} 살")
                     } else {
                         if (viewModel!!.dogAge.value != null) {
-                            etAge.setText("${viewModel!!.dogAge.value.toString()} 살")
+                            edittextRegisterAge.setText("${viewModel!!.dogAge.value.toString()} 살")
                         }
                     }
-                    hideKeyboard(etAge)
-                    etAge.clearFocus()
+                    hideKeyboard(edittextRegisterAge)
+                    edittextRegisterAge.clearFocus()
                 }
                 return@setOnKeyListener false
             }
 
-            screenPreventTouch.setOnClickListener { }
+            screenRegisterPreventTouch.setOnClickListener { }
 
             furBehavior.addBottomSheetCallback(object :
                 BottomSheetBehavior.BottomSheetCallback() {
@@ -169,10 +177,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     private fun setLayoutTouchable(isTouchable: Boolean) {
         when (isTouchable) {
             true -> {
-                binding.screenPreventTouch.visibility = View.GONE
+                binding.screenRegisterPreventTouch.visibility = View.GONE
             }
             false -> {
-                binding.screenPreventTouch.visibility = View.VISIBLE
+                binding.screenRegisterPreventTouch.visibility = View.VISIBLE
             }
         }
     }
@@ -196,22 +204,22 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     fun expandFurHelp(view: View) {
         with(binding) {
             TransitionManager().run {
-                beginDelayedTransition(layoutFurHelp)
-                beginDelayedTransition(layoutMoveByExpand)
+                beginDelayedTransition(layoutRegisterFurHelp)
+                beginDelayedTransition(layoutRegisterFurList)
             }
 
             dropDownState = if (dropDownState == 0) {
-                playAnimation(binding.ivDropDown, R.anim.spin)
-                layoutFurHelp.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+                playAnimation(binding.imageviewRegisterDropDown, R.anim.spin)
+                layoutRegisterFurHelp.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
                 1
             } else {
-                playAnimation(binding.ivDropDown, R.anim.reverse_spin)
-                layoutFurHelp.layoutParams.height = collapsedHeight
+                playAnimation(binding.imageviewRegisterDropDown, R.anim.reverse_spin)
+                layoutRegisterFurHelp.layoutParams.height = collapsedHeight
                 0
             }
 
-            layoutFurHelp.requestLayout()
-            layoutMoveByExpand.requestLayout()
+            layoutRegisterFurHelp.requestLayout()
+            layoutRegisterFurList.requestLayout()
         }
     }
 
@@ -223,7 +231,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     fun selectFurType(furType: Int) {
         viewModel.setDogFurType(furType)
 
-        with(binding.btnChooseFurType) {
+        with(binding.buttonRegisterChooseFurType) {
             when (furType) {
                 0 -> {
                     this.text = getString(R.string.activity_register_long_fur)
@@ -251,7 +259,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun setSizeHelpVisibility(visibility: Boolean) {
-        with(binding.layoutSizeHelp) {
+        with(binding.layoutRegisterSizeHelp) {
             this.visibility =
                 if (visibility) {
                     playAnimation(this, R.anim.fade_in)
@@ -271,7 +279,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         viewModel.infoCount.observe(this@RegisterActivity) {
             if (it == 5) {
                 playColorAnimation(
-                    binding.btnRegister,
+                    binding.buttonRegisterDone,
                     color(R.color.gray_depth3),
                     color(R.color.brand_color1)
                 )
