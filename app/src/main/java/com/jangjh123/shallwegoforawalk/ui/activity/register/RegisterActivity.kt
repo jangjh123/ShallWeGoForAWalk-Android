@@ -3,11 +3,11 @@ package com.jangjh123.shallwegoforawalk.ui.activity.register
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.TransitionManager
 import android.transition.TransitionManager.beginDelayedTransition
-import android.util.Log
 import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
@@ -20,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.databinding.ActivityRegisterBinding
+import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
