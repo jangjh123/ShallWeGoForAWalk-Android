@@ -16,6 +16,10 @@
     <string name="dialog_network_title">네트워크 연결 오류</string>
     <string name="dialog_network_body">네트워크에 연결되어있지 않습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
 
+    <string name="dialog_caution_title">유의사항 안내</string>
+    <string name="dialog_caution_sub_title">고지사항</string>
+    <string name="dialog_caution_body"></string>
+
     <!--    RegisterActivity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름은 무엇인가요?</string>

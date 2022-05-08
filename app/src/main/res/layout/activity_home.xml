@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="activity"
+            type="com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,16 +31,18 @@
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
+            android:onClick="@{activity::showAddDogScreen}"
             android:src="@drawable/icon_plus"
-            app:layout_constraintEnd_toStartOf="@+id/imageview_home_notice"
+            app:layout_constraintEnd_toStartOf="@+id/imageview_home_caution"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
 
         <ImageView
-            android:id="@+id/imageview_home_notice"
+            android:id="@+id/imageview_home_caution"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_margin="12dp"
+            android:onClick="@{activity::showCaution}"
             android:src="@drawable/icon_exclamation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
