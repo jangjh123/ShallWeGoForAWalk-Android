@@ -186,13 +186,13 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun setGender(view: View, view2: View, gender: Boolean) {
-        view.background = drawable(R.drawable.box_radius_color_main)
+        view.background = drawable(R.drawable.box_radius15_color_main)
 
         (view as TextView).setTextColor(
             color(R.color.white)
         )
 
-        view2.background = drawable(R.drawable.box_radius_color_white)
+        view2.background = drawable(R.drawable.box_radius15_color_white)
 
         (view2 as TextView).setTextColor(
             color(R.color.gray_depth1)
@@ -272,7 +272,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun register(view: View) {
-
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
     override fun setObserver() {
