@@ -10,7 +10,6 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/brand_color1"
         tools:context=".ui.fragment.MainFragment">
 
         <androidx.recyclerview.widget.RecyclerView

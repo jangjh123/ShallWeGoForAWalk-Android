@@ -64,4 +64,7 @@
     <string name="fragment_main_dust_level3">보통</string>
     <string name="fragment_main_dust_level4">좋음</string>
     <string name="fragment_main_dust_level5">매우 좋음</string>
+
+    <!--    MainItem-->
+    <string name="item_main_title">오늘의 날씨 점수는요?</string>
 </resources>
