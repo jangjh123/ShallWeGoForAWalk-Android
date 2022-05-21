@@ -272,6 +272,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun register(view: View) {
+        viewModel.storeDog()
         startActivity(Intent(this, HomeActivity::class.java))
     }
 

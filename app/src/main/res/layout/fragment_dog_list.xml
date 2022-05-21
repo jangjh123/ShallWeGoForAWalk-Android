@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="fragment"
             type="com.jangjh123.shallwegoforawalk.ui.fragment.dog_list.DogListFragment" />
+
+        <variable
+            name="adapter"
+            type="com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,11 +32,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_dog_list"
+            setAdapter="@{adapter}"
+            setLayoutManager="@{1}"
             android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:overScrollMode="never"
             app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
         <TextView
