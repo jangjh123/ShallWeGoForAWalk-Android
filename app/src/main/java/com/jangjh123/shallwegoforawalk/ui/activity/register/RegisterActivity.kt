@@ -74,10 +74,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     override fun startProcess() {
-        initViewListener()
+        initView()
     }
 
-    private fun initViewListener() {
+    private fun initView() {
         with(binding) {
             edittextRegisterName.apply {
                 addTextChangedListener(object : TextWatcher {
