@@ -67,4 +67,10 @@
 
     <!--    MainItem-->
     <string name="item_main_title">오늘의 날씨 점수는요?</string>
+
+    <!--    DogListFragment-->
+    <string name="fragment_dog_list_title">댕댕이의 가족을\n추가해 주세요</string>
+
+    <!--    AddDogItem-->
+    <string name="item_add_dog_text">가족 추가하기</string>
 </resources>
