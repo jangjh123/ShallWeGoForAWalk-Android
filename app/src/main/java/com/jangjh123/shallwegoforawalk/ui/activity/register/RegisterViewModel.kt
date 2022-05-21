@@ -90,6 +90,8 @@ class RegisterViewModel @Inject constructor(
                     dogSize.value!!
                 )
             )
+
+            repository.storeRegistration()
         }
     }
 }

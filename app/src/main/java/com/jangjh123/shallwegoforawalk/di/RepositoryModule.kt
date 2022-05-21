@@ -24,7 +24,8 @@ object RepositoryModule {
 
     @ViewModelScoped
     @Provides
-    fun provideRegisterRepository(dogDao: DogDao) = RegisterRepository(dogDao)
+    fun provideRegisterRepository(dogDao: DogDao, dataStore: DataStore<Preferences>) =
+        RegisterRepository(dogDao, dataStore)
 
     @ViewModelScoped
     @Provides
