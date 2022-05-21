@@ -7,7 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="opacity_white">#CCFFFFFF</color>
+    <color name="opc_80_white">#CCFFFFFF</color>
+    <color name="opc_70_white">#B3FFFFFF</color>
+    <color name="opc_30_white">#4DFFFFFF</color>
+    <color name="opc_60_white">#99FFFFFF</color>
+    <color name="opc_30_gray_depth4">#4DD9D9D9</color>
 
     <color name="score_color1">#2962FF</color>
     <color name="score_color2">#0091EA</color>
