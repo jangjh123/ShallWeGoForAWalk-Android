@@ -22,10 +22,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     fun showAddDogScreen(view: View) {
         navController.navigate(R.id.action_main_to_dog_list)
+        binding.imageviewHomeAddDog.visibility = View.GONE
+        binding.imageviewHomeCaution.visibility = View.GONE
     }
 
     fun showMainScreen() {
         navController.navigate(R.id.action_dog_list_to_main)
+        binding.imageviewHomeAddDog.visibility = View.VISIBLE
+        binding.imageviewHomeCaution.visibility = View.VISIBLE
     }
 
     fun showCaution(view: View) {
