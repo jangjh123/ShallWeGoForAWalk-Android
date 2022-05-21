@@ -3,7 +3,7 @@ package com.jangjh123.shallwegoforawalk.ui.fragment.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jangjh123.shallwegoforawalk.data.model.Dog
+import com.jangjh123.shallwegoforawalk.data.model.DogListTypes.Dog
 import com.jangjh123.shallwegoforawalk.data.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: MainRepository,
-    private val dispatcher: CoroutineDispatcher
+    dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _dogList = MutableLiveData<List<Dog>>()
@@ -26,12 +26,4 @@ class MainViewModel @Inject constructor(
             _dogList.postValue(repository.getDogList())
         }
     }
-//
-//    fun getDogList() {
-//        CoroutineScope(dispatcher).launch {
-//            _dogList.postValue(
-//                repository.getDogList()
-//            )
-//        }
-//    }
 }

@@ -19,7 +19,6 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.jangjh123.shallwegoforawalk.R
-import com.jangjh123.shallwegoforawalk.data.model.Dog
 import com.jangjh123.shallwegoforawalk.databinding.ActivityRegisterBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity

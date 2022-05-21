@@ -29,6 +29,7 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
     override fun onResume() {
         super.onResume()
         startProcess()
+        initViewDataBinding()
     }
 
 //    protected open fun showProgress() {
@@ -41,6 +42,10 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
 //
 //    protected open fun getMessages() {
 //    }
+
+    protected open fun initViewDataBinding() {
+
+    }
 
     protected fun color(color: Int) =
         ContextCompat.getColor(requireContext(), color)
