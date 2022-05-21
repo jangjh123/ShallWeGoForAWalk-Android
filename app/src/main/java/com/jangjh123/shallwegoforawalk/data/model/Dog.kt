@@ -7,4 +7,9 @@ import androidx.room.PrimaryKey
 data class Dog(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    val name: String)
+    val name: String,
+    val gender: Boolean,
+    var age: Int,
+    val furType: Int,
+    val size: Int
+    )
