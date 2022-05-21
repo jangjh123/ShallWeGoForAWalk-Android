@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jangjh123.shallwegoforawalk.R
-import com.jangjh123.shallwegoforawalk.data.DogWeather
+import com.jangjh123.shallwegoforawalk.data.model.Dog
 import com.jangjh123.shallwegoforawalk.databinding.FragmentMainBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
@@ -24,6 +24,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         }
 
-        mainAdapter.submitList(listOf(DogWeather("치즈볼")))
+        mainAdapter.submitList(listOf(Dog(0, "치즈볼")))
     }
 }
