@@ -13,7 +13,7 @@ import com.jangjh123.shallwegoforawalk.util.GenericDiffUtil
 
 class DogListAdapter(
     private inline val onClickAddDog: () -> Unit,
-    private inline val onClickRemoveDog: () -> Unit
+    private inline val onClickRemoveDog: (id: Int, position: Int) -> Unit
 ) :
     ListAdapter<DogListTypes, RecyclerView.ViewHolder>(GenericDiffUtil()) {
 
@@ -69,7 +69,7 @@ class DogListAdapter(
             with(binding) {
                 textviewDogName.text = dog.name
                 buttonDogDelete.setOnClickListener {
-                    onClickRemoveDog
+                    onClickRemoveDog(dog.id, adapterPosition)
                 }
             }
         }

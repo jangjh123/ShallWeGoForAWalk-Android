@@ -52,7 +52,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     NoticeDialog(
                         title = getString(R.string.dialog_network_title),
                         body = getString(R.string.dialog_network_body),
-                        buttonText = getString(R.string.quit),
+                        buttonText = getString(R.string.dialog_quit),
                         onClickButton = {
                             moveTaskToBack(true)
                             finishAndRemoveTask()

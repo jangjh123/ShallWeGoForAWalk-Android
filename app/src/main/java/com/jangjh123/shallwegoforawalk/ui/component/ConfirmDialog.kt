@@ -21,12 +21,14 @@ class ConfirmDialog(
                 text = cancelButtonText
                 setOnClickListener {
                     onClickCancel
+                    dismiss()
                 }
             }
             buttonConfirmConfirm.apply {
                 text = confirmButtonText
                 setOnClickListener {
                     onClickConfirm()
+                    dismiss()
                 }
             }
         }

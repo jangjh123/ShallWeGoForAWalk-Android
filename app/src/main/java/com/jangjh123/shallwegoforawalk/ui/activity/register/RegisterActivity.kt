@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
     private val viewModel: RegisterViewModel by viewModels()
     private var dropDownState = 0
+    private var isFilledAll = false
     private val collapsedHeight by lazy {
         TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40F, resources.displayMetrics)
             .toInt()
@@ -272,8 +273,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun register(view: View) {
-        viewModel.storeDog()
-        startActivity(Intent(this, HomeActivity::class.java))
+        if (isFilledAll) {
+            viewModel.storeDog()
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
     }
 
     override fun setObserver() {
@@ -284,6 +287,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                     color(R.color.gray_depth3),
                     color(R.color.brand_color1)
                 )
+                isFilledAll = true
             }
         }
     }
