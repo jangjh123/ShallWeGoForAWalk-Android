@@ -32,12 +32,17 @@ class DogListViewModel @Inject constructor(
         }
     }
 
-    fun removeDog(id: Int, position: Int) {
+    fun removeDog(id: Int, position: Int, onNoDog:() -> Unit) {
         CoroutineScope(dispatcher).launch {
             repository.removeDogById(id)
-            _dogList.postValue((dogList.value as ArrayList<DogListTypes>).also {
-                it.removeAt(position)
-            })
+            if (dogList.value!!.size == 2) {
+                onNoDog()
+                repository.setRegistration()
+            } else {
+                _dogList.postValue((dogList.value as ArrayList<DogListTypes>).also {
+                    it.removeAt(position)
+                })
+            }
         }
     }
 }

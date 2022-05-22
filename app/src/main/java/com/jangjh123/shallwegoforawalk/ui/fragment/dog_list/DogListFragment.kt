@@ -1,12 +1,12 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.dog_list
 
-import android.util.Log
+import android.content.Intent
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.jangjh123.shallwegoforawalk.R
-import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.databinding.FragmentDogListBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
+import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter
@@ -29,7 +29,11 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
 
                 },
                 onClickConfirm = {
-                    viewModel.removeDog(id, position)
+                    viewModel.removeDog(id, position,
+                        onNoDog = {
+                            startActivity(Intent(requireContext(), RegisterActivity::class.java))
+                            requireActivity().finish()
+                        })
                 }
             ).show(childFragmentManager, "dialog_remove_dog")
         }
