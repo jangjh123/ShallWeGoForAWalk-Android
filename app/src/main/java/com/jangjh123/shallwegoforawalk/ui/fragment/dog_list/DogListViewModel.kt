@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.data.repository.DogListRepository
+import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class DogListViewModel @Inject constructor(
     private val repository: DogListRepository,
     private val dispatcher: CoroutineDispatcher
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _dogList = MutableLiveData<List<DogListTypes>>()
     val dogList: LiveData<List<DogListTypes>>
