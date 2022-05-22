@@ -16,12 +16,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_main"
-            setSnapHelper="@{true}"
-            setLayoutManager="@{1}"
             setAdapter="@{adapter}"
-            android:overScrollMode="never"
+            setLayoutManager="@{0}"
+            setSnapHelper="@{true}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_sheet"

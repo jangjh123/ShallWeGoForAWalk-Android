@@ -1,6 +1,5 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.dog_list
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.jangjh123.shallwegoforawalk.R
@@ -15,7 +14,7 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
     private val viewModel: DogListViewModel by viewModels()
     private val dogListAdapter = DogListAdapter(
         onClickAddDog = {
-
+            (requireActivity() as HomeActivity).addNewDog()
         },
         onClickRemoveDog = {
 
@@ -39,7 +38,6 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
     private fun showDogList() {
         viewModel.dogList.observe(viewLifecycleOwner) {
             dogListAdapter.submitList(it)
-            Log.d("TEST", it.toString())
         }
     }
 }

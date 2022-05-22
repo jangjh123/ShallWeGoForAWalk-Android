@@ -2,7 +2,6 @@ package com.jangjh123.shallwegoforawalk.ui.component
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +24,7 @@ class DogListAdapter(
                 (holder as DogViewHolder).bind(getItem(position) as DogListTypes.Dog)
             }
             1 -> {
-                (holder as AddDogViewHolder)
+                (holder as AddDogViewHolder).bind()
             }
         }
     }
@@ -70,8 +69,7 @@ class DogListAdapter(
             with(binding) {
                 textviewDogName.text = dog.name
                 buttonDogDelete.setOnClickListener {
-                    onClickRemoveDog()
-                    Log.d("TEST", "onClickRemoveDog")
+                    onClickRemoveDog
                 }
             }
         }
@@ -79,8 +77,10 @@ class DogListAdapter(
 
     inner class AddDogViewHolder(private val binding: ItemListAddBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onClickAddDog() {
-            onClickAddDog()
+        fun bind() {
+            binding.buttonAddDog.setOnClickListener {
+                onClickAddDog()
+            }
         }
     }
 }
