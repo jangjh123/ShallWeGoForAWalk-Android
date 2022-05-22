@@ -50,6 +50,7 @@ android {
         // RxJava for asynchronous handling
         implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
         implementation 'io.reactivex.rxjava3:rxjava:3.1.4'
+        implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
 
         // Room for local database
         implementation "androidx.room:room-runtime:2.4.2"
