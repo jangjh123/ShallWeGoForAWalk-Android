@@ -1,11 +1,14 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.dog_list
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.databinding.FragmentDogListBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
+import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,8 +19,19 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
         onClickAddDog = {
             (requireActivity() as HomeActivity).addNewDog()
         },
-        onClickRemoveDog = {
+        onClickRemoveDog = { id, position ->
+            ConfirmDialog(
+                title = getString(R.string.fragment_remove_dialog_title),
+                body = getString(R.string.fragment_remove_dialog_body),
+                cancelButtonText = getString(R.string.dialog_cancel),
+                confirmButtonText = getString(R.string.dialog_confirm),
+                onClickCancel = {
 
+                },
+                onClickConfirm = {
+                    viewModel.removeDog(id, position)
+                }
+            ).show(childFragmentManager, "dialog_remove_dog")
         }
     )
 
@@ -37,7 +51,7 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
 
     private fun showDogList() {
         viewModel.dogList.observe(viewLifecycleOwner) {
-            dogListAdapter.submitList(it)
+            dogListAdapter.submitList(it.toMutableList())
         }
     }
 }

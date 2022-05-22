@@ -3,7 +3,9 @@
     <string name="main_desc">댕댕이를 위한 맞춤 날씨앱</string>
 
     <!--    Common-->
-    <string name="quit">종료</string>
+    <string name="dialog_quit">종료</string>
+    <string name="dialog_confirm">확인</string>
+    <string name="dialog_cancel">취소</string>
 
     <string name="boy">남아</string>
     <string name="girl">여아</string>
@@ -70,6 +72,8 @@
 
     <!--    DogListFragment-->
     <string name="fragment_dog_list_title">댕댕이의 가족을\n추가해 주세요</string>
+    <string name="fragment_remove_dialog_title">강아지 삭제</string>
+    <string name="fragment_remove_dialog_body">저장된 강아지를 삭제할까요?</string>
 
     <!--    AddDogItem-->
     <string name="item_add_dog_text">가족 추가하기</string>

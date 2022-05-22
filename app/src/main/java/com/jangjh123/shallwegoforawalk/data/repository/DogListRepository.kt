@@ -14,4 +14,7 @@ class DogListRepository @Inject constructor(
     suspend fun readDogList(): List<DogListTypes.Dog> =
         dogDao.getAllDog()
 
+    suspend fun removeDogById(id: Int) {
+        dogDao.deleteDog(id)
+    }
 }
