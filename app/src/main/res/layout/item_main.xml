@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/score_color1">
+        android:id="@+id/background">
 
         <TextView
             android:id="@+id/textView22"
@@ -32,7 +32,6 @@
             android:layout_marginTop="2dp"
             android:fontFamily="@font/noto_sans_medium"
             android:letterSpacing="-0.06"
-            android:text="댕댕씨"
             android:textColor="@color/white"
             android:textSize="26dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/textview_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -54,17 +53,16 @@
             app:layout_constraintTop_toBottomOf="@+id/textview_dog_name" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageview_main"
             android:layout_width="204dp"
             android:layout_height="204dp"
             android:layout_marginTop="12dp"
-            android:src="@drawable/dog_medium_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_address" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/textview_main_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/varela_round_normal"
@@ -74,7 +72,7 @@
             android:textSize="61dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@+id/imageview_main" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,7 +84,7 @@
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView25" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_main_point" />
 
         <TextView
             android:id="@+id/textView40"
@@ -103,11 +101,11 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/textview_updated_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="22:00 업데이트"
             android:textColor="@color/opc_60_white"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView40"
@@ -121,12 +119,12 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="10dp"
             android:background="@color/opc_30_gray_depth4"
-            app:layout_constraintBottom_toTopOf="@+id/textView35"
+            app:layout_constraintBottom_toTopOf="@+id/textview_point_after_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/textview_cur_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/varela_round_normal"
@@ -136,10 +134,10 @@
             android:textSize="21dp"
             app:layout_constraintEnd_toEndOf="@+id/textView28"
             app:layout_constraintStart_toStartOf="@+id/textView28"
-            app:layout_constraintTop_toTopOf="@+id/textView33" />
+            app:layout_constraintTop_toTopOf="@+id/textview_point_after_1" />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/textview_point_after_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -148,12 +146,12 @@
             android:text="90"
             android:textColor="@color/white"
             android:textSize="21dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView30"
-            app:layout_constraintEnd_toEndOf="@+id/textView30"
-            app:layout_constraintStart_toStartOf="@+id/textView30" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_time_after_1"
+            app:layout_constraintEnd_toEndOf="@+id/textview_time_after_1"
+            app:layout_constraintStart_toStartOf="@+id/textview_time_after_1" />
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/textview_point_after_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -162,12 +160,12 @@
             android:text="90"
             android:textColor="@color/white"
             android:textSize="21dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView32"
-            app:layout_constraintEnd_toEndOf="@+id/textView32"
-            app:layout_constraintStart_toStartOf="@+id/textView32" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_time_after_2"
+            app:layout_constraintEnd_toEndOf="@+id/textview_time_after_2"
+            app:layout_constraintStart_toStartOf="@+id/textview_time_after_2" />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/textview_point_after_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -176,12 +174,12 @@
             android:text="90"
             android:textColor="@color/white"
             android:textSize="21dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView26"
-            app:layout_constraintEnd_toEndOf="@+id/textView26"
-            app:layout_constraintStart_toStartOf="@+id/textView26" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_time_after_3"
+            app:layout_constraintEnd_toEndOf="@+id/textview_time_after_3"
+            app:layout_constraintStart_toStartOf="@+id/textview_time_after_3" />
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/textview_point_after_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -190,12 +188,12 @@
             android:text="90"
             android:textColor="@color/white"
             android:textSize="21dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView27"
-            app:layout_constraintEnd_toEndOf="@+id/textView27"
-            app:layout_constraintStart_toStartOf="@+id/textView27" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_time_after_4"
+            app:layout_constraintEnd_toEndOf="@+id/textview_time_after_4"
+            app:layout_constraintStart_toStartOf="@+id/textview_time_after_4" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/textview_point_after_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -204,12 +202,12 @@
             android:text="90"
             android:textColor="@color/white"
             android:textSize="21dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView29"
-            app:layout_constraintEnd_toEndOf="@+id/textView29"
-            app:layout_constraintStart_toStartOf="@+id/textView29" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_time_after_5"
+            app:layout_constraintEnd_toEndOf="@+id/textview_time_after_5"
+            app:layout_constraintStart_toStartOf="@+id/textview_time_after_5" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/textview_point_after_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -218,12 +216,12 @@
             android:text="90"
             android:textColor="@color/white"
             android:textSize="21dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView31"
-            app:layout_constraintEnd_toEndOf="@+id/textView31"
-            app:layout_constraintStart_toStartOf="@+id/textView31" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_time_after_6"
+            app:layout_constraintEnd_toEndOf="@+id/textview_time_after_6"
+            app:layout_constraintStart_toStartOf="@+id/textview_time_after_6" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/textview_time_after_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -233,12 +231,12 @@
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/textView26"
+            app:layout_constraintEnd_toStartOf="@+id/textview_time_after_3"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView30" />
+            app:layout_constraintStart_toEndOf="@+id/textview_time_after_1" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/textview_time_after_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -248,12 +246,12 @@
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/textView27"
+            app:layout_constraintEnd_toStartOf="@+id/textview_time_after_4"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView32" />
+            app:layout_constraintStart_toEndOf="@+id/textview_time_after_2" />
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/textview_time_after_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -263,9 +261,9 @@
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/textView29"
+            app:layout_constraintEnd_toStartOf="@+id/textview_time_after_5"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView26" />
+            app:layout_constraintStart_toEndOf="@+id/textview_time_after_3" />
 
         <TextView
             android:id="@+id/textView28"
@@ -279,13 +277,13 @@
             android:text="지금"
             android:textColor="@color/opc_30_white"
             android:textSize="12dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView30"
-            app:layout_constraintEnd_toStartOf="@+id/textView30"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_time_after_1"
+            app:layout_constraintEnd_toStartOf="@+id/textview_time_after_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView30" />
+            app:layout_constraintTop_toTopOf="@+id/textview_time_after_1" />
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/textview_time_after_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -295,12 +293,12 @@
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/textView31"
+            app:layout_constraintEnd_toStartOf="@+id/textview_time_after_6"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView27" />
+            app:layout_constraintStart_toEndOf="@+id/textview_time_after_4" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/textview_time_after_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -310,12 +308,12 @@
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/textView32"
+            app:layout_constraintEnd_toStartOf="@+id/textview_time_after_2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView28" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/textview_time_after_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -327,7 +325,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView29" />
+            app:layout_constraintStart_toEndOf="@+id/textview_time_after_5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

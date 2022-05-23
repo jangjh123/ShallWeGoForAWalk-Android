@@ -83,6 +83,7 @@ class MainViewModel @Inject constructor(
                 }
             )
         addDisposable(disposable)
+        calculatePoints()
     }
 
     private fun createHourlyWeatherList(weatherJson: JsonArray) =
@@ -101,4 +102,9 @@ class MainViewModel @Inject constructor(
                 }
             }
         }
+
+    private fun calculatePoints() {
+        dogList.value
+        weatherData.value
+    }
 }
