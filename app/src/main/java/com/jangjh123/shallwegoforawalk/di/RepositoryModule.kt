@@ -3,6 +3,7 @@ package com.jangjh123.shallwegoforawalk.di
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.jangjh123.shallwegoforawalk.data.local.DogDao
+import com.jangjh123.shallwegoforawalk.data.remote.DataSource
 import com.jangjh123.shallwegoforawalk.data.repository.DogListRepository
 import com.jangjh123.shallwegoforawalk.data.repository.MainRepository
 import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
@@ -30,7 +31,7 @@ object RepositoryModule {
 
     @ViewModelScoped
     @Provides
-    fun provideMainRepository(dogDao: DogDao) = MainRepository(dogDao)
+    fun provideMainRepository(dogDao: DogDao, dataSource: DataSource) = MainRepository(dogDao, dataSource)
 
     @ViewModelScoped
     @Provides
