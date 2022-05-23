@@ -1,5 +1,6 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.main
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -12,38 +13,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
-    private val mainAdapter = MainAdapter()
-
-    override fun initViewDataBinding() {
-        binding.adapter = mainAdapter
-    }
+    private lateinit var mainAdapter: MainAdapter
 
     override fun startProcess() {
         BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
-        showData()
         viewModel.getWeatherData(35.85f, 128.60f)
-        initView()
-        showWeatherData()
+        showData()
     }
 
     private fun showData() {
-        viewModel.dogList.observe(viewLifecycleOwner) {
-            mainAdapter.submitList(it)
-        }
-    }
-
-    private fun initView() {
-        with(binding) {
-            PagerSnapHelper().run {
-                this.attachToRecyclerView(recyclerviewMain)
-                indicator.attachToRecyclerView(recyclerviewMain, this)
-            }
-            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
-        }
-    }
-
-    private fun showWeatherData() {
         viewModel.weatherData.observe(viewLifecycleOwner) { data ->
+            Log.d("TEST", data.toString())
             with(binding) {
                 textviewTempCur.text = data.hourlyWeatherList[0].temp.toString()
                 textviewTempHigh.text = data.maxTemp.toString()
@@ -117,6 +97,18 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                         "좋음"
                     }
                 }
+
+                mainAdapter = MainAdapter(data, "TEST")
+                recyclerviewMain.adapter = mainAdapter
+                viewModel.dogList.observe(viewLifecycleOwner) {
+                    mainAdapter.submitList(it)
+                }
+
+                PagerSnapHelper().run {
+                    this.attachToRecyclerView(recyclerviewMain)
+                    indicator.attachToRecyclerView(recyclerviewMain, this)
+                }
+                mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
             }
         }
     }
