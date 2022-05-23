@@ -276,6 +276,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         if (isFilledAll) {
             viewModel.storeDog()
             startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 

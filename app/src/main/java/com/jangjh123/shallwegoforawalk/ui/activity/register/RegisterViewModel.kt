@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
+import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -16,31 +17,31 @@ class RegisterViewModel @Inject constructor(
     private val repository: RegisterRepository,
     private val dispatcher: CoroutineDispatcher
 ) :
-    ViewModel() {
+    BaseViewModel() {
 
     private val _dogName = MutableLiveData<String>()
     val dogName: LiveData<String>
-    get() = _dogName
+        get() = _dogName
 
     private val _dogGender = MutableLiveData<Boolean>()
     private val dogGender: LiveData<Boolean>
-    get() = _dogGender
+        get() = _dogGender
 
     private val _dogAge = MutableLiveData<Int>()
     val dogAge: LiveData<Int>
-    get() = _dogAge
+        get() = _dogAge
 
     private val _dogFurType = MutableLiveData<Int>()
     private val dogFurType: LiveData<Int>
-    get() = _dogFurType
+        get() = _dogFurType
 
     private val _dogSize = MutableLiveData<Int>()
     private val dogSize: LiveData<Int>
-    get() = _dogSize
+        get() = _dogSize
 
     private val _infoCount = MutableLiveData(0)
     val infoCount: LiveData<Int>
-    get() = _infoCount
+        get() = _infoCount
 
     fun setName(name: String) {
         if (dogName.value == null) {

@@ -1,7 +1,7 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.splash
 
-import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.repository.SplashRepository
+import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(
     val repository: SplashRepository,
     val dispatcher: CoroutineDispatcher
-) : ViewModel() {
+) : BaseViewModel() {
 
     inline fun getRegistration(crossinline onComplete: (Boolean) -> Unit) {
         CoroutineScope(dispatcher).launch {
