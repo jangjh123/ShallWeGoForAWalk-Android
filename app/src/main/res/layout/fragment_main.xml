@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="adapter"
             type="com.jangjh123.shallwegoforawalk.ui.component.MainAdapter" />
@@ -15,19 +14,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.MainFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_main"
-            setAdapter="@{adapter}"
-            setLayoutManager="@{0}"
-            setSnapHelper="@{true}"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_main"
+                setAdapter="@{adapter}"
+                setLayoutManager="@{0}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginBottom="210dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_sheet"
             android:layout_width="match_parent"
-            android:layout_height="192dp"
+            android:layout_height="200dp"
             android:background="@drawable/box_bottom_sheet_weather"
             app:behavior_peekHeight="88dp"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">

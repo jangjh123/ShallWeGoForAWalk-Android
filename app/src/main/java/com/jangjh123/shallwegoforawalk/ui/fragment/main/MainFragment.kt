@@ -1,7 +1,7 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.main
 
-import android.graphics.drawable.Drawable
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.databinding.FragmentMainBinding
@@ -22,12 +22,23 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
         showData()
         viewModel.getWeatherData(35.85f, 128.60f)
+        initView()
         showWeatherData()
     }
 
     private fun showData() {
         viewModel.dogList.observe(viewLifecycleOwner) {
             mainAdapter.submitList(it)
+        }
+    }
+
+    private fun initView() {
+        with(binding) {
+            PagerSnapHelper().run {
+                this.attachToRecyclerView(recyclerviewMain)
+                indicator.attachToRecyclerView(recyclerviewMain, this)
+            }
+            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
         }
     }
 
