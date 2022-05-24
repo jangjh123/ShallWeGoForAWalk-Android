@@ -47,6 +47,24 @@ class MainAdapter(
 
                 val curPoint = calculatePoint(dog, weatherData.hourlyWeatherList[0])
 
+                textviewPointDesc.text = when {
+                    curPoint > 80 -> {
+                        root.context.getString(R.string.item_main_point_desc_1)
+                    }
+                    curPoint > 60 -> {
+                        root.context.getString(R.string.item_main_point_desc_2)
+                    }
+                    curPoint > 40 -> {
+                        root.context.getString(R.string.item_main_point_desc_3)
+                    }
+                    curPoint > 20 -> {
+                        root.context.getString(R.string.item_main_point_desc_4)
+                    }
+                    else -> {
+                        root.context.getString(R.string.item_main_point_desc_5)
+                    }
+                }
+
                 background.setBackgroundColor(
                     when {
                         curPoint > 80 -> {
