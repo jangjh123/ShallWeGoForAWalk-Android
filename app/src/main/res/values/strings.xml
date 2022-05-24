@@ -41,7 +41,6 @@
     <string name="activity_register_strong_fur">강모종</string>
     <string name="activity_register_curly_fur">권모종</string>
 
-
     <string name="activity_register_long_fur_example">장모종-더블코트: 골든 리트리버, 콜리, 포메라니안</string>
     <string name="activity_register_silky_fur_example">견모종-실키코트: 요크셔테리어, 몰티즈, 코카스파니엘</string>
     <string name="activity_register_short_fur_example">단모종: 달마시안, 비글, 불 테리어, 래브라도 리트리버, 시바견</string>
@@ -69,6 +68,12 @@
 
     <!--    MainItem-->
     <string name="item_main_title">오늘의 날씨 점수는요?</string>
+
+    <string name="item_main_point_desc_1">신나게 야외활동 해주세요!</string>
+    <string name="item_main_point_desc_2">적당한 날씨네요. 산책하기 좋아요!</string>
+    <string name="item_main_point_desc_3">나가도 괜찮지만, 주의해주세요.</string>
+    <string name="item_main_point_desc_4">오늘은 집에 있는게 좋겠어요.</string>
+    <string name="item_main_point_desc_5">나가면 안 돼요. 실내에 머물러주세요.</string>
 
     <!--    DogListFragment-->
     <string name="fragment_dog_list_title">댕댕이의 가족을\n추가해 주세요</string>
