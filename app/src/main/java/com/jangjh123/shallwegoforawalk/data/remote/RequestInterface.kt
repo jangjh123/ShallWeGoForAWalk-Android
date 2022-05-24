@@ -6,18 +6,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RequestInterface {
-    @GET("onecall?")
+    @GET("forecast.json?")
     fun fetchWeatherData(
-        @Query("lat") latitude: Float,
-        @Query("lon") longitude: Float,
-        @Query("exclude") exclude: String,
-        @Query("appid", encoded = true) auth: String
-    ): Single<JsonObject>
-
-    @GET("air_pollution?")
-    fun fetchDustData(
-        @Query("lat") latitude: Float,
-        @Query("lon") longitude: Float,
-        @Query("appid", encoded = true) auth: String
+        @Query("key") key: String,
+        @Query("q") latLng: String,
+        @Query("days") days: Int = 2,
+        @Query("aqi") airPollution: String = "yes",
+        @Query("alerts") alerts: String = "no"
     ): Single<JsonObject>
 }

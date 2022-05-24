@@ -4,6 +4,6 @@ data class HourlyWeather(
     val temp: Int,
     val humidity: Int,
     val pop: Int,
-    val windSpeed: Float,
+    val windSpeed: Int,
     val icon: String
 )

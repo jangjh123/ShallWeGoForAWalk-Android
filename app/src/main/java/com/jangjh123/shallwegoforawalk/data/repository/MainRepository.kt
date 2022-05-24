@@ -13,6 +13,6 @@ class MainRepository @Inject constructor(
         return dogDao.getAllDog()
     }
 
-    fun fetchWeatherInfo(lat: Float, lon: Float) =
-        listOf(dataSource.fetchWeatherData(lat, lon), dataSource.fetchDustData(lat, lon))
+    fun fetchWeatherData(latLon: String) =
+        dataSource.fetchWeatherData(latLon)
 }

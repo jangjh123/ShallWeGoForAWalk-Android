@@ -12,10 +12,11 @@ import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import com.jangjh123.shallwegoforawalk.util.Utils.convertKelvinToCelsius
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -39,34 +40,66 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getWeatherData(lat: Float, lon: Float) {
-        val data = repository.fetchWeatherInfo(lat, lon)
-        val disposable = Single.zip(data[0], data[1]) { weather, dust ->
-            WeatherVO(
-                hourlyWeatherList = createHourlyWeatherList(weather.get("hourly").asJsonArray),
-                maxTemp =
-                convertKelvinToCelsius(
-                    weather.get("daily").asJsonArray[0].asJsonObject.get("temp").asJsonObject.get(
-                        "max"
-                    ).asInt
-                ),
-                minTemp = convertKelvinToCelsius(
-                    weather.get("daily").asJsonArray[0].asJsonObject.get(
-                        "temp"
-                    ).asJsonObject.get("min").asInt
-                ),
-                fineDust = dust.get("list").asJsonArray[0].asJsonObject.get("components").asJsonObject.get(
-                    "pm10"
-                ).asInt,
-                ultraFineDust = dust.get("list").asJsonArray[0].asJsonObject.get("components").asJsonObject.get(
-                    "pm2_5"
-                ).asInt
-            )
-        }
-            .applySchedulers()
-            .doOnError {
-                // 에러 발생했을 때. 네트웍 미 연결 등
-                Log.d("TEST", "doOnError")
+    fun getWeatherData(lat: Double, lon: Double) {
+        val disposable = repository.fetchWeatherData("$lat,$lon")
+            .map {
+                val temp =
+                    it.get("forecast").asJsonObject.get("forecastday").asJsonArray[0].asJsonObject.get(
+                        "day"
+                    ).asJsonObject
+                val dust = it.get("current").asJsonObject.get("air_quality").asJsonObject
+
+                val todayList =
+                    it.get("forecast").asJsonObject.get("forecastday").asJsonArray[0].asJsonObject.get(
+                        "hour"
+                    ).asJsonArray
+                val tomorrowList =
+                    it.get("forecast").asJsonObject.get("forecastday").asJsonArray[1].asJsonObject.get(
+                        "hour"
+                    ).asJsonArray
+                val forecastList = ArrayList<HourlyWeather>()
+
+                val curTime = SimpleDateFormat("HH").apply {
+                    timeZone = TimeZone.getTimeZone("Asia/Seoul")
+                }.format(
+                    Date(System.currentTimeMillis())
+                ).toInt()
+
+                for (i in 0..6) {
+                    if (curTime + i < 24) {
+                        val forecast = todayList[curTime + i].asJsonObject
+                        forecastList.add(
+                            HourlyWeather(
+                                temp = forecast.get("temp_c").asFloat.toInt(),
+                                humidity = forecast.get("humidity").asInt,
+                                pop = forecast.get("chance_of_rain").asInt,
+                                windSpeed = forecast.get("wind_mph").asFloat.toInt(),
+                                icon = "https:${forecast.get("condition").asJsonObject.get("icon").asString}"
+                            )
+                        )
+                    } else {
+                        val forecast = tomorrowList[curTime + i - 24].asJsonObject
+                        forecastList.add(
+                            HourlyWeather(
+                                temp = forecast.get("temp_c").asFloat.toInt(),
+                                humidity = forecast.get("humidity").asInt,
+                                pop = forecast.get("chance_of_rain").asInt,
+                                windSpeed = forecast.get("wind_mph").asFloat.toInt(),
+                                icon = "https:${forecast.get("condition").asJsonObject.get("icon").asString}"
+                            )
+                        )
+                    }
+                }
+
+                WeatherVO(
+                    maxTemp = temp.get("maxtemp_c").asInt,
+                    minTemp = temp.get("mintemp_c").asInt,
+                    fine = dust.get("pm10").asFloat.toInt(),
+                    uFine = dust.get("pm2_5").asFloat.toInt(),
+                    hourlyList = forecastList
+                )
+            }.doOnError {
+                Log.d("TEST", it.toString())
             }
             .retryWhen { attempts ->
                 attempts.zipWith(
@@ -77,34 +110,10 @@ class MainViewModel @Inject constructor(
             }
             .subscribe({ data ->
                 _weatherData.postValue(data)
-            },
-                { throwable ->
-                    Log.d("Exception", throwable.toString())
-                }
-            )
+            }, { throwable ->
+                Log.d("Exception", throwable.toString())
+            })
+
         addDisposable(disposable)
-        calculatePoints()
-    }
-
-    private fun createHourlyWeatherList(weatherJson: JsonArray) =
-        mutableListOf<HourlyWeather>().apply {
-            for (i in 0..6) {
-                with(weatherJson[i].asJsonObject) {
-                    this@apply.add(
-                        HourlyWeather(
-                            temp = convertKelvinToCelsius(this.get("temp").asInt),
-                            humidity = this.get("humidity").asInt,
-                            pop = (this.get("pop").asFloat * 100).toInt(),
-                            windSpeed = this.get("wind_speed").asFloat,
-                            icon = this.get("weather").asJsonArray[0].asJsonObject.get("icon").asString
-                        )
-                    )
-                }
-            }
-        }
-
-    private fun calculatePoints() {
-        dogList.value
-        weatherData.value
     }
 }
