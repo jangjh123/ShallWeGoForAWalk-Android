@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 class DataSource {
     companion object {
         private val apiService = Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/data/2.5/")
+            .baseUrl("https://api.weatherapi.com/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(
@@ -25,19 +25,10 @@ class DataSource {
             .build().create(RequestInterface::class.java)
     }
 
-    fun fetchWeatherData(lat: Float, lon: Float): Single<JsonObject> =
+    fun fetchWeatherData(latLon: String): Single<JsonObject> =
         apiService.fetchWeatherData(
-            lat,
-            lon,
-            "minutely",
-            BuildConfig.KEY_API
-        )
-
-    fun fetchDustData(lat: Float, lon: Float): Single<JsonObject> =
-        apiService.fetchDustData(
-            lat,
-            lon,
-            BuildConfig.KEY_API
+            BuildConfig.KEY_API,
+            latLon
         )
 }
 

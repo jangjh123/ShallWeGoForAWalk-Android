@@ -1,6 +1,5 @@
 package com.jangjh123.shallwegoforawalk.ui.component
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -45,7 +44,7 @@ class MainAdapter(
                 textviewDogName.text = dog.name
                 textviewAddress.text = address
 
-                val curPoint = calculatePoint(dog, weatherData.hourlyWeatherList[0])
+                val curPoint = calculatePoint(dog, weatherData.hourlyList[0])
 
                 textviewPointDesc.text = when {
                     curPoint > 80 -> {
@@ -167,17 +166,17 @@ class MainAdapter(
                 textviewUpdatedTime.text = "$updatedTime 업데이트"
 
                 textviewPointAfter1.text =
-                    calculatePoint(dog, weatherData.hourlyWeatherList[1]).toString()
+                    calculatePoint(dog, weatherData.hourlyList[1]).toString()
                 textviewPointAfter2.text =
-                    calculatePoint(dog, weatherData.hourlyWeatherList[2]).toString()
+                    calculatePoint(dog, weatherData.hourlyList[2]).toString()
                 textviewPointAfter3.text =
-                    calculatePoint(dog, weatherData.hourlyWeatherList[3]).toString()
+                    calculatePoint(dog, weatherData.hourlyList[3]).toString()
                 textviewPointAfter4.text =
-                    calculatePoint(dog, weatherData.hourlyWeatherList[4]).toString()
+                    calculatePoint(dog, weatherData.hourlyList[4]).toString()
                 textviewPointAfter5.text =
-                    calculatePoint(dog, weatherData.hourlyWeatherList[5]).toString()
+                    calculatePoint(dog, weatherData.hourlyList[5]).toString()
                 textviewPointAfter6.text =
-                    calculatePoint(dog, weatherData.hourlyWeatherList[6]).toString()
+                    calculatePoint(dog, weatherData.hourlyList[6]).toString()
 
                 val curTime = SimpleDateFormat("HH").apply {
                     timeZone = TimeZone.getTimeZone("Asia/Seoul")
@@ -224,13 +223,13 @@ class MainAdapter(
             }
 
             point -= when {
-                weatherData.ultraFineDust > 151 -> {
+                weatherData.uFine > 151 -> {
                     60
                 }
-                weatherData.ultraFineDust > 56 -> {
+                weatherData.uFine > 56 -> {
                     25
                 }
-                weatherData.ultraFineDust > 36 -> {
+                weatherData.uFine > 36 -> {
                     5
                 }
                 else -> {
@@ -239,13 +238,13 @@ class MainAdapter(
             }
 
             point -= when {
-                weatherData.fineDust > 355 -> {
+                weatherData.fine > 355 -> {
                     60
                 }
-                weatherData.fineDust > 255 -> {
+                weatherData.fine > 255 -> {
                     25
                 }
-                weatherData.fineDust > 155 -> {
+                weatherData.fine > 155 -> {
                     5
                 }
                 else -> {

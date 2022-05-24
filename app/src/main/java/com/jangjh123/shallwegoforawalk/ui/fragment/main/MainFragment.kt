@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -27,7 +28,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var mainAdapter: MainAdapter
-    private lateinit var locationCallback: LocationCallback
+    private var locationCallback = object : LocationCallback() {
+        override fun onLocationResult(p0: LocationResult) {
+            viewModel.getWeatherData(
+                p0.locations[0].latitude,
+                p0.locations[0].longitude
+            )
+            Log.d("TEST", "getLocation")
+        }
+    }
 
     override fun startProcess() {
         BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
@@ -50,7 +59,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             ActivityCompat.requestPermissions(requireActivity(), permissions, 1)
 
             fusedLocationManager.requestLocationUpdates(
-                LocationRequest(),
+                LocationRequest.create().apply {
+                    interval = 100
+                    fastestInterval = 50
+                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                    numUpdates = 1
+                    maxWaitTime = 100
+                },
                 locationCallback,
                 Looper.getMainLooper()
             )
@@ -71,14 +86,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 ).show(childFragmentManager, "dialog_location_service")
             } else {
 
-                locationCallback = object : LocationCallback() {
-                    override fun onLocationResult(p0: LocationResult) {
-                        viewModel.getWeatherData(p0.locations[0].latitude, p0.locations[0].longitude)
-                    }
-                }
-
                 fusedLocationManager.requestLocationUpdates(
-                    LocationRequest(),
+                    LocationRequest.create().apply {
+                        interval = 100
+                        fastestInterval = 50
+                        priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                        numUpdates = 1
+                        maxWaitTime = 100
+                    },
                     locationCallback,
                     Looper.getMainLooper()
                 )
@@ -90,44 +105,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private fun showData() {
         viewModel.weatherData.observe(viewLifecycleOwner) { data ->
-            Log.d("TEST", data.toString())
             with(binding) {
-                textviewTempCur.text = data.hourlyWeatherList[0].temp.toString()
+                textviewTempCur.text = data.hourlyList[0].temp.toString()
                 textviewTempHigh.text = data.maxTemp.toString()
                 textviewTempLow.text = data.minTemp.toString()
 
-                textviewHumidity.text = data.hourlyWeatherList[0].humidity.toString()
-                textviewRainPossiblity.text = data.hourlyWeatherList[0].pop.toString()
-                textviewUltraFineDustValue.text = data.ultraFineDust.toString()
-                textviewFineDustValue.text = data.fineDust.toString()
+                textviewHumidity.text = data.hourlyList[0].humidity.toString()
+                textviewRainPossiblity.text = data.hourlyList[0].pop.toString()
+                textviewUltraFineDustValue.text = data.uFine.toString()
+                textviewFineDustValue.text = data.fine.toString()
 
-                imageviewWeatherIcon.setImageResource(
-                    when (data.hourlyWeatherList[0].icon) {
-                        "01d", "01n" -> {
-                            R.drawable.icon_wt_sunny
-                        }
-                        "02d", "02n" -> {
-                            R.drawable.icon_wt_sunny_cloudy
-                        }
-                        "03d", "03n", "04d", "04n" -> {
-                            R.drawable.icon_wt_03_cloudu
-                        }
-                        "09d", "09n" -> {
-                            R.drawable.icon_wt_07_shower
-                        }
-                        "10d", "10n", "11d", "11n" -> {
-                            R.drawable.icon_wt_04_rainy
-                        }
-                        "13d", "13n" -> {
-                            R.drawable.icon_wt_06_snowy
-                        }
-                        else -> {
-                            R.drawable.icon_wt_03_cloudu
-                        }
-                    }
-                )
+                Glide.with(requireContext())
+                    .load(data.hourlyList[0].icon)
+                    .into(imageviewWeatherIcon)
 
-                val ultraFineDust = data.ultraFineDust
+                val ultraFineDust = data.uFine
                 textviewUltraFineDustText.text = when {
                     ultraFineDust > 151 -> {
                         "매우 나쁨"
@@ -146,7 +138,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     }
                 }
 
-                val fineDust = data.fineDust
+                val fineDust = data.fine
                 textviewFineDustText.text = when {
                     fineDust > 355 -> {
                         "매우 나쁨"
