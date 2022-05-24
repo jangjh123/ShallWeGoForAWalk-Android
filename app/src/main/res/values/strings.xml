@@ -22,6 +22,17 @@
     <string name="dialog_caution_sub_title">고지사항</string>
     <string name="dialog_caution_body"></string>
 
+    <string name="dialog_permission_denied_title">권한 없음</string>
+    <string name="dialog_permission_denied_body">위치 권한 제공에 대한 승인이 필요합니다.\n 앱을 종료합니다.</string>
+
+    <string name="dialog_location_service_title">위치 기반 서비스 활성화</string>
+    <string name="dialog_location_service_body">산책갈까? 에서는 위치 정보를 활용하기 때문에\n위치 서비스를 꼭 활성화 해주세요!</string>
+    <string name="dialog_location_service_cancel">거부</string>
+    <string name="dialog_location_service_confirm">설정</string>
+
+    <string name="dialog_location_error_title">위치 정보 오류</string>
+    <string name="dialog_location_error_body">위치 정보를 불러 올 수 없습니다.\n앱을 종료합니다.</string>
+
     <!--    RegisterActivity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름은 무엇인가요?</string>
