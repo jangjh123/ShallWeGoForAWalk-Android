@@ -1,10 +1,11 @@
 package com.jangjh123.shallwegoforawalk.ui.component
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.data.model.ListItemType
 import com.jangjh123.shallwegoforawalk.databinding.ItemListAddBinding
@@ -68,6 +69,21 @@ class DogListAdapter(
         fun bind(dog: DogListTypes.Dog) {
             with(binding) {
                 textviewDogName.text = dog.name
+                imageviewDogFace.setImageDrawable(
+                    when (dog.size) {
+                        0 -> {
+                            ResourcesCompat.getDrawable(root.resources, R.drawable.ic_mini_large, null)
+                        }
+                        1 -> {
+                            ResourcesCompat.getDrawable(root.resources, R.drawable.ic_mini_medium, null)
+                        }
+                        else -> {
+                            ResourcesCompat.getDrawable(root.resources, R.drawable.ic_mini_small, null)
+                        }
+                    }
+                )
+
+
                 buttonDogDelete.setOnClickListener {
                     onClickRemoveDog(dog.id, adapterPosition)
                 }
