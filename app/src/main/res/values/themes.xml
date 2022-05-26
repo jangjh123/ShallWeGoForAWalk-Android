@@ -19,5 +19,9 @@
         <item name="android:textViewStyle">@style/removeTextViewFontPadding</item>
         <item name="android:buttonStyle">@style/removeButtonFontPadding</item>
         <item name="android:editTextStyle">@style/removeEditTextFontPadding</item>
+
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>

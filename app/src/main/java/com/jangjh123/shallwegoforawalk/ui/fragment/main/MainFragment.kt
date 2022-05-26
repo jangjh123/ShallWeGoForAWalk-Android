@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
@@ -28,14 +29,24 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var mainAdapter: MainAdapter
+    private lateinit var address: String
     private var locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             viewModel.getWeatherData(
                 p0.locations[0].latitude,
                 p0.locations[0].longitude
             )
-            Log.d("TEST", "getLocation")
+            address = Geocoder(requireContext()).getFromLocation(
+                p0.locations[0].latitude,
+                p0.locations[0].longitude,
+                1
+            )[0].getAddressLine(0).toString().removeRange(0, 5) + "(현재위치)"
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showProgress()
     }
 
     override fun startProcess() {
@@ -157,7 +168,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     }
                 }
 
-                mainAdapter = MainAdapter(data, "TEST")
+                mainAdapter = MainAdapter(data, address)
                 recyclerviewMain.adapter = mainAdapter
                 viewModel.dogList.observe(viewLifecycleOwner) {
                     mainAdapter.submitList(it)
@@ -172,6 +183,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 }
                 mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
             }
+            hideProgress()
         }
     }
 }
