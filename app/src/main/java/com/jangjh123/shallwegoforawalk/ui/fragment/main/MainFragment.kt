@@ -4,11 +4,14 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.bumptech.glide.Glide
@@ -22,20 +25,43 @@ import com.jangjh123.shallwegoforawalk.databinding.FragmentMainBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
+import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var mainAdapter: MainAdapter
+    private lateinit var address: String
     private var locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             viewModel.getWeatherData(
                 p0.locations[0].latitude,
                 p0.locations[0].longitude
-            )
-            Log.d("TEST", "getLocation")
+            ) {
+                NoticeDialog(
+                    title = getString(R.string.dialog_network_title),
+                    body = getString(R.string.dialog_network_body),
+                    buttonText = getString(R.string.dialog_quit),
+                    onClickButton = {
+                        requireActivity().moveTaskToBack(true)
+                        requireActivity().finishAndRemoveTask()
+                        exitProcess(0)
+                    }
+                ).show(childFragmentManager, "dialog_network_error")
+            }
+            address = Geocoder(requireContext()).getFromLocation(
+                p0.locations[0].latitude,
+                p0.locations[0].longitude,
+                1
+            )[0].getAddressLine(0).toString().removeRange(0, 5) + "(현재위치)"
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showProgress()
     }
 
     override fun startProcess() {
@@ -128,7 +154,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                         "나쁨"
                     }
                     ultraFineDust > 36 -> {
-                        "보통"
+                        "약간 나쁨"
                     }
                     ultraFineDust > 12 -> {
                         "보통"
@@ -157,7 +183,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     }
                 }
 
-                mainAdapter = MainAdapter(data, "TEST")
+                mainAdapter = MainAdapter(
+                    data,
+                    address,
+                    onClickQuestionMark = { reasons ->
+                        NoticeDialog(
+                            "이유",
+                            reasons.toString(),
+                            getString(R.string.dialog_quit)
+                        ) { }.show(childFragmentManager, "dialog_reason")
+                    })
+
                 recyclerviewMain.adapter = mainAdapter
                 viewModel.dogList.observe(viewLifecycleOwner) {
                     mainAdapter.submitList(it)
@@ -172,6 +208,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 }
                 mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
             }
+            hideProgress()
         }
     }
 }

@@ -19,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.FurType
 import com.jangjh123.shallwegoforawalk.databinding.ActivityRegisterBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
@@ -229,24 +230,24 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     }
 
-    fun selectFurType(furType: Int) {
+    fun selectFurType(furType: FurType) {
         viewModel.setDogFurType(furType)
 
         with(binding.buttonRegisterChooseFurType) {
             when (furType) {
-                0 -> {
+                FurType.Long -> {
                     this.text = getString(R.string.activity_register_long_fur)
                 }
-                1 -> {
+                FurType.Silky -> {
                     this.text = getString(R.string.activity_register_silky_fur)
                 }
-                2 -> {
+                FurType.Short -> {
                     this.text = getString(R.string.activity_register_short_fur)
                 }
-                3 -> {
+                FurType.Strong -> {
                     this.text = getString(R.string.activity_register_strong_fur)
                 }
-                4 -> {
+                FurType.Curly -> {
                     this.text = getString(R.string.activity_register_curly_fur)
                 }
             }

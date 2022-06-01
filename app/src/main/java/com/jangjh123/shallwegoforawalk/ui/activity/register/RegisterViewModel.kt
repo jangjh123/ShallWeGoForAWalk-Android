@@ -2,8 +2,9 @@ package com.jangjh123.shallwegoforawalk.ui.activity.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
+import com.jangjh123.shallwegoforawalk.data.model.FurType
+import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
 import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,12 +32,12 @@ class RegisterViewModel @Inject constructor(
     val dogAge: LiveData<Int>
         get() = _dogAge
 
-    private val _dogFurType = MutableLiveData<Int>()
-    private val dogFurType: LiveData<Int>
+    private val _dogFurType = MutableLiveData<FurType>()
+    private val dogFurType: LiveData<FurType>
         get() = _dogFurType
 
-    private val _dogSize = MutableLiveData<Int>()
-    private val dogSize: LiveData<Int>
+    private val _dogSize = MutableLiveData<Size>()
+    private val dogSize: LiveData<Size>
         get() = _dogSize
 
     private val _infoCount = MutableLiveData(0)
@@ -65,17 +66,18 @@ class RegisterViewModel @Inject constructor(
     }
 
 
-    fun setDogFurType(furType: Int) {
+    fun setDogFurType(furType: FurType) {
         if (dogFurType.value == null) {
             _infoCount.postValue(_infoCount.value!! + 1)
         }
         _dogFurType.postValue(furType)
     }
 
-    fun setSize(size: Int) {
+    fun setSize(size: Size) {
         if (dogSize.value == null) {
             _infoCount.postValue(_infoCount.value!! + 1)
         }
+
         _dogSize.postValue(size)
     }
 
@@ -88,7 +90,8 @@ class RegisterViewModel @Inject constructor(
                     dogGender.value!!,
                     dogAge.value!!,
                     dogFurType.value!!,
-                    dogSize.value!!
+                    dogSize.value!!,
+                    ""
                 )
             )
 

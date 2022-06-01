@@ -9,13 +9,14 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.jangjh123.shallwegoforawalk.ui.component.ProgressDialog
 
 abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : Fragment() {
     lateinit var binding: VB
 
-//    companion object {
-//        private val progressFragment = ProgressFragment()
-//    }
+    companion object {
+        private val progressDialog = ProgressDialog()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,16 +33,17 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
         initViewDataBinding()
     }
 
-//    protected open fun showProgress() {
-//        progressFragment.show(childFragmentManager, "progress")
-//    }
-//
-//    protected open fun isProgressShowing(): Boolean {
-//        return progressFragment.isVisible
-//    }
-//
-//    protected open fun getMessages() {
-//    }
+    protected open fun showProgress() {
+        progressDialog.show(childFragmentManager, "progress_dialog")
+    }
+
+    protected open fun hideProgress() {
+        progressDialog.dismiss()
+    }
+
+    protected open fun isProgressShowing(): Boolean {
+        return progressDialog.isVisible
+    }
 
     protected open fun initViewDataBinding() {
 
@@ -57,7 +59,10 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
 
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//    }
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isProgressShowing()) {
+            progressDialog.dismiss()
+        }
+    }
 }

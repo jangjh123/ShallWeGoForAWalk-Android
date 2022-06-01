@@ -11,8 +11,9 @@ sealed class DogListTypes(var type: ListItemType) {
         val name: String,
         val gender: Boolean,
         var age: Int,
-        val furType: Int,
-        val size: Int
+        val furType: FurType,
+        val size: Size,
+        var reason: String
     ) : DogListTypes(ListItemType.DOG)
 
     data class AddDog(

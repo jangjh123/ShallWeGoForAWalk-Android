@@ -20,6 +20,14 @@
         <variable
             name="girl"
             type="android.view.View" />
+
+        <variable
+            name="size"
+            type="com.jangjh123.shallwegoforawalk.data.model.Size" />
+
+        <variable
+            name="furType"
+            type="com.jangjh123.shallwegoforawalk.data.model.FurType" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -284,7 +292,7 @@
                     android:fontFamily="@font/noto_sans_regular"
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.06"
-                    android:onClick="@{() -> viewModel.setSize(0)}"
+                    android:onClick="@{() -> viewModel.setSize(size.Large)}"
                     android:paddingStart="8dp"
                     android:paddingEnd="32dp"
                     android:text="@string/dog_large"
@@ -301,7 +309,7 @@
                     android:fontFamily="@font/noto_sans_regular"
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.06"
-                    android:onClick="@{() -> viewModel.setSize(1)}"
+                    android:onClick="@{() -> viewModel.setSize(size.Medium)}"
                     android:paddingStart="8dp"
                     android:paddingEnd="32dp"
                     android:text="@string/dog_medium"
@@ -318,7 +326,7 @@
                     android:fontFamily="@font/noto_sans_regular"
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.06"
-                    android:onClick="@{() -> viewModel.setSize(2)}"
+                    android:onClick="@{() -> viewModel.setSize(size.Small)}"
                     android:paddingStart="8dp"
                     android:paddingEnd="32dp"
                     android:text="@string/dog_small"
@@ -632,7 +640,7 @@
                         android:button="@drawable/radio_button"
                         android:fontFamily="@font/noto_sans_medium"
                         android:letterSpacing="-0.06"
-                        android:onClick="@{() -> activity.selectFurType(0)}"
+                        android:onClick="@{() -> activity.selectFurType(furType.Long)}"
                         android:paddingStart="10dp"
                         android:text="@string/activity_register_long_fur"
                         android:textSize="15dp"
@@ -646,7 +654,7 @@
                         android:button="@drawable/radio_button"
                         android:fontFamily="@font/noto_sans_medium"
                         android:letterSpacing="-0.06"
-                        android:onClick="@{() -> activity.selectFurType(1)}"
+                        android:onClick="@{() -> activity.selectFurType(furType.Silky)}"
                         android:paddingStart="10dp"
                         android:text="@string/activity_register_silky_fur"
                         android:textSize="15dp"
@@ -660,7 +668,7 @@
                         android:button="@drawable/radio_button"
                         android:fontFamily="@font/noto_sans_medium"
                         android:letterSpacing="-0.06"
-                        android:onClick="@{() -> activity.selectFurType(2)}"
+                        android:onClick="@{() -> activity.selectFurType(furType.Short)}"
                         android:paddingStart="10dp"
                         android:text="@string/activity_register_short_fur"
                         android:textSize="15dp"
@@ -674,7 +682,7 @@
                         android:button="@drawable/radio_button"
                         android:fontFamily="@font/noto_sans_medium"
                         android:letterSpacing="-0.06"
-                        android:onClick="@{() -> activity.selectFurType(3)}"
+                        android:onClick="@{() -> activity.selectFurType(furType.Strong)}"
                         android:paddingStart="10dp"
                         android:text="@string/activity_register_strong_fur"
                         android:textSize="15dp"
@@ -688,7 +696,7 @@
                         android:button="@drawable/radio_button"
                         android:fontFamily="@font/noto_sans_medium"
                         android:letterSpacing="-0.06"
-                        android:onClick="@{() -> activity.selectFurType(4)}"
+                        android:onClick="@{() -> activity.selectFurType(furType.Curly)}"
                         android:paddingStart="10dp"
                         android:text="@string/activity_register_curly_fur"
                         android:textSize="15dp"
