@@ -78,6 +78,7 @@
     <string name="fragment_main_dust_level5">매우 좋음</string>
 
     <string name="fragment_main_reason">점수는 이렇게 계산됐어요!</string>
+    <string name="fragment_main_no_reason">감점 요인이 없어요.</string>
 
     <!--    MainItem-->
     <string name="item_main_title">오늘의 날씨 점수는요?</string>

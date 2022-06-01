@@ -188,7 +188,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
                         NoticeDialog(
                             getString(R.string.fragment_main_reason),
-                            sb.toString(),
+                            when {
+                                sb.toString().length > 1 -> {
+                                    sb.toString()
+                                }
+                                else -> {
+                                    getString(R.string.fragment_main_no_reason)
+                                }
+                            },
                             getString(R.string.dialog_confirm)
                         ) { }.show(childFragmentManager, "dialog_reason")
                     })
