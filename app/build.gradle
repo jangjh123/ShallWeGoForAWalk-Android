@@ -75,10 +75,6 @@ android {
         implementation 'com.google.dagger:hilt-android:2.40.5'
         kapt 'com.google.dagger:hilt-android-compiler:2.40.5'
 
-        // DataStore for migration from SharedPreferences
-        implementation 'androidx.datastore:datastore-preferences:1.0.0'
-        implementation 'androidx.datastore:datastore-preferences-core:1.0.0'
-
         // Extra Library
         implementation 'me.relex:circleindicator:2.1.6'
 
@@ -89,12 +85,12 @@ android {
         implementation "androidx.navigation:navigation-compose:2.5.0-rc01"
 
         implementation 'com.google.android.gms:play-services-location:19.0.1'
-        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
         implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
         implementation 'androidx.core:core-ktx:1.7.0'
         implementation 'androidx.appcompat:appcompat:1.4.1'
-        implementation 'com.google.android.material:material:1.6.0'
-        implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+        implementation 'com.google.android.material:material:1.6.1'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
         androidTestImplementation 'androidx.test.ext:junit:1.1.3'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     }
