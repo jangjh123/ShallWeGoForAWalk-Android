@@ -56,12 +56,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        showProgress()
-    }
-
     override fun startProcess() {
+        showProgress()
         BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
 
         val locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
