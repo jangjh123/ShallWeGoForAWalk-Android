@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.data.model.ListItemType
+import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.databinding.ItemListAddBinding
 import com.jangjh123.shallwegoforawalk.databinding.ItemListDogBinding
 import com.jangjh123.shallwegoforawalk.util.GenericDiffUtil
@@ -71,13 +72,13 @@ class DogListAdapter(
                 textviewDogName.text = dog.name
                 imageviewDogFace.setImageDrawable(
                     when (dog.size) {
-                        0 -> {
+                        Size.Large -> {
                             ResourcesCompat.getDrawable(root.resources, R.drawable.ic_mini_large, null)
                         }
-                        1 -> {
+                        Size.Medium -> {
                             ResourcesCompat.getDrawable(root.resources, R.drawable.ic_mini_medium, null)
                         }
-                        else -> {
+                        Size.Small -> {
                             ResourcesCompat.getDrawable(root.resources, R.drawable.ic_mini_small, null)
                         }
                     }

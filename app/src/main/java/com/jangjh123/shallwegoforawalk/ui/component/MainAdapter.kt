@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
+import com.jangjh123.shallwegoforawalk.data.model.FurType
+import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.data.model.weather.HourlyWeather
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.databinding.ItemMainBinding
@@ -94,65 +96,65 @@ class MainAdapter(
                     when {
                         curPoint > 80 -> {
                             when (dog.size) {
-                                0 -> {
+                                Size.Large -> {
                                     R.drawable.dog_large_1
                                 }
-                                1 -> {
+                                Size.Medium -> {
                                     R.drawable.dog_medium_1
                                 }
-                                else -> {
+                                Size.Small -> {
                                     R.drawable.dog_small_1
                                 }
                             }
                         }
                         curPoint > 60 -> {
                             when (dog.size) {
-                                0 -> {
+                                Size.Large -> {
                                     R.drawable.dog_large_2
                                 }
-                                1 -> {
+                                Size.Medium -> {
                                     R.drawable.dog_medium_2
                                 }
-                                else -> {
+                                Size.Small -> {
                                     R.drawable.dog_small_2
                                 }
                             }
                         }
                         curPoint > 40 -> {
                             when (dog.size) {
-                                0 -> {
+                                Size.Large -> {
                                     R.drawable.dog_large_3
                                 }
-                                1 -> {
+                                Size.Medium -> {
                                     R.drawable.dog_medium_3
                                 }
-                                else -> {
+                                Size.Small -> {
                                     R.drawable.dog_small_3
                                 }
                             }
                         }
                         curPoint > 20 -> {
                             when (dog.size) {
-                                0 -> {
+                                Size.Large -> {
                                     R.drawable.dog_large_4
                                 }
-                                1 -> {
+                                Size.Medium -> {
                                     R.drawable.dog_medium_4
                                 }
-                                else -> {
+                                Size.Small -> {
                                     R.drawable.dog_small_5
                                 }
                             }
                         }
                         else -> {
                             when (dog.size) {
-                                0 -> {
+                                Size.Large -> {
                                     R.drawable.dog_large_5
                                 }
-                                1 -> {
+                                Size.Medium -> {
                                     R.drawable.dog_medium_5
                                 }
-                                else -> {
+                                Size.Small -> {
                                     R.drawable.dog_small_5
                                 }
                             }
@@ -213,7 +215,7 @@ class MainAdapter(
         private fun calculateMainPoint(dog: DogListTypes.Dog, hourlyWeather: HourlyWeather): Int {
             var point = 100
 
-            if (dog.furType == 0 && hourlyWeather.temp > 35) {
+            if (dog.furType == FurType.Long && hourlyWeather.temp > 35) {
                 reasonList.add("장모견에게 매우 높은 온도 (-100)")
                 point = 0
             }
@@ -223,7 +225,7 @@ class MainAdapter(
                 point = 0
             }
 
-            if (dog.furType == 2 && hourlyWeather.temp < 0) {
+            if (dog.furType == FurType.Short && hourlyWeather.temp < 0) {
                 reasonList.add("단모견에게 매우 낮은 온도 (-100)")
                 point = 0
             }
@@ -352,7 +354,7 @@ class MainAdapter(
         private fun calculatePoint(dog: DogListTypes.Dog, hourlyWeather: HourlyWeather): Int {
             var point = 100
 
-            if (dog.furType == 0 && hourlyWeather.temp > 35) {
+            if (dog.furType == FurType.Long && hourlyWeather.temp > 35) {
                 point = 0
             }
 
@@ -360,7 +362,7 @@ class MainAdapter(
                 point = 0
             }
 
-            if (dog.furType == 2 && hourlyWeather.temp < 0) {
+            if (dog.furType == FurType.Short && hourlyWeather.temp < 0) {
                 point = 0
             }
 
