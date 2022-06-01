@@ -27,6 +27,7 @@ import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
@@ -38,7 +39,18 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             viewModel.getWeatherData(
                 p0.locations[0].latitude,
                 p0.locations[0].longitude
-            )
+            ) {
+                NoticeDialog(
+                    title = getString(R.string.dialog_network_title),
+                    body = getString(R.string.dialog_network_body),
+                    buttonText = getString(R.string.dialog_quit),
+                    onClickButton = {
+                        requireActivity().moveTaskToBack(true)
+                        requireActivity().finishAndRemoveTask()
+                        exitProcess(0)
+                    }
+                ).show(childFragmentManager, "dialog_network_error")
+            }
             address = Geocoder(requireContext()).getFromLocation(
                 p0.locations[0].latitude,
                 p0.locations[0].longitude,

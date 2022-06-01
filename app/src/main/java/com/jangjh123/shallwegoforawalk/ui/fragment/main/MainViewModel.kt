@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getWeatherData(lat: Double, lon: Double) {
+    fun getWeatherData(lat: Double, lon: Double, onError:() -> Unit) {
         val disposable = repository.fetchWeatherData("$lat,$lon")
             .map {
                 val temp =
@@ -99,7 +99,7 @@ class MainViewModel @Inject constructor(
                     hourlyList = forecastList
                 )
             }.doOnError {
-                Log.d("TEST", it.toString())
+                onError()
             }
             .retryWhen { attempts ->
                 attempts.zipWith(
@@ -110,8 +110,8 @@ class MainViewModel @Inject constructor(
             }
             .subscribe({ data ->
                 _weatherData.postValue(data)
-            }, { throwable ->
-                Log.d("Exception", throwable.toString())
+            }, {
+                onError()
             })
 
         addDisposable(disposable)
