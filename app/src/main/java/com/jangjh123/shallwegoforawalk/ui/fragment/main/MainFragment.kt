@@ -194,10 +194,23 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     data,
                     address,
                     onClickQuestionMark = { reasons ->
+
+                        val sb = StringBuilder()
+                        for (i in reasons.indices) {
+                            sb.append("${reasons[i]}\n")
+                        }
+
                         NoticeDialog(
-                            "이유",
-                            reasons.toString(),
-                            getString(R.string.dialog_quit)
+                            getString(R.string.fragment_main_reason),
+                            when {
+                                reasons.isNotEmpty() -> {
+                                    sb.toString()
+                                }
+                                else -> {
+                                    getString(R.string.fragment_main_no_reason)
+                                }
+                            },
+                            getString(R.string.dialog_confirm)
                         ) { }.show(childFragmentManager, "dialog_reason")
                     })
 
