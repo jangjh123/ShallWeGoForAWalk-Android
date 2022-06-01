@@ -16,8 +16,10 @@ class SplashViewModel @Inject constructor(
 
     inline fun getRegistration(crossinline onComplete: (Boolean) -> Unit) {
         CoroutineScope(dispatcher).launch {
-            repository.readRegistration().collect {
-                onComplete(it)
+            if (repository.getDogList().isEmpty()) {
+                onComplete(false)
+            } else {
+                onComplete(true)
             }
         }
     }

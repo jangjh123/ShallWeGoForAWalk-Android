@@ -94,8 +94,6 @@ class RegisterViewModel @Inject constructor(
                     ""
                 )
             )
-
-            repository.storeRegistration()
         }
     }
 }
