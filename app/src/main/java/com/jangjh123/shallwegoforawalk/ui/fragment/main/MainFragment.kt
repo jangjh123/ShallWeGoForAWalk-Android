@@ -8,10 +8,7 @@ import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.bumptech.glide.Glide
@@ -187,10 +184,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     data,
                     address,
                     onClickQuestionMark = { reasons ->
+
+                        val sb = StringBuilder()
+                        for (i in reasons.indices) {
+                            sb.append("${reasons[i]}\n")
+                        }
+
                         NoticeDialog(
-                            "이유",
-                            reasons.toString(),
-                            getString(R.string.dialog_quit)
+                            getString(R.string.fragment_main_reason),
+                            sb.toString(),
+                            getString(R.string.dialog_confirm)
                         ) { }.show(childFragmentManager, "dialog_reason")
                     })
 

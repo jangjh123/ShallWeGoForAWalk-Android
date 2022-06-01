@@ -34,7 +34,9 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
     }
 
     protected open fun showProgress() {
-        progressDialog.show(childFragmentManager, "progress_dialog")
+        if (!progressDialog.isAdded) {
+            progressDialog.show(childFragmentManager, "progress_dialog")
+        }
     }
 
     protected open fun hideProgress() {

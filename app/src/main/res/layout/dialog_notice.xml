@@ -28,8 +28,7 @@
         <TextView
             android:id="@+id/textview_notice_body"
             android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
             android:textSize="16dp"
             android:fontFamily="@font/noto_sans_regular"
             android:gravity="center"
