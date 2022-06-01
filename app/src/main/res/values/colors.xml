@@ -7,4 +7,27 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="opc_80_white">#CCFFFFFF</color>
+    <color name="opc_70_white">#B3FFFFFF</color>
+    <color name="opc_30_white">#4DFFFFFF</color>
+    <color name="opc_60_white">#99FFFFFF</color>
+    <color name="opc_30_gray_depth4">#4DD9D9D9</color>
+
+    <color name="point_color1">#2962FF</color>
+    <color name="point_color2">#0091EA</color>
+    <color name="point_color3">#7BB537</color>
+    <color name="point_color4">#F57F17</color>
+    <color name="point_color5">#BF360C</color>
+
+    <color name="brand_color1">#405DE6</color>
+    <color name="brand_color2">#F7F7FB</color>
+
+    <color name="gray_depth1">#111111</color>
+    <color name="gray_depth2">#505050</color>
+    <color name="gray_depth3">#999999</color>
+    <color name="gray_depth4">#D9D9D9</color>
+    <color name="gray_depth5">#F4F4F4</color>
+
+    <color name="dim_behind">#33000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
