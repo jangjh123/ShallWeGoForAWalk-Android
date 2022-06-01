@@ -34,25 +34,6 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
 
     }
 
-//    open fun showProgress() {
-//        if (!progressFragment.isVisible) {
-//            progressFragment.show(supportFragmentManager, "progress")
-//        }
-//    }
-//
-//    open fun dismissProgress() {
-//        try {
-//            progressFragment.dismiss()
-//        } catch (exception: Exception) {
-//            exception.printStackTrace()
-//        }
-//    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-//        dismissProgress()
-    }
-
     protected fun playAnimation(view: View, anim: Int) {
         view.startAnimation(AnimationUtils.loadAnimation(this, anim))
     }

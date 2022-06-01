@@ -10,6 +10,7 @@ import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.repository.MainRepository
 import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import com.jangjh123.shallwegoforawalk.util.Utils.convertKelvinToCelsius
+import com.jangjh123.shallwegoforawalk.util.applySchedulers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.CoroutineDispatcher
@@ -42,6 +43,7 @@ class MainViewModel @Inject constructor(
 
     fun getWeatherData(lat: Double, lon: Double, onError:() -> Unit) {
         val disposable = repository.fetchWeatherData("$lat,$lon")
+            .applySchedulers()
             .map {
                 val temp =
                     it.get("forecast").asJsonObject.get("forecastday").asJsonArray[0].asJsonObject.get(
@@ -98,15 +100,17 @@ class MainViewModel @Inject constructor(
                     uFine = dust.get("pm2_5").asFloat.toInt(),
                     hourlyList = forecastList
                 )
-            }.doOnError {
-                onError()
             }
             .retryWhen { attempts ->
                 attempts.zipWith(
                     Flowable.range(1, 3)
                 ) { _, t2 -> t2 }.flatMap {
-                    Flowable.timer(5, TimeUnit.SECONDS)
+                    Log.d("RETRY", "retry $it")
+                    Flowable.timer(3, TimeUnit.SECONDS)
                 }
+            }
+            .doOnError {
+                onError()
             }
             .subscribe({ data ->
                 _weatherData.postValue(data)

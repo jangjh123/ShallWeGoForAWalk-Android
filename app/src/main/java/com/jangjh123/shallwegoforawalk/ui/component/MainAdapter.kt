@@ -220,7 +220,7 @@ class MainAdapter(
                 point = 0
             }
 
-            if (dog.age > 10 && hourlyWeather.temp > 30) {
+            if (dog.age > 10 && hourlyWeather.temp > 35) {
                 reasonList.add("노견에게 매우 높은 온도 (-100)")
                 point = 0
             }

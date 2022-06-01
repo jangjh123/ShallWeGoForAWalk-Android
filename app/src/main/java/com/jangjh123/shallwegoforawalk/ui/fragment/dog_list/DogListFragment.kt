@@ -31,8 +31,10 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
                 onClickConfirm = {
                     viewModel.removeDog(id, position,
                         onNoDog = {
-                            startActivity(Intent(requireContext(), RegisterActivity::class.java))
-                            requireActivity().finish()
+                            startActivity(Intent(requireContext(), RegisterActivity::class.java).apply {
+                                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            })
                         })
                 }
             ).show(childFragmentManager, "dialog_remove_dog")

@@ -8,10 +8,8 @@ import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.bumptech.glide.Glide
@@ -59,31 +57,43 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        showProgress()
-    }
+    private val locationRequester =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val granted = permissions.entries.all {
+                it.value
+            }
+            if (granted) {
+                getCurrentLocation()
+            } else {
+                hideProgress()
+                NoticeDialog(
+                    getString(R.string.fragment_main_need_permission_title),
+                    getString(R.string.fragment_main_need_permission_body),
+                    getString(R.string.dialog_quit)
+                ) {
+                    requireActivity().finish()
+                }.show(childFragmentManager, "dialog_need_permission")
+            }
+        }
 
-    override fun startProcess() {
-        BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
-
+    private fun getCurrentLocation() {
         val locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val fusedLocationManager = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            val permissions = arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            ActivityCompat.requestPermissions(requireActivity(), permissions, 1)
-
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            ConfirmDialog(
+                title = getString(R.string.dialog_location_service_title),
+                body = getString(R.string.dialog_location_service_body),
+                cancelButtonText = getString(R.string.dialog_location_service_cancel),
+                confirmButtonText = getString(R.string.dialog_location_service_confirm),
+                onClickCancel = {
+                    requireActivity().finish()
+                },
+                onClickConfirm = {
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                }
+            ).show(childFragmentManager, "dialog_location_service")
+        } else {
             fusedLocationManager.requestLocationUpdates(
                 LocationRequest.create().apply {
                     interval = 100
@@ -95,35 +105,32 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 locationCallback,
                 Looper.getMainLooper()
             )
+        }
+    }
 
-        } else {
-            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                ConfirmDialog(
-                    title = getString(R.string.dialog_location_service_title),
-                    body = getString(R.string.dialog_location_service_body),
-                    cancelButtonText = getString(R.string.dialog_location_service_cancel),
-                    confirmButtonText = getString(R.string.dialog_location_service_confirm),
-                    onClickCancel = {
-                        requireActivity().finish()
-                    },
-                    onClickConfirm = {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    }
-                ).show(childFragmentManager, "dialog_location_service")
-            } else {
+    override fun startProcess() {
+        BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+        showProgress()
 
-                fusedLocationManager.requestLocationUpdates(
-                    LocationRequest.create().apply {
-                        interval = 100
-                        fastestInterval = 50
-                        priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                        numUpdates = 1
-                        maxWaitTime = 100
-                    },
-                    locationCallback,
-                    Looper.getMainLooper()
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+            &&
+            ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+            locationRequester.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 )
-            }
+            )
+        } else {
+            getCurrentLocation()
         }
 
         showData()

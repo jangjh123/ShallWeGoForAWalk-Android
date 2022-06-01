@@ -38,7 +38,6 @@ class DogListViewModel @Inject constructor(
             repository.removeDogById(id)
             if (dogList.value!!.size == 2) {
                 onNoDog()
-                repository.setRegistration()
             } else {
                 _dogList.postValue((dogList.value as ArrayList<DogListTypes>).also {
                     it.removeAt(position)

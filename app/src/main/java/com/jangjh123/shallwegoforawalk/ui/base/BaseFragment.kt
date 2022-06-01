@@ -24,17 +24,19 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        startProcess()
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        startProcess()
         initViewDataBinding()
     }
 
     protected open fun showProgress() {
-        progressDialog.show(childFragmentManager, "progress_dialog")
+        if (!progressDialog.isAdded) {
+            progressDialog.show(childFragmentManager, "progress_dialog")
+        }
     }
 
     protected open fun hideProgress() {
