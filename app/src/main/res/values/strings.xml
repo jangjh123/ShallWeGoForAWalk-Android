@@ -17,6 +17,8 @@
     <!--    Dialogs-->
     <string name="dialog_network_title">네트워크 연결 오류</string>
     <string name="dialog_network_body">네트워크에 연결되어있지 않습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
+    <string name="dialog_error_title">에러 발생</string>
+    <string name="dialog_error_body">에러가 발생했습니다. 다시 시도해주세요.</string>
 
     <string name="dialog_caution_title">유의사항 안내</string>
     <string name="dialog_caution_sub_title">고지사항</string>
@@ -79,6 +81,9 @@
 
     <string name="fragment_main_reason">점수는 이렇게 계산됐어요!</string>
     <string name="fragment_main_no_reason">감점 요인이 없어요.</string>
+
+    <string name="fragment_main_need_permission_title">권한 요청 거부됨</string>
+    <string name="fragment_main_need_permission_body">앱을 종료합니다.</string>
 
     <!--    MainItem-->
     <string name="item_main_title">오늘의 날씨 점수는요?</string>
