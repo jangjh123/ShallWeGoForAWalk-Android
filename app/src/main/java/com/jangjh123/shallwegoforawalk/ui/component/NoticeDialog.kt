@@ -18,6 +18,7 @@ class NoticeDialog(
             buttonNoticeConfirm.apply {
                 text = buttonText
                 setOnClickListener {
+                    dismiss()
                     onClickButton()
                 }
             }

@@ -10,6 +10,8 @@ import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.bumptech.glide.Glide
@@ -23,6 +25,7 @@ import com.jangjh123.shallwegoforawalk.databinding.FragmentMainBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
+import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -139,7 +142,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                         "나쁨"
                     }
                     ultraFineDust > 36 -> {
-                        "보통"
+                        "약간 나쁨"
                     }
                     ultraFineDust > 12 -> {
                         "보통"
@@ -168,7 +171,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     }
                 }
 
-                mainAdapter = MainAdapter(data, address)
+                mainAdapter = MainAdapter(
+                    data,
+                    address,
+                    onClickQuestionMark = { reasons ->
+                        NoticeDialog(
+                            "이유",
+                            reasons.toString(),
+                            getString(R.string.dialog_quit)
+                        ) { }.show(childFragmentManager, "dialog_reason")
+                    })
+
                 recyclerviewMain.adapter = mainAdapter
                 viewModel.dogList.observe(viewLifecycleOwner) {
                     mainAdapter.submitList(it)

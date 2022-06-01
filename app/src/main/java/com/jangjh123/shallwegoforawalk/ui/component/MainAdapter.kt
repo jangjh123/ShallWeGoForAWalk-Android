@@ -16,7 +16,8 @@ import java.util.*
 
 class MainAdapter(
     private val weatherData: WeatherVO,
-    private val address: String
+    private val address: String,
+    private val onClickQuestionMark: (List<String>) -> Unit
 ) :
     ListAdapter<DogListTypes.Dog, RecyclerView.ViewHolder>(GenericDiffUtil()) {
 
@@ -39,12 +40,14 @@ class MainAdapter(
 
     inner class ViewHolder(private val binding: ItemMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val reasonList = ArrayList<String>()
         fun bind(dog: DogListTypes.Dog) {
+            reasonList.clear()
             with(binding) {
                 textviewDogName.text = dog.name
                 textviewAddress.text = address
 
-                val curPoint = calculatePoint(dog, weatherData.hourlyList[0])
+                val curPoint = calculateMainPoint(dog, weatherData.hourlyList[0])
 
                 textviewPointDesc.text = when {
                     curPoint > 80 -> {
@@ -200,7 +203,150 @@ class MainAdapter(
                 textviewTimeAfter4.text = "${timeTable[3]}시"
                 textviewTimeAfter5.text = "${timeTable[4]}시"
                 textviewTimeAfter6.text = "${timeTable[5]}시"
+
+                buttonReasons.setOnClickListener {
+                    onClickQuestionMark(reasonList)
+                }
             }
+        }
+
+        private fun calculateMainPoint(dog: DogListTypes.Dog, hourlyWeather: HourlyWeather): Int {
+            var point = 100
+
+            if (dog.furType == 0 && hourlyWeather.temp > 35) {
+                reasonList.add("장모견에게 매우 높은 온도 (-100)")
+                point = 0
+            }
+
+            if (dog.age > 10 && hourlyWeather.temp > 30) {
+                reasonList.add("노견에게 매우 높은 온도 (-100)")
+                point = 0
+            }
+
+            if (dog.furType == 2 && hourlyWeather.temp < 0) {
+                reasonList.add("단모견에게 매우 낮은 온도 (-100)")
+                point = 0
+            }
+
+            if (dog.age > 10 && hourlyWeather.temp < 0) {
+                reasonList.add("노견에게 매우 낮은 온도 (-100)")
+                point = 0
+            }
+
+            point -= when {
+                weatherData.uFine > 151 -> {
+                    reasonList.add("초미세먼지 매우 나쁨 (-60)")
+                    60
+                }
+                weatherData.uFine > 56 -> {
+                    reasonList.add("초미세먼지 나쁨 (-25)")
+                    25
+                }
+                weatherData.uFine > 36 -> {
+                    reasonList.add("초미세먼지 약간 나쁨 (-5)")
+                    5
+                }
+                else -> {
+                    0
+                }
+            }
+
+            point -= when {
+                weatherData.fine > 355 -> {
+                    reasonList.add("미세먼지 매우 나쁨 (-60)")
+                    60
+                }
+                weatherData.fine > 255 -> {
+                    reasonList.add("미세먼지 나쁨 (-25)")
+                    25
+                }
+                weatherData.fine > 155 -> {
+                    reasonList.add("미세먼지 약간 나쁨 (-5)")
+                    5
+                }
+                else -> {
+                    0
+                }
+            }
+
+            point -= when {
+                hourlyWeather.temp > 45 -> {
+                    reasonList.add("매우 높은 온도 (-90)")
+                    90
+                }
+                hourlyWeather.temp > 35 -> {
+                    reasonList.add("매우 높은 온도 (-46)")
+                    46
+                }
+                hourlyWeather.temp > 30 -> {
+                    reasonList.add("높은 온도 (-12)")
+                    12
+                }
+                hourlyWeather.temp > 10 -> {
+                    0
+                }
+                hourlyWeather.temp > 0 -> {
+                    reasonList.add("약간 낮은 온도 (-11)")
+                    11
+                }
+                hourlyWeather.temp > -5 -> {
+                    reasonList.add("낮은 온도 (-22)")
+                    22
+                }
+                hourlyWeather.temp > -10 -> {
+                    reasonList.add("매우 낮은 온도 (-52)")
+                    52
+                }
+                hourlyWeather.temp > -50 -> {
+                    reasonList.add("매우 낮은 온도 (-100)")
+                    100
+                }
+                else -> {
+                    0
+                }
+            }
+
+            point -= when {
+                hourlyWeather.pop > 60 -> {
+                    reasonList.add("강수 확률 높음 (-100)")
+                    100
+                }
+                hourlyWeather.pop > 30 -> {
+                    reasonList.add("강수 확률 약간 높음 (-50)")
+                    50
+                }
+                hourlyWeather.pop > 0 -> {
+                    reasonList.add("강수 확률 조금 (-12)")
+                    12
+                }
+                else -> {
+                    0
+                }
+            }
+
+            point -= when {
+                hourlyWeather.windSpeed > 14 -> {
+                    reasonList.add("매우 빠른 풍속 (-86)")
+                    86
+                }
+                hourlyWeather.windSpeed > 9 -> {
+                    reasonList.add("빠른 풍속 (-24)")
+                    24
+                }
+                hourlyWeather.windSpeed > 7 -> {
+                    reasonList.add("다소 빠른 풍속 (-7)")
+                    7
+                }
+                else -> {
+                    0
+                }
+            }
+
+            if (point < 0) {
+                point = 0
+            }
+
+            return point
         }
 
         private fun calculatePoint(dog: DogListTypes.Dog, hourlyWeather: HourlyWeather): Int {

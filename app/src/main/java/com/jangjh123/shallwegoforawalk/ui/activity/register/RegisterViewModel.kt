@@ -88,7 +88,8 @@ class RegisterViewModel @Inject constructor(
                     dogGender.value!!,
                     dogAge.value!!,
                     dogFurType.value!!,
-                    dogSize.value!!
+                    dogSize.value!!,
+                    ""
                 )
             )
 
