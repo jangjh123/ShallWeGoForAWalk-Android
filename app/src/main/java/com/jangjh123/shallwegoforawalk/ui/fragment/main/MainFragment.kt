@@ -43,17 +43,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 p0.locations[0].latitude,
                 p0.locations[0].longitude,
                 onNetworkError = {
-                NoticeDialog(
-                    title = getString(R.string.dialog_network_title),
-                    body = getString(R.string.dialog_network_body),
-                    buttonText = getString(R.string.dialog_quit),
-                    onClickButton = {
-                        requireActivity().moveTaskToBack(true)
-                        requireActivity().finishAndRemoveTask()
-                        exitProcess(0)
-                    }
-                ).show(childFragmentManager, "dialog_network_error")
-            })
+                    NoticeDialog(
+                        title = getString(R.string.dialog_network_title),
+                        body = getString(R.string.dialog_network_body),
+                        buttonText = getString(R.string.dialog_quit),
+                        onClickButton = {
+                            requireActivity().moveTaskToBack(true)
+                            requireActivity().finishAndRemoveTask()
+                            exitProcess(0)
+                        }
+                    ).show(childFragmentManager, "dialog_network_error")
+                })
 
             address = Geocoder(requireContext()).getFromLocation(
                 p0.locations[0].latitude,
@@ -90,8 +90,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     override fun startProcess() {
         showProgress()
-        BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
-
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -148,15 +146,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 )
             }
         } catch (e: Exception) {
-            lifecycleScope.launch {
-                delay(1000L)
-                getCurrentLocation()
-            }
+            getCurrentLocation()
         }
     }
 
     private fun showData(weatherVO: WeatherVO) {
         with(binding) {
+            BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
             textviewTempCur.text = weatherVO.hourlyList[0].temp.toString()
             textviewTempHigh.text = weatherVO.maxTemp.toString()
             textviewTempLow.text = weatherVO.minTemp.toString()

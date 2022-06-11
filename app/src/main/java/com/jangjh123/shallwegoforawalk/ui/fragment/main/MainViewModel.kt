@@ -98,13 +98,7 @@ class MainViewModel @Inject constructor(
                     hourlyList = forecastList
                 )
             }
-            .retryWhen { attempts ->
-                attempts.zipWith(
-                    Flowable.range(1, 3)
-                ) { _, t2 -> t2 }.flatMap {
-                    Flowable.timer(3, TimeUnit.SECONDS)
-                }
-            }
+            .retry(2)
             .doOnError {
                 onNetworkError()
             }
