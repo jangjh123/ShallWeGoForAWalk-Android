@@ -35,6 +35,9 @@
     <string name="dialog_location_error_title">위치 정보 오류</string>
     <string name="dialog_location_error_body">위치 정보를 불러 올 수 없습니다.\n앱을 종료합니다.</string>
 
+    <string name="dialog_app_quit_title">앱 종료</string>
+    <string name="dialog_app_quit_body">앱을 종료할까요?</string>
+
     <!--    RegisterActivity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름은 무엇인가요?</string>
