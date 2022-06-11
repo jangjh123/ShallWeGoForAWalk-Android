@@ -10,9 +10,6 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.jangjh123.shallwegoforawalk.R
-import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
-import kotlin.system.exitProcess
 
 
 abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : AppCompatActivity() {
@@ -56,21 +53,5 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
 
     protected open fun setObserver() {
 
-    }
-
-    override fun onBackPressed() {
-        ConfirmDialog(
-            title = getString(R.string.dialog_app_quit_title),
-            body = getString(R.string.dialog_app_quit_body),
-            cancelButtonText = getString(R.string.dialog_cancel),
-            confirmButtonText = getString(R.string.dialog_quit),
-            onClickCancel = {
-
-            },
-            onClickConfirm = {
-                moveTaskToBack(true)
-                finishAndRemoveTask()
-                exitProcess(0)
-            }).show(supportFragmentManager, "dialog_quit")
     }
 }
