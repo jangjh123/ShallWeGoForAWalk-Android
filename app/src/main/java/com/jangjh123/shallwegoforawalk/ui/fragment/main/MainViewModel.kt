@@ -1,12 +1,15 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.JsonArray
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.HourlyWeather
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.repository.MainRepository
 import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
+import com.jangjh123.shallwegoforawalk.util.Utils.convertKelvinToCelsius
 import com.jangjh123.shallwegoforawalk.util.applySchedulers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Flowable
@@ -38,7 +41,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getWeatherData(lat: Double, lon: Double, onNetworkError:() -> Unit) {
+    fun getWeatherData(lat: Double, lon: Double, onError:() -> Unit) {
         val disposable = repository.fetchWeatherData("$lat,$lon")
             .applySchedulers()
             .map {
@@ -98,14 +101,21 @@ class MainViewModel @Inject constructor(
                     hourlyList = forecastList
                 )
             }
-            .retry(2)
+            .retryWhen { attempts ->
+                attempts.zipWith(
+                    Flowable.range(1, 3)
+                ) { _, t2 -> t2 }.flatMap {
+                    Log.d("RETRY", "retry $it")
+                    Flowable.timer(3, TimeUnit.SECONDS)
+                }
+            }
             .doOnError {
-                onNetworkError()
+                onError()
             }
             .subscribe({ data ->
                 _weatherData.postValue(data)
             }, {
-                onNetworkError()
+                onError()
             })
 
         addDisposable(disposable)

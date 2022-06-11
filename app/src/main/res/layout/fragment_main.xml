@@ -8,7 +8,6 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.MainFragment">
@@ -32,7 +31,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,7 +140,6 @@
                 android:letterSpacing="-0.06"
                 android:text="@string/fragment_main_lowest"
                 android:textColor="@color/gray_depth2"
-                android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textview_temp_high"
                 app:layout_constraintStart_toEndOf="@+id/textview_temp_high"
                 app:layout_constraintTop_toTopOf="@+id/textview_temp_high" />
@@ -296,39 +293,40 @@
                 android:text="@string/fragment_main_rainy"
                 android:textColor="@color/gray_depth2"
                 android:textSize="12dp"
-                app:layout_constraintEnd_toStartOf="@+id/textview_rain_possibility"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_rain_possiblity"
+                app:layout_constraintEnd_toStartOf="@+id/textview_rain_possiblity"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/textview_humidity" />
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/textview_humidity"
+                app:layout_constraintTop_toTopOf="@+id/textview_rain_possiblity" />
 
             <TextView
-                android:id="@+id/textview_rain_possibility"
+                android:id="@+id/textview_rain_possiblity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
                 android:fontFamily="@font/noto_sans_regular"
                 android:letterSpacing="-0.06"
                 android:textColor="@color/gray_depth2"
                 android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintEnd_toStartOf="@+id/textView19"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textview_humidity" />
+                app:layout_constraintTop_toTopOf="@+id/textView19" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
                 android:fontFamily="@font/noto_sans_regular"
                 android:letterSpacing="-0.06"
                 android:text="@string/fragment_main_percent"
                 android:textColor="@color/gray_depth3"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textview_rain_possibility"
-                app:layout_constraintEnd_toEndOf="@+id/textView13"
+                android:textSize="13dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textview_rain_possibility"
+                app:layout_constraintStart_toEndOf="@+id/textview_rain_possiblity"
                 app:layout_constraintTop_toBottomOf="@+id/textview_humidity" />
 
             <TextView
@@ -352,7 +350,7 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/fragment_main_dust_unit"
                 android:textColor="@color/gray_depth3"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="@+id/textview_ultra_fine_dust_text"
                 app:layout_constraintStart_toEndOf="@+id/textview_ultra_fine_dust_value"
                 app:layout_constraintTop_toBottomOf="@id/textview_ultra_fine_dust_text" />
@@ -379,7 +377,7 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/fragment_main_dust_unit"
                 android:textColor="@color/gray_depth3"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="@+id/textview_fine_dust_text"
                 app:layout_constraintStart_toEndOf="@+id/textview_fine_dust_value"
                 app:layout_constraintTop_toBottomOf="@+id/textview_fine_dust_text" />

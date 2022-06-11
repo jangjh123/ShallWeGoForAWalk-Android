@@ -45,4 +45,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             Intent(this@HomeActivity, RegisterActivity::class.java)
         )
     }
+
+    override fun onBackPressed() {
+
+    }
 }
