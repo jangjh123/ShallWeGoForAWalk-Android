@@ -1,5 +1,6 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes.Dog
@@ -98,7 +99,14 @@ class MainViewModel @Inject constructor(
                     hourlyList = forecastList
                 )
             }
-            .retry(2)
+            .retryWhen { attempts ->
+                attempts.zipWith(
+                    Flowable.range(1, 3)
+                ) { _, t2 -> t2 }.flatMap {
+                    Log.d("RETRY", "retry $it")
+                    Flowable.timer(1, TimeUnit.SECONDS)
+                }
+            }
             .doOnError {
                 onNetworkError()
             }
