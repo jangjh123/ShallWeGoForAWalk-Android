@@ -24,13 +24,18 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        startProcess()
+        setObserver()
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        startProcess()
         initViewDataBinding()
+    }
+
+    protected open fun setObserver() {
+
     }
 
     protected open fun showProgress() {
