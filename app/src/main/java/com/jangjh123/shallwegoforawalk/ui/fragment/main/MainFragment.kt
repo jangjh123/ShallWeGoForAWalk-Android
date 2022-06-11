@@ -162,7 +162,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             textviewTempLow.text = weatherVO.minTemp.toString()
 
             textviewHumidity.text = weatherVO.hourlyList[0].humidity.toString()
-            textviewRainPossiblity.text = weatherVO.hourlyList[0].pop.toString()
+            textviewRainPossibility.text = weatherVO.hourlyList[0].pop.toString()
             textviewUltraFineDustValue.text = weatherVO.uFine.toString()
             textviewFineDustValue.text = weatherVO.fine.toString()
 

@@ -137,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/noto_sans_medium"
+                android:textSize="14dp"
                 android:letterSpacing="-0.06"
                 android:text="@string/fragment_main_lowest"
                 android:textColor="@color/gray_depth2"
@@ -293,21 +294,22 @@
                 android:text="@string/fragment_main_rainy"
                 android:textColor="@color/gray_depth2"
                 android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textview_rain_possiblity"
-                app:layout_constraintEnd_toStartOf="@+id/textview_rain_possiblity"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_rain_possibility"
+                app:layout_constraintEnd_toStartOf="@+id/textview_rain_possibility"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@+id/textview_humidity"
-                app:layout_constraintTop_toTopOf="@+id/textview_rain_possiblity" />
+                app:layout_constraintTop_toTopOf="@+id/textview_rain_possibility" />
 
             <TextView
-                android:id="@+id/textview_rain_possiblity"
+                android:id="@+id/textview_rain_possibility"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:fontFamily="@font/noto_sans_regular"
                 android:letterSpacing="-0.06"
                 android:textColor="@color/gray_depth2"
+                android:layout_marginStart="2dp"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintEnd_toStartOf="@+id/textView19"
@@ -324,9 +326,11 @@
                 android:text="@string/fragment_main_percent"
                 android:textColor="@color/gray_depth3"
                 android:textSize="13dp"
+                android:layout_marginStart="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textview_rain_possiblity"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_rain_possibility"
+                app:layout_constraintStart_toEndOf="@+id/textview_rain_possibility"
                 app:layout_constraintTop_toBottomOf="@+id/textview_humidity" />
 
             <TextView
