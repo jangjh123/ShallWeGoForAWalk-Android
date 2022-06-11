@@ -15,9 +15,6 @@
             app:destination="@id/fragment_dog_list"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/fragment_dog_list"
-            app:popUpToInclusive="true"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
@@ -29,9 +26,6 @@
         <action
             android:id="@+id/action_dog_list_to_main"
             app:destination="@id/fragment_main"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/fragment_dog_list"
-            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
