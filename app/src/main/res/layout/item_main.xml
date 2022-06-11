@@ -73,7 +73,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.04"
-            android:text="32"
             android:textColor="@color/white"
             android:textSize="61dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,8 +81,8 @@
 
         <ImageView
             android:id="@+id/button_reasons"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:src="@drawable/icon_question"
             android:layout_margin="2dp"
             app:layout_constraintBottom_toBottomOf="@+id/textview_point_desc"

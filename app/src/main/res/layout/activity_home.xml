@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity" />
@@ -14,16 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <fragment
             android:id="@+id/navigation"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation"
-            tools:layout_editor_absoluteX="-53dp"
-            tools:layout_editor_absoluteY="36dp" />
+            app:navGraph="@navigation/navigation" />
 
         <ImageView
             android:id="@+id/imageview_home_add_dog"
