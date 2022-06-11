@@ -106,7 +106,7 @@ class MainViewModel @Inject constructor(
                     Flowable.range(1, 3)
                 ) { _, t2 -> t2 }.flatMap {
                     Log.d("RETRY", "retry $it")
-                    Flowable.timer(3, TimeUnit.SECONDS)
+                    Flowable.timer(1, TimeUnit.SECONDS)
                 }
             }
             .doOnError {

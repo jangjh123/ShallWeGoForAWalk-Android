@@ -17,9 +17,7 @@ class DataSource {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(
                 OkHttpClient.Builder()
-                    .connectTimeout(5, TimeUnit.SECONDS)
-                    .writeTimeout(5, TimeUnit.SECONDS)
-                    .readTimeout(5, TimeUnit.SECONDS)
+                    .connectTimeout(3, TimeUnit.SECONDS)
                     .build()
             )
             .build().create(RequestInterface::class.java)
