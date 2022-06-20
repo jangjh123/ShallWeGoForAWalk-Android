@@ -46,5 +46,6 @@ for Fragment Handling
 ## 📢 Role
 ### 장지호
 Android
+https://github.com/jangjh123
 ### 김채린
 Design
