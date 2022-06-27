@@ -2,7 +2,6 @@ package com.jangjh123.shallwegoforawalk.ui.fragment.dog_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.data.repository.DogListRepository
 import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel

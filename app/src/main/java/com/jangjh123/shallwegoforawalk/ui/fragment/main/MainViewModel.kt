@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: MainRepository,
-    dispatcher: CoroutineDispatcher
+    private val dispatcher: CoroutineDispatcher
 ) : BaseViewModel() {
 
     private val _dogList = MutableLiveData<List<Dog>>()
@@ -32,7 +32,7 @@ class MainViewModel @Inject constructor(
     val weatherData: LiveData<WeatherVO>
         get() = _weatherData
 
-    init {
+    fun loadDogList() {
         CoroutineScope(dispatcher).launch {
             _dogList.postValue(repository.getDogList())
         }
