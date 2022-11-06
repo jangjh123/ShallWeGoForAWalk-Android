@@ -28,5 +28,4 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDogDao(dogDatabase: DogDatabase) = dogDatabase.getDogDao()
-
 }

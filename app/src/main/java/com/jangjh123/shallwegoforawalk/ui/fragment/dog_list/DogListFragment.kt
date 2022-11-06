@@ -4,6 +4,8 @@ import android.content.Intent
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
+import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.databinding.FragmentDogListBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
@@ -13,8 +15,7 @@ import com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_dog_list) {
-    private val viewModel: DogListViewModel by viewModels()
+class DogListFragment() : BaseFragment<FragmentDogListBinding>(R.layout.fragment_dog_list) {
     private val dogListAdapter = DogListAdapter(
         onClickAddDog = {
             (requireActivity() as HomeActivity).addNewDog()
@@ -29,13 +30,13 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
 
                 },
                 onClickConfirm = {
-                    viewModel.removeDog(id, position,
-                        onNoDog = {
-                            startActivity(Intent(requireContext(), RegisterActivity::class.java).apply {
-                                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            })
-                        })
+//                    viewModel.removeDog(id, position,
+//                        onNoDog = {
+//                            startActivity(Intent(requireContext(), RegisterActivity::class.java).apply {
+//                                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                            })
+//                        })
                 }
             ).show(childFragmentManager, "dialog_remove_dog")
         }
@@ -56,8 +57,8 @@ class DogListFragment : BaseFragment<FragmentDogListBinding>(R.layout.fragment_d
     }
 
     private fun showDogList() {
-        viewModel.dogList.observe(viewLifecycleOwner) {
-            dogListAdapter.submitList(it.toMutableList())
+//        viewModel.dogList.observe(viewLifecycleOwner) {
+//            dogListAdapter.submitList(it.toMutableList())
         }
     }
-}
+//}

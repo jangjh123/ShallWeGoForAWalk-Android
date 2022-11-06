@@ -36,28 +36,29 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private lateinit var address: String
     private var locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
-            viewModel.getWeatherData(
-                p0.locations[0].latitude,
-                p0.locations[0].longitude,
-                onNetworkError = {
-                    NoticeDialog(
-                        title = getString(R.string.dialog_network_title),
-                        body = getString(R.string.dialog_network_body),
-                        buttonText = getString(R.string.dialog_quit),
-                        onClickButton = {
-                            requireActivity().moveTaskToBack(true)
-                            requireActivity().finishAndRemoveTask()
-                            exitProcess(0)
-                        }
-                    ).show(childFragmentManager, "dialog_network_error")
-                })
-
-            address = Geocoder(requireContext()).getFromLocation(
-                p0.locations[0].latitude,
-                p0.locations[0].longitude,
-                1
-            )[0].getAddressLine(0).toString().removeRange(0, 5) + "(현재위치)"
-            viewModel.getAddress(p0.locations[0].longitude, p0.locations[0].latitude)
+//            viewModel.getWeatherData(
+//                p0.locations[0].latitude,
+//                p0.locations[0].longitude,
+//                onNetworkError = {
+//                    NoticeDialog(
+//                        title = getString(R.string.dialog_network_title),
+//                        body = getString(R.string.dialog_network_body),
+//                        buttonText = getString(R.string.dialog_quit),
+//                        onClickButton = {
+//                            requireActivity().moveTaskToBack(true)
+//                            requireActivity().finishAndRemoveTask()
+//                            exitProcess(0)
+//                        }
+//                    ).show(childFragmentManager, "dialog_network_error")
+//                })
+//
+//            address = Geocoder(requireContext()).getFromLocation(
+//                p0.locations[0].latitude,
+//                p0.locations[0].longitude,
+//                1
+//            )[0].getAddressLine(0).toString().removeRange(0, 5) + "(현재위치)"
+//            viewModel.getAddress(p0.locations[0].longitude, p0.locations[0].latitude)
+//        }
         }
     }
 

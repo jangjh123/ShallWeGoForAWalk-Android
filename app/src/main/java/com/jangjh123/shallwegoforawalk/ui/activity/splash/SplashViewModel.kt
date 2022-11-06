@@ -1,26 +1,28 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.splash
 
+import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.repository.SplashRepository
-import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
+import com.jangjh123.shallwegoforawalk.util.CoroutineScopes
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    val repository: SplashRepository,
-    val dispatcher: CoroutineDispatcher
-) : BaseViewModel() {
+    val repository: SplashRepository
+) : ViewModel() {
 
     inline fun getRegistration(crossinline onComplete: (Boolean) -> Unit) {
-        CoroutineScope(dispatcher).launch {
-            if (repository.getDogList().isEmpty()) {
-                onComplete(false)
-            } else {
-                onComplete(true)
+        CoroutineScopes.io {
+            repository.getDogList().collect {
+                if (it == null) {
+                    onComplete(false)
+
+                } else {
+                    onComplete(true)
+                }
             }
+
+
         }
     }
 }

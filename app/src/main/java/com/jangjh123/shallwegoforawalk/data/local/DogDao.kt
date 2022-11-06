@@ -4,15 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DogDao {
     @Query("SELECT * FROM Dog")
-    suspend fun getAllDog(): List<DogListTypes.Dog>
+    fun getAllDog(): Flow<DogListTypes.Dog>
 
     @Insert
-    suspend fun insertDog(dog: DogListTypes.Dog)
+    fun insertDog(dog: DogListTypes.Dog)
 
     @Query("DELETE FROM Dog WHERE id = :id")
-    suspend fun deleteDog(id: Int)
+    fun deleteDog(id: Int)
 }
