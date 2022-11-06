@@ -7,6 +7,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+
+
     fun getDogs() {
         repository.fetchDogs()
     }

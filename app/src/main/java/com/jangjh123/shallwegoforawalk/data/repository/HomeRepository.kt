@@ -14,12 +14,14 @@ class HomeRepository @Inject constructor(
     fun fetchDogs() {
         CoroutineScopes.io {
             dogDao.getAllDog().collect {
-                println("테스트 $it")
+
             }
         }
     }
 
     fun fetchWeather() {
-
+        CoroutineScopes.io {
+//            dataSource.fetchWeatherData()
+        }
     }
 }
