@@ -116,4 +116,8 @@ class MainViewModel @Inject constructor(
 
         addDisposable(disposable)
     }
+
+    fun getAddress(longitude: Double, latitude: Double) {
+        repository.fetchAddress(longitude, latitude)
+    }
 }

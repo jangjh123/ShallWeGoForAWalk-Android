@@ -25,9 +25,13 @@ class DataSource {
 
     fun fetchWeatherData(latLon: String): Single<JsonObject> =
         apiService.fetchWeatherData(
-            BuildConfig.KEY_API,
+            BuildConfig.KEY_WEATHER,
             latLon
         )
+
+    fun fetchAddress(longitude: Double, latitude: Double) =
+        apiService.fetchAddress(BuildConfig.KEY_KAKAO, longitude, latitude)
 }
+
 
 
