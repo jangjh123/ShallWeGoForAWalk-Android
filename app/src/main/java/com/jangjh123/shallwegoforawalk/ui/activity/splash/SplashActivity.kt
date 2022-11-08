@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -20,10 +21,8 @@ import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 import kotlin.system.exitProcess
 
 @SuppressLint("CustomSplashScreen")
@@ -50,57 +49,57 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
 
     override fun startProcess() {
-        lifecycleScope.launch {
-            delay(1500L)
-            when (isConnectedToNetwork()) {
-                true -> {
-                    checkAuthority(
-                        onBothGranted = {
-                            changeActivity()
-                        },
-                        onElse = {
-                            requestPermission()
-                        })
-                }
-                else -> {
-                    NoticeDialog(
-                        title = getString(R.string.dialog_network_title),
-                        body = getString(R.string.dialog_network_body),
-                        buttonText = getString(R.string.dialog_quit),
-                        onClickButton = {
-                            moveTaskToBack(true)
-                            finishAndRemoveTask()
-                            exitProcess(0)
-                        }
-                    ).show(supportFragmentManager, "dialog_network_error")
-                }
+        when (isConnectedToNetwork()) {
+            true -> {
+                checkAuthority(
+                    onBothGranted = {
+                        changeActivity()
+                    },
+                    onElse = {
+                        requestPermission()
+                    })
+            }
+            else -> {
+                NoticeDialog(
+                    title = getString(R.string.dialog_network_title),
+                    body = getString(R.string.dialog_network_body),
+                    buttonText = getString(R.string.dialog_quit),
+                    onClickButton = {
+                        moveTaskToBack(true)
+                        finishAndRemoveTask()
+                        exitProcess(0)
+                    }
+                ).show(supportFragmentManager, "dialog_network_error")
             }
         }
     }
 
     private fun changeActivity() {
-        viewModel.getRegistration(
-            onComplete = { isDogRegistered ->
-                when (isDogRegistered) {
-                    true -> {
-                        startActivity(
-                            Intent(
-                                this@SplashActivity,
-                                HomeActivity::class.java
+        lifecycleScope.launch {
+            delay(1500L)
+            viewModel.getRegistration(
+                onComplete = { isDogRegistered ->
+                    when (isDogRegistered) {
+                        true -> {
+                            startActivity(
+                                Intent(
+                                    this@SplashActivity,
+                                    HomeActivity::class.java
+                                )
                             )
-                        )
-                    }
-                    false -> {
-                        startActivity(
-                            Intent(
-                                this@SplashActivity,
-                                RegisterActivity::class.java
+                        }
+                        false -> {
+                            startActivity(
+                                Intent(
+                                    this@SplashActivity,
+                                    RegisterActivity::class.java
+                                )
                             )
-                        )
+                        }
                     }
-                }
-                finish()
-            })
+                    finish()
+                })
+        }
     }
 
     private inline fun checkAuthority(
@@ -176,5 +175,43 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         moveTaskToBack(true)
         finishAndRemoveTask()
         exitProcess(0)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        println("onRestoreInstanceState ${System.currentTimeMillis()}")
+        super.onRestoreInstanceState(savedInstanceState)
+
+    }
+
+    override fun onStart() {
+        println("onStart ${System.currentTimeMillis()}")
+        super.onStart()
+
+    }
+
+    override fun onResume() {
+        println("onResume ${System.currentTimeMillis()}")
+        super.onResume()
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        println("onSaveInstanceState ${System.currentTimeMillis()}")
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        println("onStop ${System.currentTimeMillis()}")
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        println("onDestroy ${System.currentTimeMillis()}")
+        super.onDestroy()
+    }
+
+    override fun onRestart() {
+        println("onRestart ${System.currentTimeMillis()}")
+        super.onRestart()
     }
 }
