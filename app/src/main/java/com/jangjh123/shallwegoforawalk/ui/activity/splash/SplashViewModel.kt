@@ -8,21 +8,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    val repository: SplashRepository
+    private val repository: SplashRepository
 ) : ViewModel() {
 
-    inline fun getRegistration(crossinline onComplete: (Boolean) -> Unit) {
+    fun getRegistration(onComplete: (Boolean) -> Unit) {
         CoroutineScopes.io {
-            repository.getDogList().collect {
-                if (it == null) {
-                    onComplete(false)
-
-                } else {
-                    onComplete(true)
-                }
-            }
-
-
+//            repository.getDogList().collect {
+//                if (it.name == null) {
+//                    onComplete(false)
+//                } else {
+//                    onComplete(true)
+//                }
+//            } using dataStore
+            onComplete(true)
         }
     }
 }
