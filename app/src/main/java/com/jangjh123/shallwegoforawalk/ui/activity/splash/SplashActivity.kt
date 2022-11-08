@@ -176,42 +176,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         finishAndRemoveTask()
         exitProcess(0)
     }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        println("onRestoreInstanceState ${System.currentTimeMillis()}")
-        super.onRestoreInstanceState(savedInstanceState)
-
-    }
-
-    override fun onStart() {
-        println("onStart ${System.currentTimeMillis()}")
-        super.onStart()
-
-    }
-
-    override fun onResume() {
-        println("onResume ${System.currentTimeMillis()}")
-        super.onResume()
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        println("onSaveInstanceState ${System.currentTimeMillis()}")
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onStop() {
-        println("onStop ${System.currentTimeMillis()}")
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        println("onDestroy ${System.currentTimeMillis()}")
-        super.onDestroy()
-    }
-
-    override fun onRestart() {
-        println("onRestart ${System.currentTimeMillis()}")
-        super.onRestart()
-    }
 }
