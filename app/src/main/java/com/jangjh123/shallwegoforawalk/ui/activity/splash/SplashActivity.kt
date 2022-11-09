@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -33,7 +32,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private val permissionCallback =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {
-                showLocationServiceDialog()
+                requestLocationService()
             } else {
                 finishApp()
             }
@@ -149,7 +148,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             cancelButtonText = getString(R.string.dialog_location_service_cancel),
             confirmButtonText = getString(R.string.dialog_location_service_confirm),
             onClickCancel = {
-                finish()
+                finishApp()
             },
             onClickConfirm = {
                 serviceCallback.launch(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))

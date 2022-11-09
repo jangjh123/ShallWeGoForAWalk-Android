@@ -20,7 +20,7 @@ class ConfirmDialog(
             buttonConfirmCancel.apply {
                 text = cancelButtonText
                 setOnClickListener {
-                    onClickCancel
+                    onClickCancel()
                     dismiss()
                 }
             }
