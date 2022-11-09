@@ -12,11 +12,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
+import com.jangjh123.shallwegoforawalk.ui.component.ProgressDialog
 import kotlin.system.exitProcess
 
 
 abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : AppCompatActivity() {
     lateinit var binding: VB
+
+    companion object {
+        private val progressDialog = ProgressDialog()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +61,27 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
 
     protected open fun setObserver() {
 
+    }
+
+    protected open fun showProgress() {
+        if (!progressDialog.isAdded) {
+            progressDialog.show(supportFragmentManager, "progress_dialog")
+        }
+    }
+
+    protected open fun hideProgress() {
+        progressDialog.dismiss()
+    }
+
+    protected open fun isProgressShowing(): Boolean {
+        return progressDialog.isVisible
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isProgressShowing()) {
+            progressDialog.dismiss()
+        }
     }
 
     override fun onBackPressed() {

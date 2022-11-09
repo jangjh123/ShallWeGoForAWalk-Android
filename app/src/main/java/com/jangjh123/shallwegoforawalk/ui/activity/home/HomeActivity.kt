@@ -1,15 +1,16 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.home
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherUiState
 import com.jangjh123.shallwegoforawalk.databinding.ActivityHomeBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
@@ -27,39 +28,28 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     override fun startProcess() {
         getLocation()
+        setObserver()
     }
 
     private fun getLocation() {
-//        try {
-//            LocationServices.getFusedLocationProviderClient(this@HomeActivity)
-//                .lastLocation.addOnSuccessListener {
-//                }.addOnFailureListener {
-//                    println(it)
-//                    /*
-//            check is there a history.
-//            if history does not exist, then set with seoul location.
-//            */
-//                }.addOnCompleteListener {
-//
-//                }
-//        } catch (e: Exception) {
-//            println(e)
-//        }
         LocationServices.getFusedLocationProviderClient(this)
-            .getCurrentLocation(100, object : CancellationToken() {
-                override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
-                    return CancellationTokenSource().token
-                }
+            .getCurrentLocation(
+                LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY,
+                object : CancellationToken() {
+                    override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
+                        return CancellationTokenSource().token
+                    }
 
-                override fun isCancellationRequested(): Boolean {
-                    return false
-                }
+                    override fun isCancellationRequested(): Boolean {
+                        return false
+                    }
+                }).addOnSuccessListener {
+                viewModel.getWeatherVO(it.latitude, it.longitude)
 
-            }).addOnSuccessListener {
-                println("latitude ${it.latitude} longitude ${it.longitude}")
+            }.addOnFailureListener {
+                // todo : save last location with dataStore. if doesn't exist, use seoul's one.
             }
     }
-
 
     private fun initViewPager() {
 //        binding.viewPager.adapter = ViewPagerAdapter()
@@ -81,8 +71,21 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         )
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBundle("viewModel", bundleOf(Pair("viewModel", viewModel)))
+    override fun setObserver() {
+        lifecycleScope.launchWhenResumed {
+            viewModel.weatherVOFlow.collect {
+                when (it) {
+                    null -> {
+                        // todo : loading
+                    }
+                    is WeatherUiState.Success -> {
+                        // todo : weather
+                    }
+                    is WeatherUiState.Failure -> {
+                        // todo : errorMessage
+                    }
+                }
+            }
+        }
     }
 }

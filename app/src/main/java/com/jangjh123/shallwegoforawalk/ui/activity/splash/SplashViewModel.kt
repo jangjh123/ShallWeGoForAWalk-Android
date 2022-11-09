@@ -13,13 +13,7 @@ class SplashViewModel @Inject constructor(
 
     fun getRegistration(onComplete: (Boolean) -> Unit) {
         CoroutineScopes.io {
-//            repository.getDogList().collect {
-//                if (it.name == null) {
-//                    onComplete(false)
-//                } else {
-//                    onComplete(true)
-//                }
-//            } using dataStore
+            // todo : Use Datastore
             onComplete(true)
         }
     }

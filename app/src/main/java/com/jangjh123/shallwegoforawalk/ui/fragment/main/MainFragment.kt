@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
@@ -27,7 +26,6 @@ import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
@@ -70,7 +68,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             if (granted) {
                 getCurrentLocation()
             } else {
-                hideProgress()
+//                hideProgress()
                 NoticeDialog(
                     getString(R.string.fragment_main_need_permission_title),
                     getString(R.string.fragment_main_need_permission_body),
@@ -88,7 +86,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     override fun startProcess() {
-        showProgress()
+//        showProgress()
         viewModel.loadDogList()
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -242,6 +240,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             }
             mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
         }
-        hideProgress()
+//        hideProgress()
     }
 }
