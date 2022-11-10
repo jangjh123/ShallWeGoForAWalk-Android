@@ -52,7 +52,6 @@
             android:fontFamily="@font/noto_sans_medium"
             android:gravity="center"
             android:letterSpacing="-0.06"
-            android:onClick="@{fragment::showHomeFragment}"
             android:text="홈으로"
             android:textColor="@color/white"
             android:textSize="17dp"

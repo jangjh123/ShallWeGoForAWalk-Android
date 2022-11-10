@@ -46,10 +46,6 @@ class DogListFragment(dogs: List<Dog>) : BaseFragment<FragmentDogListBinding>(R.
 //        binding.adapter = dogListAdapter
     }
 
-    fun showHomeFragment(view: View) {
-        (requireActivity() as HomeActivity).showMainScreen()
-    }
-
     private fun showDogList() {
 //        viewModel.dogList.observe(viewLifecycleOwner) {
 //            dogListAdapter.submitList(it.toMutableList())

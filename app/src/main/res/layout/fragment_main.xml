@@ -17,13 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_main"
-                setLayoutManager="@{0}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never" />
-
             <me.relex.circleindicator.CircleIndicator2
                 android:id="@+id/indicator"
                 android:layout_width="wrap_content"
@@ -108,7 +101,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textview_temp_high"
+                android:id="@+id/textview_max_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -128,9 +121,9 @@
                 android:text="@string/fragment_main_degree"
                 android:textColor="@color/gray_depth3"
                 android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textview_temp_high"
-                app:layout_constraintStart_toEndOf="@+id/textview_temp_high"
-                app:layout_constraintTop_toTopOf="@+id/textview_temp_high"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_max_temp"
+                app:layout_constraintStart_toEndOf="@+id/textview_max_temp"
+                app:layout_constraintTop_toTopOf="@+id/textview_max_temp"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -143,12 +136,12 @@
                 android:text="@string/fragment_main_lowest"
                 android:textColor="@color/gray_depth2"
                 android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textview_temp_high"
-                app:layout_constraintStart_toEndOf="@+id/textview_temp_high"
-                app:layout_constraintTop_toTopOf="@+id/textview_temp_high" />
+                app:layout_constraintBottom_toBottomOf="@+id/textview_max_temp"
+                app:layout_constraintStart_toEndOf="@+id/textview_max_temp"
+                app:layout_constraintTop_toTopOf="@+id/textview_max_temp" />
 
             <TextView
-                android:id="@+id/textview_temp_low"
+                android:id="@+id/textview_min_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -168,9 +161,9 @@
                 android:text="@string/fragment_main_degree"
                 android:textColor="@color/gray_depth3"
                 android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textview_temp_low"
-                app:layout_constraintStart_toEndOf="@+id/textview_temp_low"
-                app:layout_constraintTop_toTopOf="@+id/textview_temp_low"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_min_temp"
+                app:layout_constraintStart_toEndOf="@+id/textview_min_temp"
+                app:layout_constraintTop_toTopOf="@+id/textview_min_temp"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView

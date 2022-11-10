@@ -1,6 +1,5 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.home
 
-import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -9,13 +8,13 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.gms.tasks.OnTokenCanceledListener
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.data.model.DogsStateHandler
 import com.jangjh123.shallwegoforawalk.data.model.WeatherStateHandler
 import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.databinding.ActivityHomeBinding
-import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.CautionDialog
 import com.jangjh123.shallwegoforawalk.ui.component.ViewPagerAdapter
@@ -56,27 +55,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         }
     }
 
-    private fun initViewPager(weather: WeatherVO, dogs: List<Dog>) {
-        binding.viewPager.adapter =
-            ViewPagerAdapter(weather, dogs, supportFragmentManager, lifecycle)
-    }
-
-    fun showAddDogScreen(view: View) {
-    }
-
-    fun showMainScreen() {
-    }
-
-    fun showCaution(view: View) {
-        CautionDialog().show(supportFragmentManager, "caution")
-    }
-
-    fun addNewDog() {
-        startActivity(
-            Intent(this@HomeActivity, RegisterActivity::class.java)
-        )
-    }
-
     override fun setObserver() {
         lifecycleScope.launchWhenCreated {
             viewModel.weatherVOFlow.combineTransform(viewModel.dogsFlow) { weatherState, dogsState ->
@@ -87,10 +65,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                         showProgress()
                     }
                     combined.first is WeatherStateHandler.Success && combined.second is DogsStateHandler.Success -> {
-                        initViewPager(
-                            (combined.first as WeatherStateHandler.Success).data,
-                            (combined.second as DogsStateHandler.Success).data
-                        )
+                        val weather = (combined.first as WeatherStateHandler.Success).data
+                        val dogs = (combined.second as DogsStateHandler.Success).data
+                        setWeatherData(weather)
+                        initViewPager(weather, dogs)
                         cancel("success")
                     }
                     combined.first is WeatherStateHandler.Failure -> {
@@ -104,5 +82,63 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         }.invokeOnCompletion {
             dismissProgress()
         }
+    }
+
+    private fun initViewPager(weather: WeatherVO, dogs: List<Dog>) {
+        binding.viewPager.adapter =
+            ViewPagerAdapter(weather, dogs, supportFragmentManager, lifecycle)
+    }
+
+    private fun setWeatherData(weather: WeatherVO) {
+        with(binding) {
+            BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+            curTemp = weather.hourlyList[0].temp.toString()
+            maxTemp = weather.maxTemp.toString()
+            minTemp = weather.minTemp.toString()
+            fine = weather.fine.toString()
+            uFine = weather.uFine.toString()
+            pop = weather.hourlyList[0].pop.toString()
+            humidity = weather.hourlyList[0].humidity.toString()
+
+            fineText =  when {
+                weather.fine > 355 -> {
+                    "매우 나쁨"
+                }
+                weather.fine > 255 -> {
+                    "나쁨"
+                }
+                weather.fine > 155 -> {
+                    "약간 나쁨"
+                }
+                weather.fine > 55 -> {
+                    "보통"
+                }
+                else -> {
+                    "좋음"
+                }
+            }
+
+            uFineText = when {
+                weather.uFine > 151 -> {
+                    "매우 나쁨"
+                }
+                weather.uFine > 56 -> {
+                    "나쁨"
+                }
+                weather.uFine > 36 -> {
+                    "약간 나쁨"
+                }
+                weather.uFine > 12 -> {
+                    "보통"
+                }
+                else -> {
+                    "좋음"
+                }
+            }
+        }
+    }
+
+    fun showCaution(view: View) {
+        CautionDialog().show(supportFragmentManager, "caution")
     }
 }
