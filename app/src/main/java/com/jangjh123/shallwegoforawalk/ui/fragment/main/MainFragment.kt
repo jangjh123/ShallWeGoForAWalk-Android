@@ -23,14 +23,14 @@ import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.databinding.FragmentMainBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
-import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
-    private lateinit var mainAdapter: MainAdapter
+
+    //    private lateinit var mainAdapter: MainAdapter
     private lateinit var address: String
     private var locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
@@ -202,34 +202,34 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 }
             }
 
-            mainAdapter = MainAdapter(
-                weatherVO,
-                address,
-                onClickQuestionMark = { reasons ->
-
-                    val sb = StringBuilder()
-                    for (i in reasons.indices) {
-                        sb.append("${reasons[i]}\n")
-                    }
-
-                    NoticeDialog(
-                        getString(R.string.fragment_main_reason),
-                        when {
-                            reasons.isNotEmpty() -> {
-                                sb.toString()
-                            }
-                            else -> {
-                                getString(R.string.fragment_main_no_reason)
-                            }
-                        },
-                        getString(R.string.dialog_confirm)
-                    ) { }.show(childFragmentManager, "dialog_reason")
-                })
-
-            recyclerviewMain.adapter = mainAdapter
-            viewModel.dogList.observe(viewLifecycleOwner) {
-                mainAdapter.submitList(it)
-            }
+//            mainAdapter = MainAdapter(
+//                weatherVO,
+//                address,
+//                onClickQuestionMark = { reasons ->
+//
+//                    val sb = StringBuilder()
+//                    for (i in reasons.indices) {
+//                        sb.append("${reasons[i]}\n")
+//                    }
+//
+//                    NoticeDialog(
+//                        getString(R.string.fragment_main_reason),
+//                        when {
+//                            reasons.isNotEmpty() -> {
+//                                sb.toString()
+//                            }
+//                            else -> {
+//                                getString(R.string.fragment_main_no_reason)
+//                            }
+//                        },
+//                        getString(R.string.dialog_confirm)
+//                    ) { }.show(childFragmentManager, "dialog_reason")
+//                })
+//
+//            recyclerviewMain.adapter = mainAdapter
+//            viewModel.dogList.observe(viewLifecycleOwner) {
+//                mainAdapter.submitList(it)
+//            }
 
             PagerSnapHelper().run {
                 if (recyclerviewMain.onFlingListener != null) {
@@ -238,7 +238,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 this.attachToRecyclerView(recyclerviewMain)
                 indicator.attachToRecyclerView(recyclerviewMain, this)
             }
-            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
+//            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
         }
 //        hideProgress()
     }

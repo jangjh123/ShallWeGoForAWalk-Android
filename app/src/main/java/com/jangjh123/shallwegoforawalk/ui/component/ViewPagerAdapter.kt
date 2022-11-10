@@ -4,14 +4,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
+import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.ui.fragment.dog.DogFragment
 import com.jangjh123.shallwegoforawalk.ui.fragment.dog_list.DogListFragment
 import java.util.*
 
 class ViewPagerAdapter(
-    private val list: LinkedList<DogListTypes.Dog>,
+    private val list: LinkedList<Dog>,
     private val weather: WeatherVO,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle

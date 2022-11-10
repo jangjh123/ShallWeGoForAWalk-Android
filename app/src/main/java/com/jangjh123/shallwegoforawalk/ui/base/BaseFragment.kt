@@ -34,8 +34,6 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
 
     }
 
-
-
     protected open fun initViewDataBinding() {
 
     }

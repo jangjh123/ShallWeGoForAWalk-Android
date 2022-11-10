@@ -25,10 +25,6 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        init()
-    }
-
-    protected open fun init() {
         initViewDataBinding()
         startProcess()
         setObserver()
@@ -60,26 +56,16 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
         AppCompatResources.getDrawable(this, drawable)
 
     protected open fun setObserver() {
-
     }
 
     protected open fun showProgress() {
         if (!progressDialog.isAdded) {
-            progressDialog.show(supportFragmentManager, "progress_dialog")
+            progressDialog.showNow(supportFragmentManager, "progress_dialog")
         }
     }
 
-    protected open fun hideProgress() {
-        progressDialog.dismiss()
-    }
-
-    protected open fun isProgressShowing(): Boolean {
-        return progressDialog.isVisible
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (isProgressShowing()) {
+    protected open fun dismissProgress() {
+        if (progressDialog.isVisible) {
             progressDialog.dismiss()
         }
     }
