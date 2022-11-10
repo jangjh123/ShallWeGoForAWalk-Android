@@ -3,7 +3,7 @@ package com.jangjh123.shallwegoforawalk.ui.fragment.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jangjh123.shallwegoforawalk.data.model.DogListTypes.Dog
+import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity" />

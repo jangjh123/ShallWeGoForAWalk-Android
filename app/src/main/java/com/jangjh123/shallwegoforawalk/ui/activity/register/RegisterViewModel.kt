@@ -3,14 +3,10 @@ package com.jangjh123.shallwegoforawalk.ui.activity.register
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
 import com.jangjh123.shallwegoforawalk.data.model.FurType
 import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
