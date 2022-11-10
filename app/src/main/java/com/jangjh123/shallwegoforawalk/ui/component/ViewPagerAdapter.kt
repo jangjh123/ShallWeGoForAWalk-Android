@@ -8,28 +8,26 @@ import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.ui.fragment.dog.DogFragment
 import com.jangjh123.shallwegoforawalk.ui.fragment.dog_list.DogListFragment
-import java.util.*
 
 class ViewPagerAdapter(
-    private val list: LinkedList<Dog>,
     private val weather: WeatherVO,
+    private val dogs: List<Dog>,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
-        return list.size
+        return dogs.size + 1
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            list.size - 1 -> {
-//                DogListFragment(list[position], weather)
-                DogListFragment()
+        return when {
+            position < dogs.size -> {
+                DogFragment(weather, dogs[position])
             }
             else -> {
-                DogFragment()
+                DogListFragment(dogs)
             }
         }
     }

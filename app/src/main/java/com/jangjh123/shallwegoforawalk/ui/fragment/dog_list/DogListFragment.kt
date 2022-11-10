@@ -2,13 +2,14 @@ package com.jangjh123.shallwegoforawalk.ui.fragment.dog_list
 
 import android.view.View
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.databinding.FragmentDogListBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DogListFragment() : BaseFragment<FragmentDogListBinding>(R.layout.fragment_dog_list) {
+class DogListFragment(dogs: List<Dog>) : BaseFragment<FragmentDogListBinding>(R.layout.fragment_dog_list) {
 //    private val dogListAdapter = DogListAdapter(
 //        onClickAddDog = {
 //            (requireActivity() as HomeActivity).addNewDog()
