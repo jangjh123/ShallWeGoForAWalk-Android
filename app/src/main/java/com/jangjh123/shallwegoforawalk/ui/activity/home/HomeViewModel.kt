@@ -1,7 +1,7 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.home
 
 import androidx.lifecycle.ViewModel
-import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherUiState
+import com.jangjh123.shallwegoforawalk.data.model.WeatherStateHandler
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.repository.HomeRepository
 import com.jangjh123.shallwegoforawalk.util.CoroutineScopes
@@ -12,8 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
-    private val _weatherVOFlow = MutableStateFlow<WeatherUiState?>(null)
-    val weatherVOFlow: StateFlow<WeatherUiState?>
+    private val _weatherVOFlow = MutableStateFlow<WeatherStateHandler?>(null)
+    val weatherVOFlow: StateFlow<WeatherStateHandler?>
         get() = _weatherVOFlow
 
     fun getWeatherVO(latitude: Double, longitude: Double) {
@@ -22,10 +22,10 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
                 .collect { data ->
                     when (data) {
                         is WeatherVO -> {
-                            _weatherVOFlow.tryEmit(WeatherUiState.Success(data))
+                            _weatherVOFlow.tryEmit(WeatherStateHandler.Success(data))
                         }
                         is String -> {
-                            _weatherVOFlow.tryEmit(WeatherUiState.Failure(data))
+                            _weatherVOFlow.tryEmit(WeatherStateHandler.Failure(data))
                         }
                     }
                 }

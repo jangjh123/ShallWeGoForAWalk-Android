@@ -10,7 +10,7 @@ import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.jangjh123.shallwegoforawalk.R
-import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherUiState
+import com.jangjh123.shallwegoforawalk.data.model.WeatherStateHandler
 import com.jangjh123.shallwegoforawalk.databinding.ActivityHomeBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
@@ -78,10 +78,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                     null -> {
                         // todo : loading
                     }
-                    is WeatherUiState.Success -> {
+                    is WeatherStateHandler.Success -> {
                         // todo : weather
                     }
-                    is WeatherUiState.Failure -> {
+                    is WeatherStateHandler.Failure -> {
                         // todo : errorMessage
                     }
                 }
