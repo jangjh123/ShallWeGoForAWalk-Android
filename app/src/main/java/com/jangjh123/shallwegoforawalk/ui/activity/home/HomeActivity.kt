@@ -10,12 +10,15 @@ import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.DogsStateHandler
 import com.jangjh123.shallwegoforawalk.data.model.WeatherStateHandler
 import com.jangjh123.shallwegoforawalk.databinding.ActivityHomeBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.CautionDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.combineTransform
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -72,20 +75,28 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     override fun setObserver() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.weatherVOFlow.collect {
-                when (it) {
-                    null -> {
-                        // todo : loading
+        lifecycleScope.launchWhenCreated {
+            viewModel.weatherVOFlow.combineTransform(viewModel.dogsFlow) { weatherState, dogsState ->
+                emit(Pair(weatherState, dogsState))
+            }.collect { data ->
+                when {
+                    data.first == null || data.second == null -> {
+                        showProgress()
                     }
-                    is WeatherStateHandler.Success -> {
-                        // todo : weather
+                    data.first is WeatherStateHandler.Success && data.second is DogsStateHandler.Success -> {
+                        // todo send through fragment's parameter
+                        cancel("success")
                     }
-                    is WeatherStateHandler.Failure -> {
-                        // todo : errorMessage
+                    data.first is WeatherStateHandler.Failure -> {
+                        cancel("weather")
+                    }
+                    data.second is DogsStateHandler.Failure -> {
+                        cancel("dogs")
                     }
                 }
             }
+        }.invokeOnCompletion {
+            dismissProgress()
         }
     }
 }
