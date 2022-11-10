@@ -38,23 +38,22 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     private fun getLocation() {
-        LocationServices.getFusedLocationProviderClient(this)
-            .getCurrentLocation(
-                LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY,
-                object : CancellationToken() {
-                    override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
-                        return CancellationTokenSource().token
-                    }
+        LocationServices.getFusedLocationProviderClient(this).getCurrentLocation(
+            LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY,
+            object : CancellationToken() {
+                override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
+                    return CancellationTokenSource().token
+                }
 
-                    override fun isCancellationRequested(): Boolean {
-                        return false
-                    }
-                }).addOnSuccessListener {
-                viewModel.getWeatherVO(it.latitude, it.longitude)
+                override fun isCancellationRequested(): Boolean {
+                    return false
+                }
+            }).addOnSuccessListener {
+            viewModel.getWeatherVO(it.latitude, it.longitude)
 
-            }.addOnFailureListener {
-                // todo : save last location with dataStore. if doesn't exist, use seoul's one.
-            }
+        }.addOnFailureListener {
+            // todo : save last location with dataStore. if doesn't exist, use seoul's one.
+        }
     }
 
     private fun initViewPager(weather: WeatherVO, dogs: List<Dog>) {

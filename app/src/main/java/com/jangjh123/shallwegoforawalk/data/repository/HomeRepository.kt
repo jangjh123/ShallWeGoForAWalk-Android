@@ -38,9 +38,8 @@ class HomeRepository @Inject constructor(
         val tomorrowArray =
             weather["forecast"].asJsonObject["forecastday"].asJsonArray[1].asJsonObject["hour"].asJsonArray
         val forecastList = ArrayList<HourlyWeather>()
-        val curTime = SimpleDateFormat("HH").apply {
-            timeZone = TimeZone.getTimeZone("Asia/Seoul")
-        }.format(Date(System.currentTimeMillis())).toInt()
+        val curTime = SimpleDateFormat("HH").apply { timeZone = TimeZone.getTimeZone("Asia/Seoul") }
+            .format(Date(System.currentTimeMillis())).toInt()
         for (i in 0..6) {
             val forecast = if (curTime + i < 24) {
                 todayArray[curTime + i].asJsonObject

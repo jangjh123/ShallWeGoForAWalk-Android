@@ -83,6 +83,7 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
                 moveTaskToBack(true)
                 finishAndRemoveTask()
                 exitProcess(0)
-            }).show(supportFragmentManager, "dialog_quit")
+            }
+        ).show(supportFragmentManager, "dialog_quit")
     }
 }

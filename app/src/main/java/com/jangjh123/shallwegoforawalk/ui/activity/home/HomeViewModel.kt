@@ -51,17 +51,16 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
     fun getWeatherVO(latitude: Double, longitude: Double) {
         CoroutineScopes.io {
-            repository.fetchWeather("$latitude,$longitude")
-                .collect { data ->
-                    when (data) {
-                        is WeatherVO -> {
-                            _weatherVOFlow.emit(WeatherStateHandler.Success(data))
-                        }
-                        is String -> {
-                            _weatherVOFlow.emit(WeatherStateHandler.Failure(data))
-                        }
+            repository.fetchWeather("$latitude,$longitude").collect { data ->
+                when (data) {
+                    is WeatherVO -> {
+                        _weatherVOFlow.emit(WeatherStateHandler.Success(data))
+                    }
+                    is String -> {
+                        _weatherVOFlow.emit(WeatherStateHandler.Failure(data))
                     }
                 }
+            }
         }
     }
 }
