@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.bumptech.glide.Glide
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -149,58 +148,58 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     private fun showData(weatherVO: WeatherVO) {
-        with(binding) {
-            BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
-            textviewTempCur.text = weatherVO.hourlyList[0].temp.toString()
-            textviewTempHigh.text = weatherVO.maxTemp.toString()
-            textviewTempLow.text = weatherVO.minTemp.toString()
-
-            textviewHumidity.text = weatherVO.hourlyList[0].humidity.toString()
-            textviewRainPossibility.text = weatherVO.hourlyList[0].pop.toString()
-            textviewUltraFineDustValue.text = weatherVO.uFine.toString()
-            textviewFineDustValue.text = weatherVO.fine.toString()
-
-            Glide.with(requireContext())
-                .load(weatherVO.hourlyList[0].icon)
-                .into(imageviewWeatherIcon)
-
-            val ultraFineDust = weatherVO.uFine
-            textviewUltraFineDustText.text = when {
-                ultraFineDust > 151 -> {
-                    "매우 나쁨"
-                }
-                ultraFineDust > 56 -> {
-                    "나쁨"
-                }
-                ultraFineDust > 36 -> {
-                    "약간 나쁨"
-                }
-                ultraFineDust > 12 -> {
-                    "보통"
-                }
-                else -> {
-                    "좋음"
-                }
-            }
-
-            val fineDust = weatherVO.fine
-            textviewFineDustText.text = when {
-                fineDust > 355 -> {
-                    "매우 나쁨"
-                }
-                fineDust > 255 -> {
-                    "나쁨"
-                }
-                fineDust > 155 -> {
-                    "약간 나쁨"
-                }
-                fineDust > 55 -> {
-                    "보통"
-                }
-                else -> {
-                    "좋음"
-                }
-            }
+//        with(binding) {
+//            BottomSheetBehavior.from(binding.bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+//            textviewTempCur.text = weatherVO.hourlyList[0].temp.toString()
+//            textviewTempHigh.text = weatherVO.maxTemp.toString()
+//            textviewTempLow.text = weatherVO.minTemp.toString()
+//
+//            textviewHumidity.text = weatherVO.hourlyList[0].humidity.toString()
+//            textviewRainPossibility.text = weatherVO.hourlyList[0].pop.toString()
+//            textviewUltraFineDustValue.text = weatherVO.uFine.toString()
+//            textviewFineDustValue.text = weatherVO.fine.toString()
+//
+//            Glide.with(requireContext())
+//                .load(weatherVO.hourlyList[0].icon)
+//                .into(imageviewWeatherIcon)
+//
+//            val ultraFineDust = weatherVO.uFine
+//            textviewUltraFineDustText.text = when {
+//                ultraFineDust > 151 -> {
+//                    "매우 나쁨"
+//                }
+//                ultraFineDust > 56 -> {
+//                    "나쁨"
+//                }
+//                ultraFineDust > 36 -> {
+//                    "약간 나쁨"
+//                }
+//                ultraFineDust > 12 -> {
+//                    "보통"
+//                }
+//                else -> {
+//                    "좋음"
+//                }
+//            }
+//
+//            val fineDust = weatherVO.fine
+//            textviewFineDustText.text = when {
+//                fineDust > 355 -> {
+//                    "매우 나쁨"
+//                }
+//                fineDust > 255 -> {
+//                    "나쁨"
+//                }
+//                fineDust > 155 -> {
+//                    "약간 나쁨"
+//                }
+//                fineDust > 55 -> {
+//                    "보통"
+//                }
+//                else -> {
+//                    "좋음"
+//                }
+//            }
 
 //            mainAdapter = MainAdapter(
 //                weatherVO,
@@ -231,13 +230,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 //                mainAdapter.submitList(it)
 //            }
 
-            PagerSnapHelper().run {
-                if (recyclerviewMain.onFlingListener != null) {
-                    recyclerviewMain.onFlingListener = null
-                }
-                this.attachToRecyclerView(recyclerviewMain)
-                indicator.attachToRecyclerView(recyclerviewMain, this)
-            }
+        PagerSnapHelper().run {
+//                if (recyclerviewMain.onFlingListener != null) {
+//                    recyclerviewMain.onFlingListener = null
+//                }
+//                this.attachToRecyclerView(recyclerviewMain)
+//                indicator.attachToRecyclerView(recyclerviewMain, this)
+//            }
 //            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
         }
 //        hideProgress()
