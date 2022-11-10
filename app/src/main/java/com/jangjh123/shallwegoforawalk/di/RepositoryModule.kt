@@ -2,10 +2,7 @@ package com.jangjh123.shallwegoforawalk.di
 
 import com.jangjh123.shallwegoforawalk.data.local.DogDao
 import com.jangjh123.shallwegoforawalk.data.remote.DataSource
-import com.jangjh123.shallwegoforawalk.data.repository.DogListRepository
-import com.jangjh123.shallwegoforawalk.data.repository.MainRepository
-import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
-import com.jangjh123.shallwegoforawalk.data.repository.SplashRepository
+import com.jangjh123.shallwegoforawalk.data.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +12,13 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 object RepositoryModule {
+
+    @ViewModelScoped
+    @Provides
+    fun provideHomeRepository(
+        dogDao: DogDao,
+        dataSource: DataSource
+    ) = HomeRepository(dogDao, dataSource)
 
     @ViewModelScoped
     @Provides
@@ -29,7 +33,8 @@ object RepositoryModule {
 
     @ViewModelScoped
     @Provides
-    fun provideMainRepository(dogDao: DogDao, dataSource: DataSource) = MainRepository(dogDao, dataSource)
+    fun provideMainRepository(dogDao: DogDao, dataSource: DataSource) =
+        MainRepository(dogDao, dataSource)
 
     @ViewModelScoped
     @Provides

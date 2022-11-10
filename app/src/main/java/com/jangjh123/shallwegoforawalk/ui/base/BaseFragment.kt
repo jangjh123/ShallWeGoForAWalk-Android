@@ -14,10 +14,6 @@ import com.jangjh123.shallwegoforawalk.ui.component.ProgressDialog
 abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : Fragment() {
     lateinit var binding: VB
 
-    companion object {
-        private val progressDialog = ProgressDialog()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,20 +34,6 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
 
     }
 
-    protected open fun showProgress() {
-        if (!progressDialog.isAdded) {
-            progressDialog.show(childFragmentManager, "progress_dialog")
-        }
-    }
-
-    protected open fun hideProgress() {
-        progressDialog.dismiss()
-    }
-
-    protected open fun isProgressShowing(): Boolean {
-        return progressDialog.isVisible
-    }
-
     protected open fun initViewDataBinding() {
 
     }
@@ -64,12 +46,5 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val layoutId: Int) : F
 
     protected open fun startProcess() {
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (isProgressShowing()) {
-            progressDialog.dismiss()
-        }
     }
 }

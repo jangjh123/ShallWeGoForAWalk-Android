@@ -54,11 +54,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
-    // RxJava for asynchronous handling
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.4'
-    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
-
     // Room for local database
     implementation "androidx.room:room-runtime:2.4.2"
     implementation "androidx.room:room-ktx:2.4.2"
@@ -77,14 +72,11 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.41'
     kapt 'com.google.dagger:hilt-android-compiler:2.40.5'
 
+    // ViewPager
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
     // Extra Library
     implementation 'me.relex:circleindicator:2.1.6'
-
-    // Navigation Compose
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.4.2"
-    implementation "androidx.navigation:navigation-compose:2.5.0-rc01"
 
     implementation 'com.google.android.gms:play-services-location:19.0.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'

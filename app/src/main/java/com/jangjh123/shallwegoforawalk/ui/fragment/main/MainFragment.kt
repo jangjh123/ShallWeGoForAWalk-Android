@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
@@ -24,40 +23,40 @@ import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.databinding.FragmentMainBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
-import com.jangjh123.shallwegoforawalk.ui.component.MainAdapter
 import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
-    private lateinit var mainAdapter: MainAdapter
+
+    //    private lateinit var mainAdapter: MainAdapter
     private lateinit var address: String
     private var locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
-            viewModel.getWeatherData(
-                p0.locations[0].latitude,
-                p0.locations[0].longitude,
-                onNetworkError = {
-                    NoticeDialog(
-                        title = getString(R.string.dialog_network_title),
-                        body = getString(R.string.dialog_network_body),
-                        buttonText = getString(R.string.dialog_quit),
-                        onClickButton = {
-                            requireActivity().moveTaskToBack(true)
-                            requireActivity().finishAndRemoveTask()
-                            exitProcess(0)
-                        }
-                    ).show(childFragmentManager, "dialog_network_error")
-                })
-
-            address = Geocoder(requireContext()).getFromLocation(
-                p0.locations[0].latitude,
-                p0.locations[0].longitude,
-                1
-            )[0].getAddressLine(0).toString().removeRange(0, 5) + "(현재위치)"
-            viewModel.getAddress(p0.locations[0].longitude, p0.locations[0].latitude)
+//            viewModel.getWeatherData(
+//                p0.locations[0].latitude,
+//                p0.locations[0].longitude,
+//                onNetworkError = {
+//                    NoticeDialog(
+//                        title = getString(R.string.dialog_network_title),
+//                        body = getString(R.string.dialog_network_body),
+//                        buttonText = getString(R.string.dialog_quit),
+//                        onClickButton = {
+//                            requireActivity().moveTaskToBack(true)
+//                            requireActivity().finishAndRemoveTask()
+//                            exitProcess(0)
+//                        }
+//                    ).show(childFragmentManager, "dialog_network_error")
+//                })
+//
+//            address = Geocoder(requireContext()).getFromLocation(
+//                p0.locations[0].latitude,
+//                p0.locations[0].longitude,
+//                1
+//            )[0].getAddressLine(0).toString().removeRange(0, 5) + "(현재위치)"
+//            viewModel.getAddress(p0.locations[0].longitude, p0.locations[0].latitude)
+//        }
         }
     }
 
@@ -69,7 +68,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             if (granted) {
                 getCurrentLocation()
             } else {
-                hideProgress()
+//                hideProgress()
                 NoticeDialog(
                     getString(R.string.fragment_main_need_permission_title),
                     getString(R.string.fragment_main_need_permission_body),
@@ -87,7 +86,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     override fun startProcess() {
-        showProgress()
+//        showProgress()
         viewModel.loadDogList()
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -203,34 +202,34 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 }
             }
 
-            mainAdapter = MainAdapter(
-                weatherVO,
-                address,
-                onClickQuestionMark = { reasons ->
-
-                    val sb = StringBuilder()
-                    for (i in reasons.indices) {
-                        sb.append("${reasons[i]}\n")
-                    }
-
-                    NoticeDialog(
-                        getString(R.string.fragment_main_reason),
-                        when {
-                            reasons.isNotEmpty() -> {
-                                sb.toString()
-                            }
-                            else -> {
-                                getString(R.string.fragment_main_no_reason)
-                            }
-                        },
-                        getString(R.string.dialog_confirm)
-                    ) { }.show(childFragmentManager, "dialog_reason")
-                })
-
-            recyclerviewMain.adapter = mainAdapter
-            viewModel.dogList.observe(viewLifecycleOwner) {
-                mainAdapter.submitList(it)
-            }
+//            mainAdapter = MainAdapter(
+//                weatherVO,
+//                address,
+//                onClickQuestionMark = { reasons ->
+//
+//                    val sb = StringBuilder()
+//                    for (i in reasons.indices) {
+//                        sb.append("${reasons[i]}\n")
+//                    }
+//
+//                    NoticeDialog(
+//                        getString(R.string.fragment_main_reason),
+//                        when {
+//                            reasons.isNotEmpty() -> {
+//                                sb.toString()
+//                            }
+//                            else -> {
+//                                getString(R.string.fragment_main_no_reason)
+//                            }
+//                        },
+//                        getString(R.string.dialog_confirm)
+//                    ) { }.show(childFragmentManager, "dialog_reason")
+//                })
+//
+//            recyclerviewMain.adapter = mainAdapter
+//            viewModel.dogList.observe(viewLifecycleOwner) {
+//                mainAdapter.submitList(it)
+//            }
 
             PagerSnapHelper().run {
                 if (recyclerviewMain.onFlingListener != null) {
@@ -239,8 +238,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 this.attachToRecyclerView(recyclerviewMain)
                 indicator.attachToRecyclerView(recyclerviewMain, this)
             }
-            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
+//            mainAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
         }
-        hideProgress()
+//        hideProgress()
     }
 }

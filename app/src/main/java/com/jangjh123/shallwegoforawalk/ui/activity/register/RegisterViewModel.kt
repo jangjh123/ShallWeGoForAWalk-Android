@@ -2,23 +2,18 @@ package com.jangjh123.shallwegoforawalk.ui.activity.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.jangjh123.shallwegoforawalk.data.model.DogListTypes
+import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.model.FurType
 import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
-import com.jangjh123.shallwegoforawalk.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val repository: RegisterRepository,
-    private val dispatcher: CoroutineDispatcher
+    private val repository: RegisterRepository
 ) :
-    BaseViewModel() {
+    ViewModel() {
 
     private val _dogName = MutableLiveData<String>()
     val dogName: LiveData<String>
@@ -82,18 +77,18 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun storeDog() {
-        CoroutineScope(dispatcher).launch {
-            repository.storeIntoRoom(
-                DogListTypes.Dog(
-                    0,
-                    dogName.value!!,
-                    dogGender.value!!,
-                    dogAge.value!!,
-                    dogFurType.value!!,
-                    dogSize.value!!,
-                    ""
-                )
-            )
-        }
+//        CoroutineScope(dispatcher).launch {
+//            repository.storeIntoRoom(
+//                DogListTypes.Dog(
+//                    0,
+//                    dogName.value!!,
+//                    dogGender.value!!,
+//                    dogAge.value!!,
+//                    dogFurType.value!!,
+//                    dogSize.value!!,
+//                    ""
+//                )
+//            )
+//        }
     }
 }
