@@ -99,8 +99,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             uFine = weather.uFine.toString()
             pop = weather.hourlyList[0].pop.toString()
             humidity = weather.hourlyList[0].humidity.toString()
+            imageUrl = weather.hourlyList[0].icon
 
-            fineText =  when {
+            fineText = when {
                 weather.fine > 355 -> {
                     "매우 나쁨"
                 }

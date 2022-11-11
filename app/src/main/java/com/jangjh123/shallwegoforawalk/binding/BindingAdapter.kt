@@ -1,7 +1,15 @@
 package com.jangjh123.shallwegoforawalk.binding
 
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 object BindingAdapter {
@@ -23,6 +31,28 @@ object BindingAdapter {
     fun setSnapHelper(view: RecyclerView, boolean: Boolean) {
         if (boolean) {
             PagerSnapHelper().attachToRecyclerView(view)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setImageWithGlide")
+    fun setImageWithGlide(view: ImageView, url: String?) {
+        if (url != null) {
+            Glide.with(view.context)
+                .load(url)
+                .into(view)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setCurrentTime")
+    fun setCurrentTime(view: TextView, boolean: Boolean) {
+        if (boolean) {
+            view.text = SimpleDateFormat("HH:mm").apply {
+                timeZone = TimeZone.getTimeZone("Asia/Seoul")
+            }.format(
+                Date(System.currentTimeMillis())
+            ).toString() + " 업데이트"
         }
     }
 }
