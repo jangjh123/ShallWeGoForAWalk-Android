@@ -18,7 +18,7 @@
 
         <variable
             name="image"
-            type="int" />
+            type="android.graphics.drawable.Drawable" />
 
         <variable
             name="curPoint"
@@ -30,11 +30,11 @@
 
         <variable
             name="hourlyPoint"
-            type="java.util.List" />
+            type="java.util.List&lt;String>" />
 
         <variable
             name="times"
-            type="java.util.List" />
+            type="java.util.List&lt;String>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,6 +120,8 @@
             android:layout_marginTop="2dp"
             android:src="@drawable/icon_question"
             app:layout_constraintBottom_toBottomOf="@+id/textview_point_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textview_point_desc"
             app:layout_constraintTop_toTopOf="@+id/textview_point_desc"
             app:tint="@color/gray_depth5" />
@@ -130,9 +132,12 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_medium"
             android:letterSpacing="-0.06"
+            android:text="@{mainText}"
             android:textColor="@color/white"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_reasons"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_main_point" />
 
@@ -180,7 +185,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{curPoint}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintEnd_toEndOf="@+id/textView28"
@@ -194,7 +199,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{hourlyPoint[0]}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/textview_time_after_1"
@@ -208,7 +213,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{hourlyPoint[1]}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/textview_time_after_2"
@@ -222,7 +227,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{hourlyPoint[2]}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/textview_time_after_3"
@@ -236,7 +241,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{hourlyPoint[3]}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/textview_time_after_4"
@@ -250,7 +255,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{hourlyPoint[4]}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/textview_time_after_5"
@@ -264,7 +269,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/varela_round_normal"
             android:letterSpacing="-0.06"
-            android:text="90"
+            android:text="@{hourlyPoint[5]}"
             android:textColor="@color/white"
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/textview_time_after_6"
@@ -278,7 +283,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:letterSpacing="-0.06"
-            android:text="01시"
+            android:text="@{times[1]}"
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -293,7 +298,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:letterSpacing="-0.06"
-            android:text="01시"
+            android:text="@{times[2]}"
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -308,7 +313,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:letterSpacing="-0.06"
-            android:text="01시"
+            android:text="@{times[3]}"
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -340,7 +345,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:letterSpacing="-0.06"
-            android:text="01시"
+            android:text="@{times[4]}"
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -355,7 +360,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:letterSpacing="-0.06"
-            android:text="01시"
+            android:text="@{times[0]}"
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -370,7 +375,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:letterSpacing="-0.06"
-            android:text="01시"
+            android:text="@{times[5]}"
             android:textColor="@color/opc_70_white"
             android:textSize="13dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"

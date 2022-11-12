@@ -10,7 +10,6 @@ import com.jangjh123.shallwegoforawalk.util.WalkInfoProvider
 class DogFragment(private val weather: WeatherVO, private val dog: Dog) :
     BaseFragment<FragmentDogBinding>(R.layout.fragment_dog) {
     private val reasonList = ArrayList<String>()
-    private val walkInfoProvider = WalkInfoProvider(requireContext())
 
     override fun initViewDataBinding() {
 
@@ -22,10 +21,15 @@ class DogFragment(private val weather: WeatherVO, private val dog: Dog) :
 
     private fun initView() {
         with(binding) {
+            val walkInfoProvider = WalkInfoProvider(requireContext())
             val mainPoint = walkInfoProvider.editPoint(weather, 0, reasonList)
             curPoint = mainPoint.toString()
             name = dog.name
             backgroundColor = walkInfoProvider.getColorByPoint(mainPoint)
+            image = walkInfoProvider.getImageByPointAndSize(mainPoint, dog.size)
+            mainText = walkInfoProvider.getMainTextByPoint(mainPoint)
+            hourlyPoint = List(6) { walkInfoProvider.editPoint(weather, it, null).toString() }
+            times = walkInfoProvider.getTimeTable()
         }
     }
 }

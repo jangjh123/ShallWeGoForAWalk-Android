@@ -1,9 +1,13 @@
 package com.jangjh123.shallwegoforawalk.util
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
+import java.text.SimpleDateFormat
+import java.util.*
 
 class WalkInfoProvider(private val context: Context) {
     fun editPoint(weather: WeatherVO, index: Int, reasonList: ArrayList<String>?): Int {
@@ -131,6 +135,112 @@ class WalkInfoProvider(private val context: Context) {
                 }
             }
         )
+    }
+
+    fun getImageByPointAndSize(point: Int, size: Size): Drawable? {
+        return ContextCompat.getDrawable(
+            context, when (size) {
+                Size.Small -> {
+                    when {
+                        point > 80 -> {
+                            R.drawable.dog_small_1
+                        }
+                        point > 60 -> {
+                            R.drawable.dog_small_2
+                        }
+                        point > 40 -> {
+                            R.drawable.dog_small_3
+                        }
+                        point > 20 -> {
+                            R.drawable.dog_small_4
+                        }
+                        else -> {
+                            R.drawable.dog_small_5
+                        }
+                    }
+                }
+                Size.Medium -> {
+                    when {
+                        point > 80 -> {
+                            R.drawable.dog_medium_1
+                        }
+                        point > 60 -> {
+                            R.drawable.dog_medium_2
+                        }
+                        point > 40 -> {
+                            R.drawable.dog_medium_3
+                        }
+                        point > 20 -> {
+                            R.drawable.dog_medium_4
+                        }
+                        else -> {
+                            R.drawable.dog_medium_5
+                        }
+                    }
+                }
+                Size.Large -> {
+                    when {
+                        point > 80 -> {
+                            R.drawable.dog_large_1
+                        }
+                        point > 60 -> {
+                            R.drawable.dog_large_2
+                        }
+                        point > 40 -> {
+                            R.drawable.dog_large_3
+                        }
+                        point > 20 -> {
+                            R.drawable.dog_large_4
+                        }
+                        else -> {
+                            R.drawable.dog_large_5
+                        }
+                    }
+                }
+            }
+        )
+    }
+
+    fun getMainTextByPoint(point: Int): String {
+        return when {
+            point > 80 -> {
+                context.getString(R.string.item_main_point_desc_1)
+            }
+            point > 60 -> {
+                context.getString(R.string.item_main_point_desc_2)
+
+            }
+            point > 40 -> {
+                context.getString(R.string.item_main_point_desc_3)
+
+            }
+            point > 20 -> {
+                context.getString(R.string.item_main_point_desc_4)
+
+            }
+            else -> {
+                context.getString(R.string.item_main_point_desc_5)
+
+            }
+        }
+    }
+
+    fun getTimeTable(): List<String> {
+        val curTime = SimpleDateFormat("HH").apply {
+            timeZone = TimeZone.getTimeZone("Asia/Seoul")
+        }.format(
+            Date(System.currentTimeMillis())
+        ).toInt()
+
+        val timeTable = ArrayList<String>()
+        for (i in 1..6) {
+            if (curTime + i > 23) {
+                timeTable.add("${(curTime + i) - 24} 시")
+            } else {
+                timeTable.add("${curTime + i} 시")
+            }
+        }
+        return timeTable
     }
 }
 
