@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="imageUrl"
             type="String" />
@@ -58,6 +59,17 @@
             android:layout_height="match_parent" />
 
         <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:onClick="@{activity::addDog}"
+            android:src="@drawable/icon_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/imageview_home_caution"
+            app:layout_constraintEnd_toStartOf="@+id/imageview_home_caution"
+            app:layout_constraintTop_toTopOf="@+id/imageview_home_caution"
+            app:tint="@color/white" />
+
+        <ImageView
             android:id="@+id/imageview_home_caution"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -101,9 +113,9 @@
 
                 <ImageView
                     android:id="@+id/imageview_weather_icon"
+                    setImageWithGlide="@{imageUrl}"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    setImageWithGlide="@{imageUrl}"
                     app:layout_constraintBottom_toBottomOf="@+id/textview_temp_cur"
                     app:layout_constraintEnd_toStartOf="@+id/textview_temp_cur"
                     app:layout_constraintTop_toTopOf="@+id/textview_temp_cur" />

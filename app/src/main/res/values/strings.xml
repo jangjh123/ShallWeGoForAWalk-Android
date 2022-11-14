@@ -38,6 +38,9 @@
     <string name="dialog_app_quit_title">앱 종료</string>
     <string name="dialog_app_quit_body">앱을 종료할까요?</string>
 
+    <string name="dialog_quit_registry_title">등록 취소</string>
+    <string name="dialog_quit_registry_body">강아지 등록을 취소할까요?</string>
+
     <!--    RegisterActivity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름은 무엇인가요?</string>
@@ -97,10 +100,11 @@
     <string name="item_main_point_desc_4">오늘은 집에 있는게 좋겠어요.</string>
     <string name="item_main_point_desc_5">나가면 안 돼요. 실내에 머물러주세요.</string>
 
-    <!--    DogListFragment-->
-    <string name="fragment_dog_list_title">댕댕이의 가족을\n추가해 주세요</string>
-    <string name="fragment_remove_dialog_title">강아지 삭제</string>
-    <string name="fragment_remove_dialog_body">저장된 강아지를 삭제할까요?</string>
+    <!--    DogListActivity-->
+    <string name="activity_dog_list_title">댕댕이의 가족을\n추가해 주세요</string>
+    <string name="activity_remove_dialog_title">강아지 삭제</string>
+    <string name="activity_remove_dialog_body">저장된 강아지를 삭제할까요?</string>
+    <string name="activity_go_home_screen">홈으로</string>
 
     <!--    AddDogItem-->
     <string name="item_add_dog_text">가족 추가하기</string>

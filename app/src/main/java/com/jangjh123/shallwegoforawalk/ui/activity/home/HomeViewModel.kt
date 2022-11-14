@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
                         )
                     )
                 } else {
-                    _dogsFlow.tryEmit(DogsStateHandler.Failure("List is empty."))
+                    _dogsFlow.emit(DogsStateHandler.Failure("List is empty."))
                 }
             }
         }

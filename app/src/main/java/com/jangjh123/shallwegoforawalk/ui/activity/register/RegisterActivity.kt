@@ -23,9 +23,11 @@ import com.jangjh123.shallwegoforawalk.data.model.FurType
 import com.jangjh123.shallwegoforawalk.databinding.ActivityRegisterBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
+import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
@@ -277,7 +279,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         if (isFilledAll) {
             viewModel.storeDog()
             viewModel.setRegistered()
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            })
             finish()
         }
     }
@@ -293,6 +298,21 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 isFilledAll = true
             }
         }
+    }
+
+    override fun onBackPressed() {
+        ConfirmDialog(
+            title = getString(R.string.dialog_quit_registry_title),
+            body = getString(R.string.dialog_quit_registry_body),
+            cancelButtonText = getString(R.string.dialog_cancel),
+            confirmButtonText = getString(R.string.dialog_confirm),
+            onClickCancel = {
+
+            },
+            onClickConfirm = {
+                finish()
+            }
+        ).show(supportFragmentManager, "dialog_quit_registry")
     }
 }
 

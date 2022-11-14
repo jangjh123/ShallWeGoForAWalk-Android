@@ -26,5 +26,5 @@ class DogListRepository @Inject constructor(
         }
     }
 
-    fun getNewDogList() = dogDao.getAllDog()
+    fun fetchDogList() = dogDao.getAllDog()
 }
