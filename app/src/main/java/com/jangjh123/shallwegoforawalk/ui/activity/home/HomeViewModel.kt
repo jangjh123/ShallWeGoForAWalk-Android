@@ -27,24 +27,16 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     init {
         CoroutineScopes.io {
             repository.fetchDogs().collect { dogs ->
-//                if (dogs.isNotEmpty()) {
-                _dogsFlow.emit(
-                    DogsStateHandler.Success(
-                        listOf(
-                            Dog(
-                                name = "a",
-                                age = 5,
-                                furType = FurType.Curly,
-                                gender = true,
-                                reason = "asd",
-                                size = Size.Medium
-                            )
+                println(dogs)
+                if (dogs.isNotEmpty()) {
+                    _dogsFlow.emit(
+                        DogsStateHandler.Success(
+                            dogs
                         )
                     )
-                )
-//                } else {
-//                    _dogsFlow.tryEmit(DogsStateHandler.Failure("List is empty."))
-//                }
+                } else {
+                    _dogsFlow.tryEmit(DogsStateHandler.Failure("List is empty."))
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ class SplashViewModel @Inject constructor(
     fun getRegistration(onComplete: (Boolean) -> Unit) {
         CoroutineScopes.io {
             // todo : Use Datastore
-            onComplete(true)
+            onComplete(false)
         }
     }
 }
