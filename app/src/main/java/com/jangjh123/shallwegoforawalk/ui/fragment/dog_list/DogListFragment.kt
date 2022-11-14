@@ -19,15 +19,13 @@ class DogListFragment(private val dogs: List<Dog?>) :
         onClickAddDog = {
             startActivity(Intent(activity, RegisterActivity::class.java))
         },
-        onClickRemoveDog = { id, ->
+        onClickRemoveDog = { id ->
             ConfirmDialog(
                 title = getString(R.string.fragment_remove_dialog_title),
                 body = getString(R.string.fragment_remove_dialog_body),
                 cancelButtonText = getString(R.string.dialog_cancel),
                 confirmButtonText = getString(R.string.dialog_confirm),
-                onClickCancel = {
-
-                },
+                onClickCancel = {},
                 onClickConfirm = {
                     viewModel.removeDog(id,
                         onNoDog = {
@@ -39,12 +37,10 @@ class DogListFragment(private val dogs: List<Dog?>) :
                                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 })
-                        }, onRefresh = {
-                            refreshDogList((it as ArrayList).apply {
-                                add(null)
-                            })
-                        })
+                        },
+                        onRefresh = {
 
+                        })
                 }
             ).show(childFragmentManager, "dialog_remove_dog")
         }
@@ -62,10 +58,6 @@ class DogListFragment(private val dogs: List<Dog?>) :
 
     private fun showDogList() {
         (dogs as ArrayList).add(null)
-        dogListAdapter.submitList(dogs)
-    }
-
-    private fun refreshDogList(dogs: List<Dog?>) {
         dogListAdapter.submitList(dogs)
     }
 }

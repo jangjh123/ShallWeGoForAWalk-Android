@@ -7,9 +7,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.ui.fragment.dog.DogFragment
-import com.jangjh123.shallwegoforawalk.ui.fragment.dog_list.DogListFragment
 
 class ViewPagerAdapter(
+    private val size: Int,
     private val weather: WeatherVO,
     private val dogs: List<Dog>,
     fragmentManager: FragmentManager,
@@ -18,17 +18,10 @@ class ViewPagerAdapter(
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
-        return dogs.size + 1
+        return size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when {
-            position < dogs.size -> {
-                DogFragment(weather, dogs[position])
-            }
-            else -> {
-                DogListFragment(dogs)
-            }
-        }
+        return DogFragment(weather, dogs[position])
     }
 }

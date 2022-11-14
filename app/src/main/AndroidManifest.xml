@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShallWeGoForAWalk">
         <activity
+            android:name=".DogListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.home.HomeActivity"
             android:exported="false" />
         <activity

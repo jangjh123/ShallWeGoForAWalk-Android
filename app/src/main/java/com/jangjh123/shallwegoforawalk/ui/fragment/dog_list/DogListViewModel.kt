@@ -11,7 +11,7 @@ import javax.inject.Inject
 class DogListViewModel @Inject constructor(private val repository: DogListRepository) :
     ViewModel() {
 
-    fun removeDog(id: Int, onNoDog: () -> Unit, onRefresh: (List<Dog?>) -> Unit) {
+    fun removeDog(id: Int, onNoDog: () -> Unit, onRefresh: () -> Unit) {
         repository.removeDogById(id, onComplete = {
             CoroutineScopes.io {
                 repository.getNewDogList().collect { dogs ->
@@ -19,7 +19,7 @@ class DogListViewModel @Inject constructor(private val repository: DogListReposi
                         repository.setRegistered()
                         onNoDog()
                     } else {
-                        onRefresh(dogs)
+                        onRefresh()
                     }
                 }
             }
