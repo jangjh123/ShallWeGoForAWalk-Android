@@ -44,6 +44,6 @@ object RepositoryModule {
 
     @ViewModelScoped
     @Provides
-    fun provideDogListRepository(dogDao: DogDao) =
-        DogListRepository(dogDao)
+    fun provideDogListRepository(dogDao: DogDao, dataStore: DataStore<Preferences>) =
+        DogListRepository(dogDao, dataStore)
 }
