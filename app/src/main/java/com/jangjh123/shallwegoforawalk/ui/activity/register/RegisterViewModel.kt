@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jangjh123.shallwegoforawalk.data.model.FurType
 import com.jangjh123.shallwegoforawalk.data.model.Size
+import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.repository.RegisterRepository
+import com.jangjh123.shallwegoforawalk.util.CoroutineScopes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -77,18 +79,24 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun storeDog() {
-//        CoroutineScope(dispatcher).launch {
-//            repository.storeIntoRoom(
-//                DogListTypes.Dog(
-//                    0,
-//                    dogName.value!!,
-//                    dogGender.value!!,
-//                    dogAge.value!!,
-//                    dogFurType.value!!,
-//                    dogSize.value!!,
-//                    ""
-//                )
-//            )
-//        }
+        CoroutineScopes.io {
+            repository.setDog(
+                Dog(
+                    0,
+                    dogName.value!!,
+                    dogGender.value!!,
+                    dogAge.value!!,
+                    dogFurType.value!!,
+                    dogSize.value!!,
+                    ""
+                )
+            )
+        }
+    }
+
+    fun setRegistered() {
+        CoroutineScopes.io {
+            repository.setRegistered()
+        }
     }
 }
