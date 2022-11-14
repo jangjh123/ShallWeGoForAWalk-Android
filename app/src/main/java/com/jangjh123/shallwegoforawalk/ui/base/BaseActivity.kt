@@ -18,10 +18,7 @@ import kotlin.system.exitProcess
 
 abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : AppCompatActivity() {
     lateinit var binding: VB
-
-    companion object {
-        private val progressDialog = ProgressDialog()
-    }
+    private val progressDialog = ProgressDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,6 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
     }
 
     protected open fun startProcess() {
-
     }
 
     protected fun playAnimation(view: View, anim: Int) {
@@ -58,15 +54,19 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
     protected open fun setObserver() {
     }
 
-    protected open fun showProgress() {
-        if (!progressDialog.isAdded) {
+    protected fun showProgress() {
+        try {
             progressDialog.showNow(supportFragmentManager, "progress_dialog")
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-    protected open fun dismissProgress() {
-        if (progressDialog.isVisible) {
+    protected fun dismissProgress() {
+        try {
             progressDialog.dismiss()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -85,5 +85,10 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
                 exitProcess(0)
             }
         ).show(supportFragmentManager, "dialog_quit")
+    }
+
+    override fun onDestroy() {
+        dismissProgress()
+        super.onDestroy()
     }
 }

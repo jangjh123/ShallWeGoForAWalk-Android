@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="imageUrl"
+            type="String" />
 
         <variable
             name="activity"
@@ -65,7 +68,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
 
-        <me.relex.circleindicator.CircleIndicator2
+        <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -100,6 +103,7 @@
                     android:id="@+id/imageview_weather_icon"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    setImageWithGlide="@{imageUrl}"
                     app:layout_constraintBottom_toBottomOf="@+id/textview_temp_cur"
                     app:layout_constraintEnd_toStartOf="@+id/textview_temp_cur"
                     app:layout_constraintTop_toTopOf="@+id/textview_temp_cur" />
