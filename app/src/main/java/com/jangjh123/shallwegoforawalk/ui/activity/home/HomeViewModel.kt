@@ -27,7 +27,6 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     init {
         CoroutineScopes.io {
             repository.fetchDogs().collect { dogs ->
-                println(dogs)
                 if (dogs.isNotEmpty()) {
                     _dogsFlow.emit(
                         DogsStateHandler.Success(

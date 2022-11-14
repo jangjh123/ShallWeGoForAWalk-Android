@@ -93,4 +93,10 @@ class RegisterViewModel @Inject constructor(
             )
         }
     }
+
+    fun setRegistered() {
+        CoroutineScopes.io {
+            repository.setRegistered()
+        }
+    }
 }

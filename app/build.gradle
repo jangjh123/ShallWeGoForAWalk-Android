@@ -75,6 +75,10 @@ dependencies {
     // ViewPager
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
+    // Datastore for storing value
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+
     // Extra Library
     implementation 'me.relex:circleindicator:2.1.6'
 
