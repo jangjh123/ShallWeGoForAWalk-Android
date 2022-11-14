@@ -7,9 +7,9 @@
             name="fragment"
             type="com.jangjh123.shallwegoforawalk.ui.fragment.dog_list.DogListFragment" />
 
-<!--        <variable-->
-<!--            name="adapter"-->
-<!--            type="com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter" />-->
+        <variable
+            name="adapter"
+            type="com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,18 +31,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerview_dog_list"-->
-<!--            setAdapter="@{adapter}"-->
-<!--            setLayoutManager="@{1}"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_marginHorizontal="16dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="36dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            android:overScrollMode="never"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textview_time_after_3" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_dog_list"
+            setAdapter="@{adapter}"
+            setLayoutManager="@{1}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="36dp"
+            android:overScrollMode="never"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_time_after_3" />
 
         <TextView
             android:id="@+id/button_home"

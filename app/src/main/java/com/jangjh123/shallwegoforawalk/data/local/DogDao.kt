@@ -12,8 +12,8 @@ interface DogDao {
     fun getAllDog(): Flow<List<Dog>>
 
     @Insert
-    suspend fun insertDog(dog: Dog)
+    fun insertDog(dog: Dog)
 
     @Query("DELETE FROM Dog WHERE id = :id")
-    fun deleteDog(id: Int)
+    suspend fun deleteDog(id: Int)
 }
