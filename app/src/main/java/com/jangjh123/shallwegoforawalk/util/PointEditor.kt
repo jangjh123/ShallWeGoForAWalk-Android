@@ -235,9 +235,9 @@ class WalkInfoProvider(private val context: Context) {
         val timeTable = ArrayList<String>()
         for (i in 1..6) {
             if (curTime + i > 23) {
-                timeTable.add("${(curTime + i) - 24} 시")
+                timeTable.add("${(curTime + i) - 24}시")
             } else {
-                timeTable.add("${curTime + i} 시")
+                timeTable.add("${curTime + i}시")
             }
         }
         return timeTable

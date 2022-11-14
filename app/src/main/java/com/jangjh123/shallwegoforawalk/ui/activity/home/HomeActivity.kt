@@ -87,6 +87,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     private fun initViewPager(weather: WeatherVO, dogs: List<Dog>) {
         binding.viewPager.adapter =
             ViewPagerAdapter(weather, dogs, supportFragmentManager, lifecycle)
+        binding.indicator.setViewPager(binding.viewPager)
     }
 
     private fun setWeatherData(weather: WeatherVO) {
