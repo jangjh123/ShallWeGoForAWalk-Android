@@ -115,24 +115,14 @@ class WalkInfoProvider(private val context: Context) {
         }
     }
 
-    fun getColorByPoint(point: Int): Int {
-        return ContextCompat.getColor(
+    fun getBackgroundByPoint(point: Int): Drawable? {
+        return ContextCompat.getDrawable(
             context, when {
-                point > 80 -> {
-                    R.color.point_color1
-                }
-                point > 60 -> {
-                    R.color.point_color2
-                }
-                point > 40 -> {
-                    R.color.point_color3
-                }
-                point > 20 -> {
-                    R.color.point_color4
-                }
-                else -> {
-                    R.color.point_color5
-                }
+                point > 80 -> R.drawable.background_gradient_1
+                point > 60 -> R.drawable.background_gradient_2
+                point > 40 -> R.drawable.background_gradient_3
+                point > 20 -> R.drawable.background_gradient_4
+                else -> R.drawable.background_gradient_5
             }
         )
     }
@@ -142,59 +132,29 @@ class WalkInfoProvider(private val context: Context) {
             context, when (size) {
                 Size.Small -> {
                     when {
-                        point > 80 -> {
-                            R.drawable.dog_small_1
-                        }
-                        point > 60 -> {
-                            R.drawable.dog_small_2
-                        }
-                        point > 40 -> {
-                            R.drawable.dog_small_3
-                        }
-                        point > 20 -> {
-                            R.drawable.dog_small_4
-                        }
-                        else -> {
-                            R.drawable.dog_small_5
-                        }
+                        point > 80 -> R.drawable.dog_small_1
+                        point > 60 -> R.drawable.dog_small_2
+                        point > 40 -> R.drawable.dog_small_3
+                        point > 20 -> R.drawable.dog_small_4
+                        else -> R.drawable.dog_small_5
                     }
                 }
                 Size.Medium -> {
                     when {
-                        point > 80 -> {
-                            R.drawable.dog_medium_1
-                        }
-                        point > 60 -> {
-                            R.drawable.dog_medium_2
-                        }
-                        point > 40 -> {
-                            R.drawable.dog_medium_3
-                        }
-                        point > 20 -> {
-                            R.drawable.dog_medium_4
-                        }
-                        else -> {
-                            R.drawable.dog_medium_5
-                        }
+                        point > 80 -> R.drawable.dog_medium_1
+                        point > 60 -> R.drawable.dog_medium_2
+                        point > 40 -> R.drawable.dog_medium_3
+                        point > 20 -> R.drawable.dog_medium_4
+                        else -> R.drawable.dog_medium_5
                     }
                 }
                 Size.Large -> {
                     when {
-                        point > 80 -> {
-                            R.drawable.dog_large_1
-                        }
-                        point > 60 -> {
-                            R.drawable.dog_large_2
-                        }
-                        point > 40 -> {
-                            R.drawable.dog_large_3
-                        }
-                        point > 20 -> {
-                            R.drawable.dog_large_4
-                        }
-                        else -> {
-                            R.drawable.dog_large_5
-                        }
+                        point > 80 -> R.drawable.dog_large_1
+                        point > 60 -> R.drawable.dog_large_2
+                        point > 40 -> R.drawable.dog_large_3
+                        point > 20 -> R.drawable.dog_large_4
+                        else -> R.drawable.dog_large_5
                     }
                 }
             }
@@ -203,25 +163,11 @@ class WalkInfoProvider(private val context: Context) {
 
     fun getMainTextByPoint(point: Int): String {
         return when {
-            point > 80 -> {
-                context.getString(R.string.item_main_point_desc_1)
-            }
-            point > 60 -> {
-                context.getString(R.string.item_main_point_desc_2)
-
-            }
-            point > 40 -> {
-                context.getString(R.string.item_main_point_desc_3)
-
-            }
-            point > 20 -> {
-                context.getString(R.string.item_main_point_desc_4)
-
-            }
-            else -> {
-                context.getString(R.string.item_main_point_desc_5)
-
-            }
+            point > 80 -> context.getString(R.string.item_main_point_desc_1)
+            point > 60 -> context.getString(R.string.item_main_point_desc_2)
+            point > 40 -> context.getString(R.string.item_main_point_desc_3)
+            point > 20 -> context.getString(R.string.item_main_point_desc_4)
+            else -> context.getString(R.string.item_main_point_desc_5)
         }
     }
 
