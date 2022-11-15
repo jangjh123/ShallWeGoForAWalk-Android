@@ -26,9 +26,8 @@ object RepositoryModule {
     @ViewModelScoped
     @Provides
     fun provideSplashRepository(
-        dogDao: DogDao,
         dataStore: DataStore<Preferences>
-    ) = SplashRepository(dogDao, dataStore)
+    ) = SplashRepository(dataStore)
 
     @ViewModelScoped
     @Provides
@@ -37,11 +36,6 @@ object RepositoryModule {
         dataStore: DataStore<Preferences>
     ) =
         RegisterRepository(dogDao, dataStore)
-
-    @ViewModelScoped
-    @Provides
-    fun provideMainRepository(dogDao: DogDao, dataSource: DataSource) =
-        MainRepository(dogDao, dataSource)
 
     @ViewModelScoped
     @Provides

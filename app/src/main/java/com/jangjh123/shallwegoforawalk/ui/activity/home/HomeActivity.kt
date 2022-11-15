@@ -111,25 +111,27 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                 }
             }
         }.invokeOnCompletion {
-            NoticeDialog(
-                title = getString(R.string.dialog_error_title),
-                body = when (it?.message) {
-                    "weather" -> {
-                        getString(R.string.dialog_error_weather_body)
-                    }
-                    "address" -> {
-                        getString(R.string.dialog_error_address_body)
-                    }
-                    else -> {
-                        getString(R.string.dialog_error_body)
-                    }
-                },
-                buttonText = getString(R.string.dialog_quit),
-                onClickButton = {
-                    finishApp()
-                }
-            ).show(supportFragmentManager, "dialog_error")
             dismissProgress()
+            if (it?.message != "success") {
+                NoticeDialog(
+                    title = getString(R.string.dialog_error_title),
+                    body = when (it?.message) {
+                        "weather" -> {
+                            getString(R.string.dialog_error_weather_body)
+                        }
+                        "address" -> {
+                            getString(R.string.dialog_error_address_body)
+                        }
+                        else -> {
+                            getString(R.string.dialog_error_body)
+                        }
+                    },
+                    buttonText = getString(R.string.dialog_quit),
+                    onClickButton = {
+                        finishApp()
+                    }
+                ).show(supportFragmentManager, "dialog_error")
+            }
         }
     }
 

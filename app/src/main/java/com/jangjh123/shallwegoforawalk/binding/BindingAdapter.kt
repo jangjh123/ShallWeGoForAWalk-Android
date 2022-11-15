@@ -25,15 +25,6 @@ object BindingAdapter {
         view.adapter = adapter
     }
 
-
-    @JvmStatic
-    @BindingAdapter("setSnapHelper")
-    fun setSnapHelper(view: RecyclerView, boolean: Boolean) {
-        if (boolean) {
-            PagerSnapHelper().attachToRecyclerView(view)
-        }
-    }
-
     @JvmStatic
     @BindingAdapter("setImageWithGlide")
     fun setImageWithGlide(view: ImageView, url: String?) {
