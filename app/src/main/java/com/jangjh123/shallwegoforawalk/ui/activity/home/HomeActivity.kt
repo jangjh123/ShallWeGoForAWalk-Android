@@ -25,6 +25,7 @@ import com.jangjh123.shallwegoforawalk.ui.component.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.combineTransform
+import kotlinx.coroutines.launch
 import kotlin.system.exitProcess
 
 @AndroidEntryPoint
@@ -58,7 +59,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             viewModel.getAddress(it.latitude, it.longitude)
 
         }.addOnFailureListener {
-            // todo : save last location with dataStore. if doesn't exist, use seoul's one.
+            lifecycleScope.launch {
+                viewModel.getStoredCoordinate().collect {
+                    val storedLatitude = it.first as Double
+                    val storedLongitude = it.second as Double
+                    if (it.first == 0 || it.second == 0) {
+                        viewModel.getWeatherVO(37.56, 126.97) // 서울 시청 좌표
+                        viewModel.getAddress(37.56, 126.97)
+                    } else {
+                        viewModel.getWeatherVO(storedLatitude, storedLongitude)
+                        viewModel.getAddress(storedLatitude, storedLongitude)
+                    }
+                }
+            }
         }
     }
 

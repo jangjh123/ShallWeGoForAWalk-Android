@@ -49,6 +49,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
                 when (data) {
                     is WeatherVO -> {
                         _weatherVOFlow.emit(WeatherStateHandler.Success(data))
+                        repository.storeCoordinate(latitude, longitude)
                     }
                     is String -> {
                         _weatherVOFlow.emit(WeatherStateHandler.Failure(data))
@@ -72,4 +73,6 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             }
         }
     }
+
+    fun getStoredCoordinate() = repository.loadStoredCoordinate()
 }

@@ -1,11 +1,20 @@
 package com.jangjh123.shallwegoforawalk.data.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import com.google.gson.JsonObject
+import com.jangjh123.data_store.KEY_ADDRESS_LATITUDE
+import com.jangjh123.data_store.KEY_ADDRESS_LONGITUDE
 import com.jangjh123.shallwegoforawalk.data.local.DogDao
 import com.jangjh123.shallwegoforawalk.data.model.weather.AddressVO
 import com.jangjh123.shallwegoforawalk.data.model.weather.HourlyWeather
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.remote.DataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.combineTransform
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.transform
 import java.text.SimpleDateFormat
 import java.util.*
@@ -14,7 +23,8 @@ import kotlin.math.roundToInt
 
 class HomeRepository @Inject constructor(
     private val dogDao: DogDao,
-    private val dataSource: DataSource
+    private val dataSource: DataSource,
+    private val dataStore: DataStore<Preferences>
 ) {
     fun fetchDogs() = dogDao.getAllDog()
 
@@ -96,5 +106,19 @@ class HomeRepository @Inject constructor(
             append(location.get("region_2depth_name").asString)
         }
         return AddressVO(sb.toString().replace("\"", ""))
+    }
+
+    suspend fun storeCoordinate(latitude: Double, longitude: Double) {
+        dataStore.edit {
+            it[KEY_ADDRESS_LATITUDE] = latitude
+            it[KEY_ADDRESS_LONGITUDE] = longitude
+        }
+    }
+
+    fun loadStoredCoordinate() = combineTransform(
+        dataStore.data.map { it[KEY_ADDRESS_LATITUDE] ?: 0 }.flowOn(Dispatchers.IO),
+        dataStore.data.map { it[KEY_ADDRESS_LONGITUDE] ?: 0 }.flowOn(Dispatchers.IO),
+    ) { latitude, longitude ->
+        emit(Pair(latitude, longitude))
     }
 }
