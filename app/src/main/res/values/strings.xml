@@ -20,6 +20,9 @@
     <string name="dialog_error_title">에러 발생</string>
     <string name="dialog_error_body">에러가 발생했습니다. 다시 시도해주세요.</string>
 
+    <string name="dialog_error_weather_body">날씨 정보를 불러 올 수 없습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
+    <string name="dialog_error_address_body">주소 정보를 불러 올 수 없습니다.\n연결 상태를 확인하고 다시 시도해주세요.</string>
+
     <string name="dialog_caution_title">유의사항 안내</string>
     <string name="dialog_caution_sub_title">고지사항</string>
     <string name="dialog_caution_body">산책갈까? 에서 제공하는 산책 점수는 정확하지 않을 수 있기에, 참고만 해주시기 바라요!\n산책갈까?는 제공한 정보로 인해 발생한 손해에 대하여 어떠한 책임도 지지 않습니다.\n\n날씨 및 미세먼지 정보 제공 : \nhttps://www.weatherapi.com </string>
@@ -40,7 +43,6 @@
 
     <string name="dialog_quit_registry_title">등록 취소</string>
     <string name="dialog_quit_registry_body">강아지 등록을 취소할까요?</string>
-
     <!--    RegisterActivity-->
     <string name="activity_register_title">산책할 댕댕이를\n소개해 주세요</string>
     <string name="activity_register_name">이름은 무엇인가요?</string>

@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.jangjh123.shallwegoforawalk.ui.component.ProgressDialog
+import kotlin.system.exitProcess
 
 
 abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : AppCompatActivity() {
@@ -70,5 +71,11 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val layoutId: Int) : A
     override fun onDestroy() {
         dismissProgress()
         super.onDestroy()
+    }
+
+    protected fun finishApp() {
+        moveTaskToBack(true)
+        finishAndRemoveTask()
+        exitProcess(0)
     }
 }
