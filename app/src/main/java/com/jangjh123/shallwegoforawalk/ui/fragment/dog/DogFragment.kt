@@ -31,7 +31,7 @@ class DogFragment(
             val mainPoint = walkInfoProvider.editPoint(weather, 0, reasonList)
             curPoint = mainPoint.toString()
             name = dog.name
-            backgroundColor = walkInfoProvider.getColorByPoint(mainPoint)
+            backgroundColor = walkInfoProvider.getBackgroundByPoint(mainPoint)
             image = walkInfoProvider.getImageByPointAndSize(mainPoint, dog.size)
             mainText = walkInfoProvider.getMainTextByPoint(mainPoint)
             hourlyPoint = List(6) { walkInfoProvider.editPoint(weather, it, null).toString() }

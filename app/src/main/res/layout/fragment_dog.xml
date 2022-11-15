@@ -18,7 +18,7 @@
 
         <variable
             name="backgroundColor"
-            type="int" />
+            type="android.graphics.drawable.Drawable" />
 
         <variable
             name="image"
@@ -119,12 +119,13 @@
 
         <ImageView
             android:id="@+id/button_reasons"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:onClick="@{fragment::onClickReason}"
             android:src="@drawable/icon_question"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/textview_point_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

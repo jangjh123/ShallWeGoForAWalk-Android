@@ -79,19 +79,17 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun storeDog() {
-        CoroutineScopes.io {
-            repository.setDog(
-                Dog(
-                    0,
-                    dogName.value!!,
-                    dogGender.value!!,
-                    dogAge.value!!,
-                    dogFurType.value!!,
-                    dogSize.value!!,
-                    ""
-                )
+        repository.setDog(
+            Dog(
+                0,
+                dogName.value!!,
+                dogGender.value!!,
+                dogAge.value!!,
+                dogFurType.value!!,
+                dogSize.value!!,
+                ""
             )
-        }
+        )
     }
 
     fun setRegistered() {

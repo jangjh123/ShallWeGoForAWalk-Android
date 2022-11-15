@@ -171,10 +171,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             else -> false
         }
     }
-
-    private fun finishApp() {
-        moveTaskToBack(true)
-        finishAndRemoveTask()
-        exitProcess(0)
-    }
 }

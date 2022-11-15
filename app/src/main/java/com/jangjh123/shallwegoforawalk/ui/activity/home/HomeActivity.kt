@@ -21,6 +21,7 @@ import com.jangjh123.shallwegoforawalk.ui.activity.dog_list.DogListActivity
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.CautionDialog
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
+import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import com.jangjh123.shallwegoforawalk.ui.component.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.cancel
@@ -111,6 +112,26 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             }
         }.invokeOnCompletion {
             dismissProgress()
+            if (it?.message != "success") {
+                NoticeDialog(
+                    title = getString(R.string.dialog_error_title),
+                    body = when (it?.message) {
+                        "weather" -> {
+                            getString(R.string.dialog_error_weather_body)
+                        }
+                        "address" -> {
+                            getString(R.string.dialog_error_address_body)
+                        }
+                        else -> {
+                            getString(R.string.dialog_error_body)
+                        }
+                    },
+                    buttonText = getString(R.string.dialog_quit),
+                    onClickButton = {
+                        finishApp()
+                    }
+                ).show(supportFragmentManager, "dialog_error")
+            }
         }
     }
 
