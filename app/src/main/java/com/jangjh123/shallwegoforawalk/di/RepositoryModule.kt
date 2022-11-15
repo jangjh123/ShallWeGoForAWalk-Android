@@ -19,8 +19,9 @@ object RepositoryModule {
     @Provides
     fun provideHomeRepository(
         dogDao: DogDao,
-        dataSource: DataSource
-    ) = HomeRepository(dogDao, dataSource)
+        dataSource: DataSource,
+        dataStore: DataStore<Preferences>
+    ) = HomeRepository(dogDao, dataSource, dataStore)
 
     @ViewModelScoped
     @Provides

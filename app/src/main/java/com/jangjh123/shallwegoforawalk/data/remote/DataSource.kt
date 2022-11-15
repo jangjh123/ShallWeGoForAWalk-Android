@@ -44,7 +44,6 @@ class DataSource {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     if (response.code() == 200) {
                         trySend(response.body())
-                        println(response.body())
                     } else {
                         trySend("Success but error occurred. ${response.body()}")
                     }
