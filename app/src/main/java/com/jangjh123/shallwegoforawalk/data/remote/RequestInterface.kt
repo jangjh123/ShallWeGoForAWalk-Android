@@ -19,6 +19,7 @@ interface RequestInterface {
     @GET("https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?")
     fun fetchAddress(
         @Header("Authorization") key: String,
+        @Query("input_coord") input: String,
         @Query("x") longitude: Double,
         @Query("y") latitude: Double
     ): Call<JsonObject>

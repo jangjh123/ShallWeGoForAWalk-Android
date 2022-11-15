@@ -7,7 +7,11 @@ import com.jangjh123.shallwegoforawalk.databinding.FragmentDogBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
 import com.jangjh123.shallwegoforawalk.util.WalkInfoProvider
 
-class DogFragment(private val weather: WeatherVO, private val dog: Dog) :
+class DogFragment(
+    private val weather: WeatherVO,
+    private val dog: Dog,
+    private val addressName: String
+) :
     BaseFragment<FragmentDogBinding>(R.layout.fragment_dog) {
     private val reasonList = ArrayList<String>()
 
@@ -30,6 +34,7 @@ class DogFragment(private val weather: WeatherVO, private val dog: Dog) :
             mainText = walkInfoProvider.getMainTextByPoint(mainPoint)
             hourlyPoint = List(6) { walkInfoProvider.editPoint(weather, it, null).toString() }
             times = walkInfoProvider.getTimeTable()
+            address = addressName
         }
     }
 }

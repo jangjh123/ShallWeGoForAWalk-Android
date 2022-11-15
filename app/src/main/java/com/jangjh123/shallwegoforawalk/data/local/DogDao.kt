@@ -15,5 +15,5 @@ interface DogDao {
     fun insertDog(dog: Dog)
 
     @Query("DELETE FROM Dog WHERE id = :id")
-    suspend fun deleteDog(id: Int)
+    fun deleteDog(id: Int)
 }

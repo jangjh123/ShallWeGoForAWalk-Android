@@ -1,11 +1,10 @@
 package com.jangjh123.shallwegoforawalk.ui.activity.home
 
 import androidx.lifecycle.ViewModel
+import com.jangjh123.shallwegoforawalk.data.model.AddressStateHandler
 import com.jangjh123.shallwegoforawalk.data.model.DogsStateHandler
-import com.jangjh123.shallwegoforawalk.data.model.FurType
-import com.jangjh123.shallwegoforawalk.data.model.Size
 import com.jangjh123.shallwegoforawalk.data.model.WeatherStateHandler
-import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
+import com.jangjh123.shallwegoforawalk.data.model.weather.AddressVO
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.repository.HomeRepository
 import com.jangjh123.shallwegoforawalk.util.CoroutineScopes
@@ -23,6 +22,10 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     private val _dogsFlow = MutableStateFlow<DogsStateHandler?>(null)
     val dogsFlow: StateFlow<DogsStateHandler?>
         get() = _dogsFlow
+
+    private val _addressFlow = MutableStateFlow<AddressStateHandler?>(null)
+    val addressFlow: StateFlow<AddressStateHandler?>
+        get() = _addressFlow
 
     init {
         CoroutineScopes.io {
@@ -49,6 +52,21 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
                     }
                     is String -> {
                         _weatherVOFlow.emit(WeatherStateHandler.Failure(data))
+                    }
+                }
+            }
+        }
+    }
+
+    fun getAddress(latitude: Double, longitude: Double) {
+        CoroutineScopes.io {
+            repository.fetchAddress(latitude, longitude).collect { data ->
+                when (data) {
+                    is AddressVO -> {
+                        _addressFlow.emit(AddressStateHandler.Success(data))
+                    }
+                    is String -> {
+                        _addressFlow.emit(AddressStateHandler.Failure(data))
                     }
                 }
             }
