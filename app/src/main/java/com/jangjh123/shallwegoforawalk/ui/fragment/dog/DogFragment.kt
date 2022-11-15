@@ -1,10 +1,12 @@
 package com.jangjh123.shallwegoforawalk.ui.fragment.dog
 
+import android.view.View
 import com.jangjh123.shallwegoforawalk.R
 import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.databinding.FragmentDogBinding
 import com.jangjh123.shallwegoforawalk.ui.base.BaseFragment
+import com.jangjh123.shallwegoforawalk.ui.component.NoticeDialog
 import com.jangjh123.shallwegoforawalk.util.WalkInfoProvider
 
 class DogFragment(
@@ -16,7 +18,7 @@ class DogFragment(
     private val reasonList = ArrayList<String>()
 
     override fun initViewDataBinding() {
-
+        binding.fragment = this@DogFragment
     }
 
     override fun startProcess() {
@@ -36,5 +38,26 @@ class DogFragment(
             times = walkInfoProvider.getTimeTable()
             address = addressName
         }
+    }
+
+    fun onClickReason(view: View) {
+        val sb = StringBuilder().also {
+            for (i in reasonList.indices) {
+                it.append("${reasonList[i]}\n")
+            }
+        }
+
+        NoticeDialog(
+            getString(R.string.fragment_main_reason),
+            when {
+                reasonList.isNotEmpty() -> {
+                    sb.toString()
+                }
+                else -> {
+                    getString(R.string.fragment_main_no_reason)
+                }
+            },
+            getString(R.string.dialog_confirm)
+        ) { }.show(childFragmentManager, "dialog_reason")
     }
 }
