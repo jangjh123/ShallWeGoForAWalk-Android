@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="fragment"
+            type="com.jangjh123.shallwegoforawalk.ui.fragment.dog.DogFragment" />
+
+        <variable
             name="name"
             type="String" />
 
@@ -79,11 +83,11 @@
             android:layout_marginTop="2dp"
             android:ellipsize="marquee"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="@{address}"
             android:gravity="center"
             android:letterSpacing="-0.06"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:text="@{address}"
             android:textColor="@color/white"
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,6 +123,7 @@
             android:layout_height="16dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
+            android:onClick="@{fragment::onClickReason}"
             android:src="@drawable/icon_question"
             app:layout_constraintBottom_toBottomOf="@+id/textview_point_desc"
             app:layout_constraintEnd_toEndOf="parent"
