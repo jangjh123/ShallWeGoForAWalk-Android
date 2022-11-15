@@ -12,6 +12,7 @@ class ViewPagerAdapter(
     private val size: Int,
     private val weather: WeatherVO,
     private val dogs: List<Dog>,
+    private val address: String,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) :
@@ -22,6 +23,6 @@ class ViewPagerAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return DogFragment(weather, dogs[position])
+        return DogFragment(weather, dogs[position], address)
     }
 }

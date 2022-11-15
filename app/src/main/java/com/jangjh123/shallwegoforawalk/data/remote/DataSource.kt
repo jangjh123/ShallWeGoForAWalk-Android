@@ -1,6 +1,5 @@
 package com.jangjh123.shallwegoforawalk.data.remote
 
-import android.util.Log
 import com.google.gson.JsonObject
 import com.jangjh123.shallwegoforawalk.BuildConfig
 import kotlinx.coroutines.channels.awaitClose
@@ -26,33 +25,38 @@ class DataSource {
             .build().create(RequestInterface::class.java)
     }
 
-    fun fetchWeatherData(coordinate: String) = callbackFlow {
-        apiService.fetchWeatherData(
-            BuildConfig.KEY_WEATHER,
-            coordinate
-        ).enqueue(object : Callback<JsonObject> {
-            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                Log.d("response", call.request().url.toString())
-                trySend(
+    fun fetchWeatherData(coordinate: String) =
+        getCallbackFlow(apiService.fetchWeatherData(BuildConfig.KEY_WEATHER, coordinate))
+
+    fun fetchAddress(latitude: Double, longitude: Double) =
+        getCallbackFlow(
+            apiService.fetchAddress(
+                BuildConfig.KEY_KAKAO,
+                "WSG84",
+                longitude,
+                latitude
+            )
+        )
+
+    private fun getCallbackFlow(call: Call<JsonObject>) =
+        callbackFlow {
+            call.enqueue(object : Callback<JsonObject> {
+                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     if (response.code() == 200) {
                         trySend(response.body())
+                        println(response.body())
                     } else {
                         trySend("Success but error occurred. ${response.body()}")
                     }
-                )
-                close()
-            }
+                }
 
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                trySend(t.message)
-                close()
-            }
-        })
-        awaitClose()
-    }
-
-    fun fetchAddress(longitude: Double, latitude: Double) =
-        apiService.fetchAddress(BuildConfig.KEY_KAKAO, longitude, latitude)
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    trySend(t.message)
+                    close()
+                }
+            })
+            awaitClose()
+        }
 }
 
 

@@ -2,6 +2,7 @@ package com.jangjh123.shallwegoforawalk.data.repository
 
 import com.google.gson.JsonObject
 import com.jangjh123.shallwegoforawalk.data.local.DogDao
+import com.jangjh123.shallwegoforawalk.data.model.weather.AddressVO
 import com.jangjh123.shallwegoforawalk.data.model.weather.HourlyWeather
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import com.jangjh123.shallwegoforawalk.data.remote.DataSource
@@ -16,11 +17,24 @@ class HomeRepository @Inject constructor(
     private val dataSource: DataSource
 ) {
     fun fetchDogs() = dogDao.getAllDog()
+
     fun fetchWeather(coordinate: String) =
         dataSource.fetchWeatherData(coordinate).transform { response ->
             when (response) {
                 is JsonObject -> {
                     emit(parseWeather(response))
+                }
+                is String -> {
+                    emit(response)
+                }
+            }
+        }
+
+    fun fetchAddress(latitude: Double, longitude: Double) =
+        dataSource.fetchAddress(latitude, longitude).transform { response ->
+            when (response) {
+                is JsonObject -> {
+                    emit(parseAddress(response))
                 }
                 is String -> {
                     emit(response)
@@ -72,5 +86,15 @@ class HomeRepository @Inject constructor(
             },
             hourlyList = forecastList
         )
+    }
+
+    private fun parseAddress(address: JsonObject): AddressVO {
+        val location = address.get("documents").asJsonArray.get(0).asJsonObject
+        val sb = StringBuilder().apply {
+            append(location.get("region_1depth_name").asString)
+            append(" ")
+            append(location.get("region_2depth_name").asString)
+        }
+        return AddressVO(sb.toString().replace("\"", ""))
     }
 }
