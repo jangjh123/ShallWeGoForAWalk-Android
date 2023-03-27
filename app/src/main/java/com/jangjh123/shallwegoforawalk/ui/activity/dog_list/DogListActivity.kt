@@ -10,6 +10,7 @@ import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.databinding.ActivityDogListBinding
 import com.jangjh123.shallwegoforawalk.ui.activity.home.HomeActivity
 import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity
+import com.jangjh123.shallwegoforawalk.ui.activity.register.RegisterActivity2
 import com.jangjh123.shallwegoforawalk.ui.base.BaseActivity
 import com.jangjh123.shallwegoforawalk.ui.component.ConfirmDialog
 import com.jangjh123.shallwegoforawalk.ui.component.DogListAdapter
@@ -26,7 +27,7 @@ class DogListActivity :
     }
     private val dogListAdapter = DogListAdapter(
         onClickAddDog = {
-            startActivity(Intent(this@DogListActivity, RegisterActivity::class.java))
+            startActivity(Intent(this@DogListActivity, RegisterActivity2::class.java))
         },
         onClickRemoveDog = { id ->
             ConfirmDialog(
@@ -70,7 +71,7 @@ class DogListActivity :
                             startActivity(
                                 Intent(
                                     this@DogListActivity,
-                                    RegisterActivity::class.java
+                                    RegisterActivity2::class.java
                                 ).apply {
                                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
