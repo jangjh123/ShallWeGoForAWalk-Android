@@ -27,21 +27,21 @@ https://play.google.com/store/apps/details?id=com.jangjh123.shallwegoforawalk
 ### 100% Kotlin
 
 ## 🏗 Architecture Pattern
-### MVVM(Model-View-ViewModel) + Repository Pattern
-
+### <code>MVVM(Model-View-ViewModel)</code> + <code>DataBinding</code> + <code>Repository Pattern</code>
+  
 ## 🛠 Used Skill & Library
-### Retrofit2 
+### <code>Retrofit2</code> 
 for Network Request
-### OkHttp3 
+### <code>OkHttp3</code>
 for Network Interceptor
-### RxJava
+### <code>Flow</code>
 for Asynchronous handling
-### Room 
+### <code>DataStore</code> 
+for Storing Values
+### <code>Room</code> 
 for Local Database
-### Dagger-Hilt 
+### <code>Dagger-Hilt</code> 
 for Dependency Injection
-### Navigation Compose
-for Fragment Handling
 
 ## 📢 Role
 ### 장지호
@@ -49,3 +49,9 @@ Android
 https://github.com/jangjh123
 ### 김채린
 Design
+
+## 🙄 What I learend
+- <code>FusedLocationManager</code> 의 존재를 알게 됐고, 보다 안정적으로 위치를 가져오는 방법에 대해 배울 수 있었습니다.
+- <code>Gradient</code> 의 <code>CenterColor</code> 속성을 알게 됐고, 이를 활용하여 자연스러운 Gradient UI 를 만들 수 있게 됐습니다.
+- <code>Flow</code> 의 여러 포맷을 사용해보면서 **Flow 의 편리함** 을 알게 됐습니다. 특히, <code>combine</code> 관련 함수를 사용해 볼 수 있어 좋았습니다.
+- <code>Flow-State-Handler</code>를 통해 **데이터 상태에 기반하여 애플리케이션의 상태가 변경**되도록 프로그램을 구현해 볼 수 있었습니다.

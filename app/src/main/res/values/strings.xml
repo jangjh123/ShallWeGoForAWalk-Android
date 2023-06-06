@@ -62,11 +62,11 @@
     <string name="activity_register_strong_fur">강모종</string>
     <string name="activity_register_curly_fur">권모종</string>
 
-    <string name="activity_register_long_fur_example">장모종-더블코트: 골든 리트리버, 콜리, 포메라니안</string>
-    <string name="activity_register_silky_fur_example">견모종-실키코트: 요크셔테리어, 몰티즈, 코카스파니엘</string>
-    <string name="activity_register_short_fur_example">단모종: 달마시안, 비글, 불 테리어, 래브라도 리트리버, 시바견</string>
-    <string name="activity_register_strong_fur_example">강모종: 미니어처 슈나우저, 스코티시 테리어 등 테리어종</string>
-    <string name="activity_register_curly_fur_example">권모종: 푸들, 비숑 프리제 등</string>
+    <string name="activity_register_long_fur_example">장모종-더블코트 : 골든 리트리버, 콜리, 포메라니안</string>
+    <string name="activity_register_silky_fur_example">견모종-실키코트 : 요크셔테리어, 몰티즈, 코카스파니엘</string>
+    <string name="activity_register_short_fur_example">단모종 : 달마시안, 비글, 불 테리어, 래브라도 리트리버, 시바견</string>
+    <string name="activity_register_strong_fur_example">강모종 : 미니어처 슈나우저, 스코티시 테리어 등 테리어종</string>
+    <string name="activity_register_curly_fur_example">권모종 : 푸들, 비숑 프리제 등</string>
     <string name="activity_register_size_help">구분 기준</string>
     <string name="activity_register_size_help_desc">7Kg 이하는 소형견, 7Kg 초과~15Kg 이하 중형견, 15Kg 초과는 대형견으로 구분</string>
 
@@ -110,4 +110,5 @@
 
     <!--    AddDogItem-->
     <string name="item_add_dog_text">가족 추가하기</string>
+    <string name="title_activity_register2">RegisterActivity2</string>
 </resources>

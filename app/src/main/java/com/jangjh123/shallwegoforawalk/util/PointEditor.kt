@@ -4,13 +4,20 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.jangjh123.shallwegoforawalk.R
+import com.jangjh123.shallwegoforawalk.data.model.FurType
 import com.jangjh123.shallwegoforawalk.data.model.Size
+import com.jangjh123.shallwegoforawalk.data.model.weather.Dog
 import com.jangjh123.shallwegoforawalk.data.model.weather.WeatherVO
 import java.text.SimpleDateFormat
 import java.util.*
 
 class WalkInfoProvider(private val context: Context) {
-    fun editPoint(weather: WeatherVO, index: Int, reasonList: ArrayList<String>?): Int {
+    fun editPoint(
+        dog: Dog,
+        weather: WeatherVO,
+        index: Int,
+        reasonList: ArrayList<String>?
+    ): Int {
         var point = 100
         val temperature = weather.hourlyList[index].temp
         val fine = weather.fine
@@ -20,31 +27,52 @@ class WalkInfoProvider(private val context: Context) {
         when {
             temperature > 45 -> {
                 reasonList.addIfExists("매우 높은 온도 (-90)")
-                point -= 90
+                point = 100
             }
-            temperature > 35 -> {
-                reasonList.addIfExists("매우 높은 온도 (-46)")
-                point -= 46
+            temperature in 35..44 -> {
+                point -= if (dog.furType == FurType.Long || dog.age > 13) {
+                    reasonList.addIfExists("장모견 또는 노견에게 위험한 온도 (-100)")
+                    100
+                } else {
+                    reasonList.addIfExists("매우 높은 온도 (-46)")
+                    46
+                }
+
             }
-            temperature > 30 -> {
-                reasonList.addIfExists("높은 온도 (-12)")
-                point -= 12
+            temperature in 28..34 -> {
+                point -= if (dog.furType == FurType.Long || dog.age > 13) {
+                    reasonList.addIfExists("장모견 또는 노견에게 매우 높은 온도 (-46)")
+                    46
+                } else {
+                    reasonList.addIfExists("높은 온도 (-12)")
+                    12
+                }
             }
-            temperature > 0 -> {
+            temperature in 0..7 -> {
                 reasonList.addIfExists("약간 낮은 온도 (-11)")
                 point -= 11
             }
-            temperature > -5 -> {
-                reasonList.addIfExists("낮은 온도 (-22)")
-                point -= 22
+            temperature in -5..0 -> {
+                point -= if (dog.furType == FurType.Short || dog.age > 13) {
+                    reasonList.addIfExists("단모견 또는 노견에게 매우 낮은 온도 (-52)")
+                    52
+                } else {
+                    reasonList.addIfExists("낮은 온도 (-22)")
+                    22
+                }
             }
-            temperature > -10 -> {
-                reasonList.addIfExists("매우 낮은 온도 (-52)")
-                point -= 52
+            temperature in -10..-5 -> {
+                point -= if (dog.furType == FurType.Short || dog.age > 13) {
+                    reasonList.addIfExists("단모견 또는 노견에게 위험한 온도 (-100)")
+                    100
+                } else {
+                    reasonList.addIfExists("낮은 온도 (-52)")
+                    52
+                }
             }
-            temperature > -50 -> {
+            temperature < -10 -> {
                 reasonList.addIfExists("매우 낮은 온도 (-100)")
-                point -= 100
+                point = 0
             }
         }
 
