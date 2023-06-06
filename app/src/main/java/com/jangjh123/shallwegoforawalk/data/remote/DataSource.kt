@@ -31,7 +31,6 @@ class DataSource {
     fun fetchAddress(latitude: Double, longitude: Double) =
         getCallbackFlow(
             apiService.fetchAddress(
-                BuildConfig.KEY_KAKAO,
                 "WSG84",
                 longitude,
                 latitude

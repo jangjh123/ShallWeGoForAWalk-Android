@@ -28,13 +28,13 @@ class DogFragment(
     private fun initView() {
         with(binding) {
             val walkInfoProvider = WalkInfoProvider(requireContext())
-            val mainPoint = walkInfoProvider.editPoint(weather, 0, reasonList)
+            val mainPoint = walkInfoProvider.editPoint(dog, weather, 0, reasonList)
             curPoint = mainPoint.toString()
             name = dog.name
             backgroundDrawable = walkInfoProvider.getBackgroundByPoint(mainPoint)
             image = walkInfoProvider.getImageByPointAndSize(mainPoint, dog.size)
             mainText = walkInfoProvider.getMainTextByPoint(mainPoint)
-            hourlyPoint = List(6) { walkInfoProvider.editPoint(weather, it, null).toString() }
+            hourlyPoint = List(6) { walkInfoProvider.editPoint(dog, weather, it, null).toString() }
             times = walkInfoProvider.getTimeTable()
             address = addressName
         }
